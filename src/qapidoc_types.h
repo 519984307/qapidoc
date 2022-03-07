@@ -15,8 +15,6 @@
 #include <QList>
 #include <QVector>
 #include <QFlags>
-#include <QMutex>
-#include <QMutexLocker>
 
 namespace QApiDoc{
 
@@ -58,13 +56,6 @@ bool qIsNumeric(const QVariant&v);
 //!
 const QByteArrayList &object_ignore_methods();
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-typedef QMutexLocker<QMutex> QMutexLOCKER;
-typedef QMetaType::Type QMetaTypeType;
-#else
-typedef QMutexLocker QMutexLOCKER;
-typedef QVariant::Type QMetaTypeType;
-#endif
 static const int QMetaType_UnknownType  = QMetaType::UnknownType   ;
 static const int QMetaType_Void         = QMetaType::Void          ;
 static const int QMetaType_Bool         = QMetaType::Bool          ;
