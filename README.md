@@ -27,9 +27,9 @@ http://json-schema.org
 
 ## QApiDoc Speeches
 
-https://www.youtube.com/watch?v=9U3HP3B5UT0 (Pt-Br)
+https://www.youtube.com/watch?v=??????? (Pt-Br)
 
-https://www.youtube.com/watch?v=PhgMQAd8O6c (Pt-Br)
+https://www.youtube.com/watch?v=??????? (Pt-Br)
 
 
 ## Swagger References and Tutorials 
