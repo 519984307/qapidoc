@@ -14,7 +14,7 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
     if(property.write(object, vValue))
         return true;
 
-    if(QStmTypesListString.contains(type)){
+    if(QStmTypesListMetaString.contains(type)){
         QVariant v;
         if(QStmTypesListObjects.contains(qTypeId(value)))
             v=QJsonDocument::fromVariant(vValue).toJson(QJsonDocument::Compact);
@@ -22,6 +22,14 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
             v=vValue.toByteArray();
 
         switch (type) {
+        case QMetaType_QUuid:
+            if(property.write(object, vValue.toUuid()))
+                return true;
+            break;
+        case QMetaType_QUrl:
+            if(property.write(object, vValue.toUrl()))
+                return true;
+            break;
         case QMetaType_QString:
             if(property.write(object, v.toString()))
                 return true;
@@ -71,16 +79,8 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QStmTypesListObjectsString.contains(type)){
+    if(QStmTypesListObjects.contains(type)){
         switch (type) {
-        case QMetaType_QUuid:
-            if(property.write(object, vValue.toUuid()))
-                return true;
-            break;
-        case QMetaType_QUrl:
-            if(property.write(object, vValue.toUrl()))
-                return true;
-            break;
         case QMetaType_QVariantMap:
             if(property.write(object, vValue.toHash()))
                 return true;
