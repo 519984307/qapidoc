@@ -35,9 +35,21 @@ public:
         return qApp->arguments();
     }
 
-    static QByteArray toMd5(const QVariant&v)
+    static const QByteArray toMd5(const QVariant&v)
     {
-        return QCryptographicHash::hash(v.toByteArray(), QCryptographicHash::Md5).toHex();
+        QByteArray bytes;
+        switch (qTypeId(v)) {
+        case QMetaType_QStringList:
+        case QMetaType_QVariantList:
+        case QMetaType_QVariantHash:
+        case QMetaType_QVariantMap:
+            bytes=QJsonDocument::fromVariant(v).toJson(QJsonDocument::Compact);
+            break;
+        default:
+            bytes=v.toByteArray();
+        }
+        return QCryptographicHash::hash(bytes, QCryptographicHash::Md5).toHex();
+
     }
 
     static QVariant toVar(const QVariant&v)

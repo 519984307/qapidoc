@@ -24,25 +24,26 @@ namespace QApiDoc {
     {
         ObjectTest object;
 
-        auto values=object.clear().toHash();
-        auto md5_1=this->toMd5(values);
-        values[QStringLiteral("v01")] = true;
-        values[QStringLiteral("v02")] = QVariant{"test"};
-        values[QStringLiteral("v03")] = QDate::currentDate();
-        values[QStringLiteral("v04")] = QTime::currentTime();
-        values[QStringLiteral("v05")] = QDateTime::currentDateTime();
-        values[QStringLiteral("v06")] = 98760;
-        values[QStringLiteral("v07")] = 4587.12;
-        values[QStringLiteral("v08")] = QUuid::createUuid().toString();
-        values[QStringLiteral("v09")] = QUuid::createUuid().toByteArray();
-        values[QStringLiteral("v10")] = QUuid::createUuid();
-        values[QStringLiteral("v11")] = QUrl("http://localhost:8888");
-        values[QStringLiteral("v12")] = QStringList{QUuid::createUuid().toString(), QUuid::createUuid().toString(), QUuid::createUuid().toString()};
-        values[QStringLiteral("v13")] = QVariantList{QUuid::createUuid(), QUuid::createUuid(), QUuid::createUuid()};
-        values[QStringLiteral("v14")] = QVariantHash{{QUuid::createUuid().toString(), QUuid::createUuid()}, {QUuid::createUuid().toString(), QUuid::createUuid()}};
-        values[QStringLiteral("v15")] = QVariantMap{{QUuid::createUuid().toString(), QUuid::createUuid()}, {QUuid::createUuid().toString(), QUuid::createUuid()}};
-        EXPECT_TRUE(object.load(values))<<"md5-check-A: not loaded values";
-        auto md5_2=this->toMd5(object.toHash());
+        auto v1=object.clear().toHash();
+        v1[QStringLiteral("v01")] = true;
+        v1[QStringLiteral("v02")] = QVariant{"test"};
+        v1[QStringLiteral("v03")] = QDate::currentDate();
+        v1[QStringLiteral("v04")] = QTime::currentTime();
+        v1[QStringLiteral("v05")] = QDateTime::currentDateTime();
+        v1[QStringLiteral("v06")] = int(98760);
+        v1[QStringLiteral("v07")] = double(4587.12);
+        v1[QStringLiteral("v08")] = QUuid::createUuid().toString();
+        v1[QStringLiteral("v09")] = QUuid::createUuid().toByteArray();
+        v1[QStringLiteral("v10")] = QUuid::createUuid();
+        v1[QStringLiteral("v11")] = QUrl("http://localhost:8888");
+        v1[QStringLiteral("v12")] = QStringList{QUuid::createUuid().toString(), QUuid::createUuid().toString(), QUuid::createUuid().toString()};
+        v1[QStringLiteral("v13")] = QVariantList{QUuid::createUuid(), QUuid::createUuid(), QUuid::createUuid()};
+        v1[QStringLiteral("v14")] = QVariantHash{{QUuid::createUuid().toString(), QUuid::createUuid()}, {QUuid::createUuid().toString(), QUuid::createUuid()}};
+        v1[QStringLiteral("v15")] = QVariantMap{{QUuid::createUuid().toString(), QUuid::createUuid()}, {QUuid::createUuid().toString(), QUuid::createUuid()}};
+        auto md5_1=this->toMd5(v1);
+        EXPECT_TRUE(object.load(v1))<<"md5-check-A: not loaded values";
+        auto v2=object.toHash();
+        auto md5_2=this->toMd5(v2);
         EXPECT_TRUE(md5_1==md5_2)<<"check-B: invalid md5";
     }
 }

@@ -22,10 +22,6 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
             v=vValue.toByteArray();
 
         switch (type) {
-        case QMetaType_QUuid:
-            if(property.write(object, vValue.toUuid()))
-                return true;
-            break;
         case QMetaType_QString:
             if(property.write(object, v.toString()))
                 return true;
@@ -75,8 +71,12 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QStmTypesListClass.contains(type)){
+    if(QStmTypesListObjectsString.contains(type)){
         switch (type) {
+        case QMetaType_QUuid:
+            if(property.write(object, vValue.toUuid()))
+                return true;
+            break;
         case QMetaType_QUrl:
             if(property.write(object, vValue.toUrl()))
                 return true;
@@ -101,7 +101,8 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
             return false;
         }
     }
-    else if(QStmTypesListDates.contains(type)){
+
+    if(QStmTypesListDates.contains(type)){
         switch (type) {
         case QMetaType_QDate:
             if(property.write(object, vValue.toDate()))
@@ -221,7 +222,7 @@ QVariant ObjectMapper::toVariant() const
                 continue;
             break;
         case QMetaType_QUrl:
-            if(!value.toUrl().isEmpty())
+            if(value.toUrl().isEmpty())
                 continue;
             break;
         case QMetaType_QDate:
