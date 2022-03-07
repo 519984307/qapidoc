@@ -11,13 +11,6 @@ https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
 
 https://swagger.io/docs/specification/2-0/basic-structure/
 
-When creating a Swagger documentation for your REST API you can produce a page like the following example.
-
-https://app.swaggerhub.com/apis-docs/QApiDoc/sample-api/v1
-
-![image](https://user-images.githubusercontent.com/20048296/46588904-c6cd5880-ca79-11e8-8a8a-ec38ba7ff95a.png)
-
-
 ## Json Schema
 
 https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject
