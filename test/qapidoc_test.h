@@ -12,6 +12,7 @@
 #include <QJsonDocument>
 #include <gtest/gtest.h>
 #include "../src/qapidoc.h"
+#include "./qapidoc_object_test.h"
 
 
 namespace QApiDoc {

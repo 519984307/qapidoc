@@ -24,7 +24,7 @@ class Q_SWAGGER_EXPORT SecurityDefinition : public ObjectMapper
     Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
 
     //! Required. The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".
-    Q_PROPERTY(SecurityDefinitionType typeSecurity READ typeSecurity CONSTANT)
+    Q_PROPERTY(SecurityDefinitionType typeSecurity READ typeSecurity NOTIFY typeSecurityChanged)
 
 public:
     Q_API_DECLARE_SECURITY_DEFINITION_TYPE()
@@ -83,6 +83,7 @@ private:
 signals:
     void schemaNameChanged();
     void descriptionChanged();
+    void typeSecurityChanged();
 };
 
 

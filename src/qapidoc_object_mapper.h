@@ -46,13 +46,13 @@ public:
     //! \brief toHash
     //! \return
     //!
-    virtual QVariant toHash()const;
+    virtual QVariantHash toHash()const;
 
     //!
     //! \brief toMap
     //! \return
     //!
-    virtual QVariant toMap()const;
+    virtual QVariantMap toMap()const;
 
     //!
     //! \brief toJson

@@ -6,6 +6,161 @@
 
 namespace QApiDoc{
 
+static bool writeProperty(QObject*object, const QMetaProperty&property, const QVariant&value)
+{
+    auto type = qTypeId(property);
+    QVariant vValue=value;
+
+    if(property.write(object, vValue))
+        return true;
+
+    if(QStmTypesListString.contains(type)){
+        QVariant v;
+        if(QStmTypesListObjects.contains(qTypeId(value)))
+            v=QJsonDocument::fromVariant(vValue).toJson(QJsonDocument::Compact);
+        else
+            v=vValue.toByteArray();
+
+        switch (type) {
+        case QMetaType_QUuid:
+            if(property.write(object, vValue.toUuid()))
+                return true;
+            break;
+        case QMetaType_QString:
+            if(property.write(object, v.toString()))
+                return true;
+            break;
+        case QMetaType_QByteArray:
+            if(property.write(object, v.toByteArray()))
+                return true;
+            break;
+        case QMetaType_QChar:
+            if(property.write(object, v.toChar()))
+                return true;
+            break;
+        case QMetaType_QBitArray:
+            if(property.write(object, v.toBitArray()))
+                return true;
+            break;
+        default:
+            return false;
+        }
+    }
+
+    if(QStmTypesListIntegers.contains(type)){//ints
+
+        switch (type) {
+        case QMetaType_LongLong:
+        case QMetaType_ULongLong:
+            if(property.write(object, static_cast<qlonglong>(QLocale::c().toDouble(vValue.toString()))))
+                return true;
+            if(property.write(object, QLocale::c().toLongLong(vValue.toString())))
+                return true;
+            break;
+        case QMetaType_Int:
+        case QMetaType_UInt:
+            if(property.write(object, QLocale::c().toInt(vValue.toString())))
+                return true;
+            if(property.write(object, QLocale::c().toInt(vValue.toString())))
+                return true;
+            if(property.write(object, QLocale::c().toUInt(vValue.toString())))
+                return true;
+            break;
+        case QMetaType_Double:
+            if(property.write(object, QLocale::c().toDouble(vValue.toString())))
+                return true;
+            break;
+        default:
+            return false;
+        }
+    }
+
+    if(QStmTypesListClass.contains(type)){
+        switch (type) {
+        case QMetaType_QUrl:
+            if(property.write(object, vValue.toUrl()))
+                return true;
+            break;
+        case QMetaType_QVariantMap:
+            if(property.write(object, vValue.toHash()))
+                return true;
+            break;
+        case QMetaType_QVariantHash:
+            if(property.write(object, vValue.toHash()))
+                return true;
+            break;
+        case QMetaType_QVariantList:
+            if(property.write(object, vValue.toList()))
+                return true;
+            break;
+        case QMetaType_QStringList:
+            if(property.write(object, vValue.toStringList()))
+                return true;
+            break;
+        default:
+            return false;
+        }
+    }
+    else if(QStmTypesListDates.contains(type)){
+        switch (type) {
+        case QMetaType_QDate:
+            if(property.write(object, vValue.toDate()))
+                return true;
+            break;
+        case QMetaType_QDateTime:
+            if(property.write(object, vValue.toDateTime()))
+                return true;
+            break;
+        case QMetaType_QTime:
+            if(property.write(object, vValue.toTime()))
+                return true;
+            break;
+        default:
+            return false;
+        }
+    }
+
+    if(QStmTypesListBool.contains(type) || QStmTypesListBool.contains(qTypeId(value))){
+
+        switch (type) {
+        case QMetaType_Bool:
+            if(property.write(object, vValue.toBool()))
+                return true;
+            break;
+        default:
+            break;
+        }
+
+        switch (qTypeId(vValue)){
+        case QMetaType_Bool:
+            if(property.write(object, vValue.toBool()))
+                return true;
+            break;
+        case QMetaType_Int:
+        case QMetaType_UInt:
+        case QMetaType_ULongLong:
+        case QMetaType_LongLong:
+        case QMetaType_Double:
+            if(property.write(object, (vValue.toInt()==1)))
+                return true;
+            break;
+        case QMetaType_QString:
+        case QMetaType_QByteArray:
+        case QMetaType_QChar:
+        {
+            auto vv=vValue.toString().toLower();
+            bool vBool=(vv==QStringLiteral("true"));
+            if(property.write(object, vBool))
+                return true;
+            break;
+        }
+        default:
+            return false;
+        }
+    }
+    return false;
+}
+
 ObjectMapper::ObjectMapper(QObject *parent)
     : QObject{parent}
 {
@@ -106,12 +261,12 @@ QVariant ObjectMapper::toVariant() const
     return __return.isEmpty()?QVariant():__return;
 }
 
-QVariant ObjectMapper::toHash() const
+QVariantHash ObjectMapper::toHash() const
 {
     return this->toVariant().toHash();
 }
 
-QVariant ObjectMapper::toMap() const
+QVariantMap ObjectMapper::toMap() const
 {
     return this->toVariant().toMap();
 }
@@ -256,8 +411,8 @@ bool ObjectMapper::read(const QVariant &value)
         if(v.isNull() || !v.isValid())
             continue;
 
-        auto p=propertList.value(i.key().toLower());
-        if(p.write(this, v))
+        auto&p=propertList.value(i.key().toLower());
+        if(writeProperty(this, p, v))
             __return=true;
     }
     return __return;

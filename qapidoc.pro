@@ -1,4 +1,4 @@
-TARGET = QSwagger
+TARGET = QApiDoc
 TEMPLATE = lib
 
-include($$PWD/qswagger.pri)
+include($$PWD/qapidoc.pri)
