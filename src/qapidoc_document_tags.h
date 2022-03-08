@@ -6,7 +6,7 @@
 
 namespace QApiDoc{
 
-class Q_SWAGGER_EXPORT Tag : public ObjectMapper
+class Q_API_DOC_EXPORT Tag : public ObjectMapper
 {
     Q_OBJECT
 

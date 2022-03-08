@@ -8,7 +8,7 @@ namespace QApiDoc{
 //!
 //! \brief The DocumentExternal class
 //!
-class Q_SWAGGER_EXPORT DocumentExternal : public ObjectMapper
+class Q_API_DOC_EXPORT DocumentExternal : public ObjectMapper
 {
     Q_OBJECT
 

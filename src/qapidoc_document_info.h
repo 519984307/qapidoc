@@ -13,7 +13,7 @@ namespace QApiDoc{
 //! The object provides metadata about the API.
 //! The metadata can be used by the clients if needed, and can be presented in the Swagger-UI for convenience.
 //!
-class Q_SWAGGER_EXPORT Info : public ObjectMapper
+class Q_API_DOC_EXPORT Info : public ObjectMapper
 {
     Q_OBJECT
 

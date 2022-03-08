@@ -10,7 +10,7 @@ namespace QApiDoc{
 //!
 //! Contact information for the exposed API.
 //!
-class Q_SWAGGER_EXPORT InfoContact : public ObjectMapper
+class Q_API_DOC_EXPORT InfoContact : public ObjectMapper
 {
     Q_OBJECT
 

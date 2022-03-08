@@ -9,7 +9,7 @@ namespace QApiDoc{
 //!
 //! \brief The SecurityDefinitionOAuth2Scope class
 //!
-class Q_SWAGGER_EXPORT SecurityDefinitionOAuth2Scope : public ObjectMapper
+class Q_API_DOC_EXPORT SecurityDefinitionOAuth2Scope : public ObjectMapper
 {
     Q_OBJECT
 

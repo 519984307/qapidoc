@@ -15,7 +15,7 @@ namespace QApiDoc{
 //! Further information about the properties can be found in JSON Schema Core and JSON Schema Validation.
 //! Unless stated otherwise, the property definitions follow the JSON Schema specification as referenced here.
 //!
-class Q_SWAGGER_EXPORT Definition : public ObjectMapper
+class Q_API_DOC_EXPORT Definition : public ObjectMapper
 {
     Q_OBJECT
 

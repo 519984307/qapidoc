@@ -10,7 +10,7 @@ namespace QApiDoc{
 //!
 //!Lists the headers that can be sent as part of a response.
 //!
-class Q_SWAGGER_EXPORT Headers : public ObjectMapper
+class Q_API_DOC_EXPORT Headers : public ObjectMapper
 {
     Q_OBJECT
 

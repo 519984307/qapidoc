@@ -14,7 +14,7 @@ class RequestParameter;
 //! Holds the relative paths to the individual endpoints.
 //! The path is appended to the basePath in order to construct the full URL.
 //! The Paths may be empty, due to ACL constraints.
-class Q_SWAGGER_EXPORT Path : public ObjectMapper
+class Q_API_DOC_EXPORT Path : public ObjectMapper
 {
     Q_OBJECT
 

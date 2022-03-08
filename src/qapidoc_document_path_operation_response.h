@@ -18,7 +18,7 @@ namespace QApiDoc{
 //! The default can be used as the default response object for all HTTP codes that are not covered individually by the specification.
 //! The Responses Object MUST contain at least one response code, and it SHOULD be the response for a successful operation call.
 //!
-class Q_SWAGGER_EXPORT Response : public ObjectMapper
+class Q_API_DOC_EXPORT Response : public ObjectMapper
 {
     Q_OBJECT
 

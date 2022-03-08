@@ -14,7 +14,7 @@ namespace QApiDoc{
 //!
 //! Describes a single API operation on a path.
 //!
-class Q_SWAGGER_EXPORT PathOperation : public ObjectMapper
+class Q_API_DOC_EXPORT PathOperation : public ObjectMapper
 {
     Q_OBJECT
 

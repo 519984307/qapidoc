@@ -14,7 +14,7 @@ namespace QApiDoc{
 //!
 //! The security scheme object API key (either as a header or as a query parameter)
 //!
-class Q_SWAGGER_EXPORT SecurityDefinitionApiKey : public SecurityDefinition
+class Q_API_DOC_EXPORT SecurityDefinitionApiKey : public SecurityDefinition
 {
     Q_OBJECT
 

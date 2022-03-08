@@ -13,7 +13,7 @@ static const auto __securityDefinition##MetaObject##__registerRegister=SecurityD
 /// A declaration of the security schemes available to be used in the specification.
 /// This does not enforce the security schemes on the operations and only serves to provide the relevant details for each scheme.
 /// </summary>
-class Q_SWAGGER_EXPORT SecurityDefinition : public ObjectMapper
+class Q_API_DOC_EXPORT SecurityDefinition : public ObjectMapper
 {
     Q_OBJECT
 

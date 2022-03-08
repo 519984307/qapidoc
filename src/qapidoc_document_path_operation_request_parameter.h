@@ -12,7 +12,7 @@ namespace QApiDoc{
 //!
 //! Describes a single operation parameter.A unique parameter is defined by a combination of a name and location.
 //!
-class Q_SWAGGER_EXPORT RequestParameter : public ObjectMapper
+class Q_API_DOC_EXPORT RequestParameter : public ObjectMapper
 {
     Q_OBJECT
 

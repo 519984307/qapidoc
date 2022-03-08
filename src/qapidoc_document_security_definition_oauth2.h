@@ -13,7 +13,7 @@ class SecurityDefinitionOAuth2Scope;
 //!
 //! \brief The SecurityDefinitionOAuth2 class
 //!
-class Q_SWAGGER_EXPORT SecurityDefinitionOAuth2: public SecurityDefinition
+class Q_API_DOC_EXPORT SecurityDefinitionOAuth2: public SecurityDefinition
 {
     Q_OBJECT
 

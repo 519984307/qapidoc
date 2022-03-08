@@ -12,7 +12,7 @@ namespace QApiDoc{
 //!
 //! The security scheme object Basic
 //!
-class Q_SWAGGER_EXPORT SecurityDefinitionBasic: public SecurityDefinition
+class Q_API_DOC_EXPORT SecurityDefinitionBasic: public SecurityDefinition
 {
     Q_OBJECT
 

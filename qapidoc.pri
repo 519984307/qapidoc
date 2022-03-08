@@ -32,6 +32,7 @@ HEADERS+= \
         $$PWD/src/qapidoc_global.h \
         $$PWD/src/qapidoc_includes.h \
         $$PWD/src/qapidoc_macros.h \
+        $$PWD/src/qapidoc_meta_types.h \
         $$PWD/src/qapidoc_object_mapper.h \
         $$PWD/src/qapidoc_types.h
 
@@ -55,5 +56,6 @@ SOURCES += \
         $$PWD/src/qapidoc_document_security_definition_oauth2.cpp \
         $$PWD/src/qapidoc_document_security_definition_oauth2_scope.cpp \
         $$PWD/src/qapidoc_document_tags.cpp \
+        $$PWD/src/qapidoc_meta_types.cpp \
         $$PWD/src/qapidoc_object_mapper.cpp \
         $$PWD/src/qapidoc_types.cpp

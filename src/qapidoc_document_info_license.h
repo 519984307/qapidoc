@@ -9,7 +9,7 @@ namespace QApiDoc{
 //!
 //! \brief The InfoLicense class
 //! License information for the exposed API.
-class Q_SWAGGER_EXPORT InfoLicense: public ObjectMapper
+class Q_API_DOC_EXPORT InfoLicense: public ObjectMapper
 {
     Q_OBJECT
 

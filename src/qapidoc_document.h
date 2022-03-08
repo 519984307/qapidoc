@@ -19,7 +19,7 @@ namespace QApiDoc{
 //! This is the root document object for the API specification.
 //! It combines what previously was the Resource Listing and API Declaration (version 1.2 and earlier) together into one document.
 //!
-class Q_SWAGGER_EXPORT Document : public ObjectMapper
+class Q_API_DOC_EXPORT Document : public ObjectMapper
 {
     Q_OBJECT
 

@@ -9,7 +9,7 @@ namespace QApiDoc{
 //!
 //! \brief The ObjectMapper class
 //!
-class Q_SWAGGER_EXPORT ObjectMapper : public QObject
+class Q_API_DOC_EXPORT ObjectMapper : public QObject
 {
     Q_OBJECT
 public:
