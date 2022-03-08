@@ -80,10 +80,11 @@ const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilVariantDictionary(){ return *st
 const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilVariantList(){ return *staticQMetaTypeUtilVariantList; }
 const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilObjectMetaData(){ return *staticQMetaTypeUtilObjectMetaData; }
 
-}
-
-int qTypeId(const QVariant &v){ return QApiDoc::QMetaTypeUtil::qTypeId(v);}
+int qTypeId(const QVariant &v) { return QApiDoc::QMetaTypeUtil::qTypeId(v);}
 
 int qTypeId(const QMetaProperty &p){ return QApiDoc::QMetaTypeUtil::qTypeId(p);}
 
 bool qIsNumeric(const QVariant &v){ return QApiDoc::QMetaTypeUtil::qIsNumeric(v);}
+
+}
+
