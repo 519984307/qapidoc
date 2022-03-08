@@ -1,13 +1,12 @@
 #pragma once
 
+#include "./qapidoc_global.h"
 #include <QObject>
+#include <QVector>
 #include <QVariant>
 #include <QVariantHash>
 #include <QString>
 #include <QMetaProperty>
-#include <QTemporaryFile>
-#include "./qapidoc_global.h"
-
 
 namespace QApiDoc{
 
