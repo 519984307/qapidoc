@@ -83,79 +83,79 @@ public:
     //! \brief QMetaTypeUtilString
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilString();
+    static const QMetaTypeUtil &qMetaTypeUtilString();
 
     //!
     //! \brief QMetaTypeUtilMetaString
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilMetaString();
+    static const QMetaTypeUtil &qMetaTypeUtilMetaString();
 
     //!
     //! \brief QMetaTypeUtilNumeric
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilNumeric();
+    static const QMetaTypeUtil &qMetaTypeUtilNumeric();
 
     //!
     //! \brief QMetaTypeUtilDoubles
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilDoubles();
+    static const QMetaTypeUtil &qMetaTypeUtilDoubles();
 
     //!
     //! \brief QMetaTypeUtilIntegers
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilIntegers();
+    static const QMetaTypeUtil &qMetaTypeUtilIntegers();
 
     //!
     //! \brief QMetaTypeUtilClass
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilClass();
+    static const QMetaTypeUtil &qMetaTypeUtilClass();
 
     //!
     //! \brief QMetaTypeUtilObjects
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilObjects();
+    static const QMetaTypeUtil &qMetaTypeUtilObjects();
 
     //!
     //! \brief QMetaTypeUtilObjectsString
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilObjectsString();
+    static const QMetaTypeUtil &qMetaTypeUtilObjectsString();
 
     //!
     //! \brief QMetaTypeUtilDates
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilDates();
+    static const QMetaTypeUtil &qMetaTypeUtilDates();
 
     //!
     //! \brief QMetaTypeUtilBool
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilBool();
+    static const QMetaTypeUtil &qMetaTypeUtilBool();
 
     //!
     //! \brief QMetaTypeUtilVariantDictionary
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilVariantDictionary();
+    static const QMetaTypeUtil &qMetaTypeUtilVariantDictionary();
 
     //!
     //! \brief QMetaTypeUtilVariantList
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilVariantList();
+    static const QMetaTypeUtil &qMetaTypeUtilVariantList();
 
     //!
     //! \brief QMetaTypeUtilObjectMetaData
     //! \return
     //!
-    static const QMetaTypeUtil &QMetaTypeUtilObjectMetaData();
+    static const QMetaTypeUtil &qMetaTypeUtilObjectMetaData();
 };
 
 }
@@ -182,16 +182,16 @@ int qTypeId(const QMetaProperty&p){ return QApiDoc::QMetaTypeUtil::qTypeId(p);};
 //!
 bool qIsNumeric(const QVariant&v){ return QApiDoc::QMetaTypeUtil::qIsNumeric(v);};
 
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilString=QApiDoc::QMetaTypeUtil::QMetaTypeUtilObjectMetaData();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilMetaString=QApiDoc::QMetaTypeUtil::QMetaTypeUtilVariantList();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilNumeric=QApiDoc::QMetaTypeUtil::QMetaTypeUtilVariantDictionary();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilDoubles=QApiDoc::QMetaTypeUtil::QMetaTypeUtilBool();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilIntegers=QApiDoc::QMetaTypeUtil::QMetaTypeUtilDates();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilClass=QApiDoc::QMetaTypeUtil::QMetaTypeUtilObjectsString();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilObjects=QApiDoc::QMetaTypeUtil::QMetaTypeUtilObjects();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilObjectsString=QApiDoc::QMetaTypeUtil::QMetaTypeUtilClass();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilDates=QApiDoc::QMetaTypeUtil::QMetaTypeUtilIntegers();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilBool=QApiDoc::QMetaTypeUtil::QMetaTypeUtilDoubles();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilVariantDictionary=QApiDoc::QMetaTypeUtil::QMetaTypeUtilNumeric();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilVariantList=QApiDoc::QMetaTypeUtil::QMetaTypeUtilMetaString();
-static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilObjectMetaData=QApiDoc::QMetaTypeUtil::QMetaTypeUtilString();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilString=QApiDoc::QMetaTypeUtil::qMetaTypeUtilObjectMetaData();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilMetaString=QApiDoc::QMetaTypeUtil::qMetaTypeUtilVariantList();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilNumeric=QApiDoc::QMetaTypeUtil::qMetaTypeUtilVariantDictionary();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilDoubles=QApiDoc::QMetaTypeUtil::qMetaTypeUtilBool();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilIntegers=QApiDoc::QMetaTypeUtil::qMetaTypeUtilDates();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilClass=QApiDoc::QMetaTypeUtil::qMetaTypeUtilObjectsString();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilObjects=QApiDoc::QMetaTypeUtil::qMetaTypeUtilObjects();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilObjectsString=QApiDoc::QMetaTypeUtil::qMetaTypeUtilClass();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilDates=QApiDoc::QMetaTypeUtil::qMetaTypeUtilIntegers();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilBool=QApiDoc::QMetaTypeUtil::qMetaTypeUtilDoubles();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilVariantDictionary=QApiDoc::QMetaTypeUtil::qMetaTypeUtilNumeric();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilVariantList=QApiDoc::QMetaTypeUtil::qMetaTypeUtilMetaString();
+static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilObjectMetaData=QApiDoc::QMetaTypeUtil::qMetaTypeUtilString();

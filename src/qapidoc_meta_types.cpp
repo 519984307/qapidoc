@@ -66,19 +66,19 @@ bool QMetaTypeUtil::qIsNumeric(const QVariant &v)
     }
 }
 
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilString(){ return *staticQMetaTypeUtilString; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilMetaString(){ return *staticQMetaTypeUtilMetaString; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilNumeric(){ return *staticQMetaTypeUtilNumeric; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilDoubles(){ return *staticQMetaTypeUtilDoubles; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilIntegers(){ return *staticQMetaTypeUtilIntegers; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilClass(){ return *staticQMetaTypeUtilClass; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilObjects(){ return *staticQMetaTypeUtilObjects; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilObjectsString(){ return *staticQMetaTypeUtilObjectsString; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilDates(){ return *staticQMetaTypeUtilDates; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilBool(){ return *staticQMetaTypeUtilBool; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilVariantDictionary(){ return *staticQMetaTypeUtilVariantDictionary; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilVariantList(){ return *staticQMetaTypeUtilVariantList; }
-const QMetaTypeUtil &QMetaTypeUtil::QMetaTypeUtilObjectMetaData(){ return *staticQMetaTypeUtilObjectMetaData; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilString(){ return *staticQMetaTypeUtilString; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilMetaString(){ return *staticQMetaTypeUtilMetaString; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilNumeric(){ return *staticQMetaTypeUtilNumeric; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilDoubles(){ return *staticQMetaTypeUtilDoubles; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilIntegers(){ return *staticQMetaTypeUtilIntegers; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilClass(){ return *staticQMetaTypeUtilClass; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilObjects(){ return *staticQMetaTypeUtilObjects; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilObjectsString(){ return *staticQMetaTypeUtilObjectsString; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilDates(){ return *staticQMetaTypeUtilDates; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilBool(){ return *staticQMetaTypeUtilBool; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilVariantDictionary(){ return *staticQMetaTypeUtilVariantDictionary; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilVariantList(){ return *staticQMetaTypeUtilVariantList; }
+const QMetaTypeUtil &QMetaTypeUtil::qMetaTypeUtilObjectMetaData(){ return *staticQMetaTypeUtilObjectMetaData; }
 
 }
 
