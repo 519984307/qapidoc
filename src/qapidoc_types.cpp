@@ -6,19 +6,19 @@ namespace QApiDoc{
 Q_GLOBAL_STATIC_WITH_ARGS(QByteArrayList, static_object_ignore_methods,({"destroyed", "objectName", "objectNameChanged", "deleteLater", "_q_reregisterTimers"}));
 
 
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListString, ({QMetaType_QString,QMetaType_QByteArray,QMetaType_QChar,QMetaType_QBitArray}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListMetaString, ({QMetaType_QUrl, QMetaType_QUuid, QMetaType_QString, QMetaType_QByteArray, QMetaType_QChar, QMetaType_QBitArray}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListNumeric, ({QMetaType_LongLong,QMetaType_Int,QMetaType_UInt,QMetaType_ULongLong,QMetaType_Double}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListDoubles, ({QMetaType_Double}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListIntegers, ({QMetaType_LongLong,QMetaType_Int,QMetaType_UInt,QMetaType_ULongLong,QMetaType_Double}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListClass, ({QMetaType_QUrl,QMetaType_QUuid,QMetaType_QVariantMap,QMetaType_QVariantHash,QMetaType_QVariantList,QMetaType_QStringList}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListObjects, ({QMetaType_QVariantMap,QMetaType_QVariantHash,QMetaType_QVariantList,QMetaType_QStringList}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListObjectsString, ({QMetaType_QString,QMetaType_QByteArray}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListDates, ({QMetaType_QDate,QMetaType_QDateTime,QMetaType_QTime}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesListBool, ({QMetaType_Bool}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesVariantDictionary, ({QMetaType_QVariantHash, QMetaType_QVariantMap}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesVariantList, ({QMetaType_QVariantList, QMetaType_QStringList}));
-Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQStmTypesObjectMetaData, ({QMetaType_QVariantHash, QMetaType_QVariantMap, QMetaType_QVariantList, QMetaType_QStringList}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilString, ({QMetaType_QString,QMetaType_QByteArray,QMetaType_QChar,QMetaType_QBitArray}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilMetaString, ({QMetaType_QUrl, QMetaType_QUuid, QMetaType_QString, QMetaType_QByteArray, QMetaType_QChar, QMetaType_QBitArray}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilNumeric, ({QMetaType_LongLong,QMetaType_Int,QMetaType_UInt,QMetaType_ULongLong,QMetaType_Double}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilDoubles, ({QMetaType_Double}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilIntegers, ({QMetaType_LongLong,QMetaType_Int,QMetaType_UInt,QMetaType_ULongLong,QMetaType_Double}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilClass, ({QMetaType_QUrl,QMetaType_QUuid,QMetaType_QVariantMap,QMetaType_QVariantHash,QMetaType_QVariantList,QMetaType_QStringList}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilObjects, ({QMetaType_QVariantMap,QMetaType_QVariantHash,QMetaType_QVariantList,QMetaType_QStringList}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilObjectsString, ({QMetaType_QString,QMetaType_QByteArray}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilDates, ({QMetaType_QDate,QMetaType_QDateTime,QMetaType_QTime}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilBool, ({QMetaType_Bool}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilVariantDictionary, ({QMetaType_QVariantHash, QMetaType_QVariantMap}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilVariantList, ({QMetaType_QVariantList, QMetaType_QStringList}));
+Q_GLOBAL_STATIC_WITH_ARGS(MetaTypesList, staticQMetaTypeUtilObjectMetaData, ({QMetaType_QVariantHash, QMetaType_QVariantMap, QMetaType_QVariantList, QMetaType_QStringList}));
 
 int qTypeId(const QVariant &v)
 {
@@ -65,19 +65,19 @@ const QByteArrayList &object_ignore_methods()
 }
 
 namespace Private {
-const MetaTypesList &QStmTypesListString(){ return *staticQStmTypesListString; }
-const MetaTypesList &QStmTypesListMetaString(){ return *staticQStmTypesListMetaString; }
-const MetaTypesList &QStmTypesListNumeric(){ return *staticQStmTypesListNumeric; }
-const MetaTypesList &QStmTypesListDoubles(){ return *staticQStmTypesListDoubles; }
-const MetaTypesList &QStmTypesListIntegers(){ return *staticQStmTypesListIntegers; }
-const MetaTypesList &QStmTypesListClass(){ return *staticQStmTypesListClass; }
-const MetaTypesList &QStmTypesListObjects(){ return *staticQStmTypesListObjects; }
-const MetaTypesList &QStmTypesListObjectsString(){ return *staticQStmTypesListObjectsString; }
-const MetaTypesList &QStmTypesListDates(){ return *staticQStmTypesListDates; }
-const MetaTypesList &QStmTypesListBool(){ return *staticQStmTypesListBool; }
-const MetaTypesList &QStmTypesVariantDictionary(){ return *staticQStmTypesVariantDictionary; }
-const MetaTypesList &QStmTypesVariantList(){ return *staticQStmTypesVariantList; }
-const MetaTypesList &QStmTypesObjectMetaData(){ return *staticQStmTypesObjectMetaData; }
+const MetaTypesList &QMetaTypeUtilString(){ return *staticQMetaTypeUtilString; }
+const MetaTypesList &QMetaTypeUtilMetaString(){ return *staticQMetaTypeUtilMetaString; }
+const MetaTypesList &QMetaTypeUtilNumeric(){ return *staticQMetaTypeUtilNumeric; }
+const MetaTypesList &QMetaTypeUtilDoubles(){ return *staticQMetaTypeUtilDoubles; }
+const MetaTypesList &QMetaTypeUtilIntegers(){ return *staticQMetaTypeUtilIntegers; }
+const MetaTypesList &QMetaTypeUtilClass(){ return *staticQMetaTypeUtilClass; }
+const MetaTypesList &QMetaTypeUtilObjects(){ return *staticQMetaTypeUtilObjects; }
+const MetaTypesList &QMetaTypeUtilObjectsString(){ return *staticQMetaTypeUtilObjectsString; }
+const MetaTypesList &QMetaTypeUtilDates(){ return *staticQMetaTypeUtilDates; }
+const MetaTypesList &QMetaTypeUtilBool(){ return *staticQMetaTypeUtilBool; }
+const MetaTypesList &QMetaTypeUtilVariantDictionary(){ return *staticQMetaTypeUtilVariantDictionary; }
+const MetaTypesList &QMetaTypeUtilVariantList(){ return *staticQMetaTypeUtilVariantList; }
+const MetaTypesList &QMetaTypeUtilObjectMetaData(){ return *staticQMetaTypeUtilObjectMetaData; }
 }
 
 

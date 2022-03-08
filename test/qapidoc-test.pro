@@ -8,3 +8,6 @@ LIBS += -L/usr/local/lib -lgmock
 LIBS += -L/usr/local/lib -lgtest
 
 include($$PWD/qapidoc-test.pri)
+
+SOURCES += \
+    $$PWD/main.cpp

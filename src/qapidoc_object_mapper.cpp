@@ -14,9 +14,9 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
     if(property.write(object, vValue))
         return true;
 
-    if(QStmTypesListMetaString.contains(type)){
+    if(QMetaTypeUtilMetaString.contains(type)){
         QVariant v;
-        if(QStmTypesListObjects.contains(qTypeId(value)))
+        if(QMetaTypeUtilObjects.contains(qTypeId(value)))
             v=QJsonDocument::fromVariant(vValue).toJson(QJsonDocument::Compact);
         else
             v=vValue.toByteArray();
@@ -51,7 +51,7 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QStmTypesListIntegers.contains(type)){//ints
+    if(QMetaTypeUtilIntegers.contains(type)){//ints
 
         switch (type) {
         case QMetaType_LongLong:
@@ -79,7 +79,7 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QStmTypesListObjects.contains(type)){
+    if(QMetaTypeUtilObjects.contains(type)){
         switch (type) {
         case QMetaType_QVariantMap:
             if(property.write(object, vValue.toHash()))
@@ -102,7 +102,7 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QStmTypesListDates.contains(type)){
+    if(QMetaTypeUtilDates.contains(type)){
         switch (type) {
         case QMetaType_QDate:
             if(property.write(object, vValue.toDate()))
@@ -121,7 +121,7 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QStmTypesListBool.contains(type) || QStmTypesListBool.contains(qTypeId(value))){
+    if(QMetaTypeUtilBool.contains(type) || QMetaTypeUtilBool.contains(qTypeId(value))){
 
         switch (type) {
         case QMetaType_Bool:

@@ -14,7 +14,6 @@ HEADERS += \
     $$PWD/qapidoc_test_unit.h
 
 SOURCES += \
-    $$PWD/main.cpp \
     $$PWD/qapidoc_unit_test_object.cpp
 
 

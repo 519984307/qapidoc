@@ -81,34 +81,34 @@ static const int QMetaType_QVariantMap  = QMetaType::QVariantMap   ;
 static const int QMetaType_CustomType   = 65538                    ;
 
 namespace Private {
-const MetaTypesList &QStmTypesListString();
-const MetaTypesList &QStmTypesListMetaString();
-const MetaTypesList &QStmTypesListNumeric();
-const MetaTypesList &QStmTypesListDoubles();
-const MetaTypesList &QStmTypesListIntegers();
-const MetaTypesList &QStmTypesListClass();
-const MetaTypesList &QStmTypesListObjects();
-const MetaTypesList &QStmTypesListObjectsString();
-const MetaTypesList &QStmTypesListDates();
-const MetaTypesList &QStmTypesListBool();
-const MetaTypesList &QStmTypesVariantDictionary();
-const MetaTypesList &QStmTypesVariantList();
-const MetaTypesList &QStmTypesObjectMetaData();
+const MetaTypesList &QMetaTypeUtilString();
+const MetaTypesList &QMetaTypeUtilMetaString();
+const MetaTypesList &QMetaTypeUtilNumeric();
+const MetaTypesList &QMetaTypeUtilDoubles();
+const MetaTypesList &QMetaTypeUtilIntegers();
+const MetaTypesList &QMetaTypeUtilClass();
+const MetaTypesList &QMetaTypeUtilObjects();
+const MetaTypesList &QMetaTypeUtilObjectsString();
+const MetaTypesList &QMetaTypeUtilDates();
+const MetaTypesList &QMetaTypeUtilBool();
+const MetaTypesList &QMetaTypeUtilVariantDictionary();
+const MetaTypesList &QMetaTypeUtilVariantList();
+const MetaTypesList &QMetaTypeUtilObjectMetaData();
 }
 
-static const MetaTypesList &QStmTypesListString=Private::QStmTypesObjectMetaData();
-static const MetaTypesList &QStmTypesListMetaString=Private::QStmTypesVariantList();
-static const MetaTypesList &QStmTypesListNumeric=Private::QStmTypesVariantDictionary();
-static const MetaTypesList &QStmTypesListDoubles=Private::QStmTypesListBool();
-static const MetaTypesList &QStmTypesListIntegers=Private::QStmTypesListDates();
-static const MetaTypesList &QStmTypesListClass=Private::QStmTypesListObjectsString();
-static const MetaTypesList &QStmTypesListObjects=Private::QStmTypesListObjects();
-static const MetaTypesList &QStmTypesListObjectsString=Private::QStmTypesListClass();
-static const MetaTypesList &QStmTypesListDates=Private::QStmTypesListIntegers();
-static const MetaTypesList &QStmTypesListBool=Private::QStmTypesListDoubles();
-static const MetaTypesList &QStmTypesVariantDictionary=Private::QStmTypesListNumeric();
-static const MetaTypesList &QStmTypesVariantList=Private::QStmTypesListMetaString();
-static const MetaTypesList &QStmTypesObjectMetaData=Private::QStmTypesListString();
+static const MetaTypesList &QMetaTypeUtilString=Private::QMetaTypeUtilObjectMetaData();
+static const MetaTypesList &QMetaTypeUtilMetaString=Private::QMetaTypeUtilVariantList();
+static const MetaTypesList &QMetaTypeUtilNumeric=Private::QMetaTypeUtilVariantDictionary();
+static const MetaTypesList &QMetaTypeUtilDoubles=Private::QMetaTypeUtilBool();
+static const MetaTypesList &QMetaTypeUtilIntegers=Private::QMetaTypeUtilDates();
+static const MetaTypesList &QMetaTypeUtilClass=Private::QMetaTypeUtilObjectsString();
+static const MetaTypesList &QMetaTypeUtilObjects=Private::QMetaTypeUtilObjects();
+static const MetaTypesList &QMetaTypeUtilObjectsString=Private::QMetaTypeUtilClass();
+static const MetaTypesList &QMetaTypeUtilDates=Private::QMetaTypeUtilIntegers();
+static const MetaTypesList &QMetaTypeUtilBool=Private::QMetaTypeUtilDoubles();
+static const MetaTypesList &QMetaTypeUtilVariantDictionary=Private::QMetaTypeUtilNumeric();
+static const MetaTypesList &QMetaTypeUtilVariantList=Private::QMetaTypeUtilMetaString();
+static const MetaTypesList &QMetaTypeUtilObjectMetaData=Private::QMetaTypeUtilString();
 
 }
 
