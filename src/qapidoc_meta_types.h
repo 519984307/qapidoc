@@ -1,8 +1,8 @@
 #pragma once
 
 #include <QObject>
-#include <QMap>
 #include <QVariant>
+#include <QVariantHash>
 #include <QString>
 #include <QMetaProperty>
 #include <QTemporaryFile>
