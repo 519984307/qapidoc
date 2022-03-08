@@ -1,6 +1,6 @@
 #include "./qapidoc_document_path_operation.h"
 #include "./qapidoc_document_path.h"
-
+#include "./qapidoc_meta_types.h"
 
 namespace QApiDoc{
 

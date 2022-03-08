@@ -5,7 +5,15 @@
 #include <QVector>
 #include <QVariant>
 #include <QVariantHash>
+#include <QVariantMap>
+#include <QVariantList>
+#include <QStringList>
 #include <QString>
+#include <QByteArray>
+#include <QBitArray>
+#include <QChar>
+#include <QUuid>
+#include <QUrl>
 #include <QMetaProperty>
 
 namespace QApiDoc{
@@ -166,21 +174,21 @@ public:
 //! \param v
 //! \return
 //!
-int qTypeId(const QVariant&v){ return QApiDoc::QMetaTypeUtil::qTypeId(v);};
+int qTypeId(const QVariant&v);;
 
 //!
 //! \brief qTypeId
 //! \param p
 //! \return
 //!
-int qTypeId(const QMetaProperty&p){ return QApiDoc::QMetaTypeUtil::qTypeId(p);};
+int qTypeId(const QMetaProperty&p);;
 
 //!
 //! \brief qIsNumeric
 //! \param v
 //! \return
 //!
-bool qIsNumeric(const QVariant&v){ return QApiDoc::QMetaTypeUtil::qIsNumeric(v);};
+bool qIsNumeric(const QVariant&v);;
 
 static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilString=QApiDoc::QMetaTypeUtil::qMetaTypeUtilObjectMetaData();
 static const QApiDoc::QMetaTypeUtil &QMetaTypeUtilMetaString=QApiDoc::QMetaTypeUtil::qMetaTypeUtilVariantList();

@@ -1,9 +1,7 @@
 #pragma once
 
-
 #include "./qapidoc_global.h"
 #include "./qapidoc_macros.h"
-#include "./qapidoc_types.h"
 #include "./qapidoc_includes.h"
 #include "./qapidoc_object_mapper.h"
 #include "./qapidoc_common_types.h"

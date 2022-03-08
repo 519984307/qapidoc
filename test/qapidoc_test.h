@@ -20,42 +20,15 @@ namespace QApiDoc {
 class SDKGoogleTest : public testing::Test{
 public:
 
-    explicit SDKGoogleTest()
-    {
-        QLocale::setDefault(QLocale(QLocale::Portuguese, QLocale::Brazil));
-    }
+    explicit SDKGoogleTest();
 
-    virtual bool clear()
-    {
-        return true;
-    }
+    virtual bool clear();
 
-    virtual QStringList arguments()
-    {
-        return qApp->arguments();
-    }
+    virtual QStringList arguments();
 
-    static const QByteArray toMd5(const QVariant&v)
-    {
-        QByteArray bytes;
-        switch (qTypeId(v)) {
-        case QMetaType_QStringList:
-        case QMetaType_QVariantList:
-        case QMetaType_QVariantHash:
-        case QMetaType_QVariantMap:
-            bytes=QJsonDocument::fromVariant(v).toJson(QJsonDocument::Compact);
-            break;
-        default:
-            bytes=v.toByteArray();
-        }
-        return QCryptographicHash::hash(bytes, QCryptographicHash::Md5).toHex();
+    static const QByteArray toMd5(const QVariant&v);
 
-    }
-
-    static QVariant toVar(const QVariant&v)
-    {
-        return QJsonDocument::fromJson(v.toByteArray()).toVariant();
-    }
+    static const QVariant toVar(const QVariant&v);
 
     static void SetUpTestCase()
     {

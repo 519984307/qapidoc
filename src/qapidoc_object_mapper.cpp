@@ -1,5 +1,6 @@
 #include "./qapidoc_object_mapper.h"
-#include <QMetaProperty>
+#include "./qapidoc_meta_types.h"
+#include "./qapidoc_types.h"
 #include <QFile>
 #include <QJsonDocument>
 #include <QDebug>

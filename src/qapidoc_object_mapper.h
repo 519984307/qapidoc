@@ -1,7 +1,6 @@
 #pragma once
 
 #include "./qapidoc_global.h"
-#include "./qapidoc_types.h"
 #include <QObject>
 
 namespace QApiDoc{

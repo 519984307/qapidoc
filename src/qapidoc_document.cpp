@@ -1,4 +1,6 @@
 #include "./qapidoc_document.h"
+#include "./qapidoc_meta_types.h"
+#include "./qapidoc_types.h"
 #include "./qapidoc.h"
 #include <QDir>
 #include <QJsonDocument>
@@ -9,22 +11,6 @@
 #include <QMetaProperty>
 
 namespace QApiDoc{
-
-//Q_GLOBAL_STATIC_WITH_ARGS(ByteArrayList, __controller_valid_methods,(
-//                                                                         {
-//                                                                             "version",
-//                                                                             "infoObject",
-//                                                                             "tagsObject",
-//                                                                             "consumes",
-//                                                                             "produces",
-//                                                                             "basePath",
-//                                                                             "host",
-//                                                                             "schemes",
-//                                                                             "pathsObject",
-//                                                                             "definitions",
-//                                                                             "securityDefinitionsObject",
-//                                                                             "externalDocsObject"
-//                                                                         }));
 
 #define dPvt() auto&p =*reinterpret_cast<DocumentPvt*>(this->p)
 
