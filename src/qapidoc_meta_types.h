@@ -8,49 +8,6 @@
 #include <QTemporaryFile>
 #include "./qapidoc_global.h"
 
-//!
-//! \brief The QMetaTypeList class
-//!
-//! List for QMetaType
-class Q_API_DOC_EXPORT QMetaTypeList:public QVector<int>
-{
-public:
-    //!
-    //! \brief QMetaTypeList
-    //!
-    explicit QMetaTypeList();
-
-    //!
-    //! \brief QMetaTypeList
-    //!
-    explicit QMetaTypeList(const QVector<int>&list);
-
-    //!
-    //! \brief ~QMetaTypeList
-    //!
-    virtual ~QMetaTypeList();
-};
-
-//!
-//! \brief qTypeId
-//! \param v
-//! \return
-//!
-int qTypeId(const QVariant&v);
-
-//!
-//! \brief qTypeId
-//! \param p
-//! \return
-//!
-int qTypeId(const QMetaProperty&p);
-
-//!
-//! \brief qIsNumeric
-//! \param v
-//! \return
-//!
-bool qIsNumeric(const QVariant&v);
 
 //!
 //! \brief Consts to QMetaType
@@ -78,33 +35,159 @@ static const int QMetaType_QVariantList = QMetaType::QVariantList  ;
 static const int QMetaType_QVariantMap  = QMetaType::QVariantMap   ;
 static const int QMetaType_CustomType   = 65538                    ;
 
-namespace Private {
-const QMetaTypeList &QStmTypesListString();
-const QMetaTypeList &QStmTypesListMetaString();
-const QMetaTypeList &QStmTypesListNumeric();
-const QMetaTypeList &QStmTypesListDoubles();
-const QMetaTypeList &QStmTypesListIntegers();
-const QMetaTypeList &QStmTypesListClass();
-const QMetaTypeList &QStmTypesListObjects();
-const QMetaTypeList &QStmTypesListObjectsString();
-const QMetaTypeList &QStmTypesListDates();
-const QMetaTypeList &QStmTypesListBool();
-const QMetaTypeList &QStmTypesVariantDictionary();
-const QMetaTypeList &QStmTypesVariantList();
-const QMetaTypeList &QStmTypesObjectMetaData();
-}
+//!
+//! \brief The QMetaTypeUtil class
+//!
+//! List for QMetaType
+class Q_API_DOC_EXPORT QMetaTypeUtil:public QVector<int>
+{
+public:
+    //!
+    //! \brief QMetaTypeUtil
+    //!
+    explicit QMetaTypeUtil();
 
+    //!
+    //! \brief QMetaTypeUtil
+    //!
+    explicit QMetaTypeUtil(const QVector<int>&list);
 
-static const QMetaTypeList &QStmTypesListString=Private::QStmTypesObjectMetaData();
-static const QMetaTypeList &QStmTypesListMetaString=Private::QStmTypesVariantList();
-static const QMetaTypeList &QStmTypesListNumeric=Private::QStmTypesVariantDictionary();
-static const QMetaTypeList &QStmTypesListDoubles=Private::QStmTypesListBool();
-static const QMetaTypeList &QStmTypesListIntegers=Private::QStmTypesListDates();
-static const QMetaTypeList &QStmTypesListClass=Private::QStmTypesListObjectsString();
-static const QMetaTypeList &QStmTypesListObjects=Private::QStmTypesListObjects();
-static const QMetaTypeList &QStmTypesListObjectsString=Private::QStmTypesListClass();
-static const QMetaTypeList &QStmTypesListDates=Private::QStmTypesListIntegers();
-static const QMetaTypeList &QStmTypesListBool=Private::QStmTypesListDoubles();
-static const QMetaTypeList &QStmTypesVariantDictionary=Private::QStmTypesListNumeric();
-static const QMetaTypeList &QStmTypesVariantList=Private::QStmTypesListMetaString();
-static const QMetaTypeList &QStmTypesObjectMetaData=Private::QStmTypesListString();
+    //!
+    //! \brief ~QMetaTypeUtil
+    //!
+    virtual ~QMetaTypeUtil();
+
+    //!
+    //! \brief qTypeId
+    //! \param v
+    //! \return
+    //!
+    static int qTypeId(const QVariant&v);
+
+    //!
+    //! \brief qTypeId
+    //! \param p
+    //! \return
+    //!
+    static int qTypeId(const QMetaProperty&p);
+
+    //!
+    //! \brief qIsNumeric
+    //! \param v
+    //! \return
+    //!
+    static bool qIsNumeric(const QVariant&v);
+
+    //!
+    //! \brief QStmTypesListString
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListString();
+
+    //!
+    //! \brief QStmTypesListMetaString
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListMetaString();
+
+    //!
+    //! \brief QStmTypesListNumeric
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListNumeric();
+
+    //!
+    //! \brief QStmTypesListDoubles
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListDoubles();
+
+    //!
+    //! \brief QStmTypesListIntegers
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListIntegers();
+
+    //!
+    //! \brief QStmTypesListClass
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListClass();
+
+    //!
+    //! \brief QStmTypesListObjects
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListObjects();
+
+    //!
+    //! \brief QStmTypesListObjectsString
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListObjectsString();
+
+    //!
+    //! \brief QStmTypesListDates
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListDates();
+
+    //!
+    //! \brief QStmTypesListBool
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesListBool();
+
+    //!
+    //! \brief QStmTypesVariantDictionary
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesVariantDictionary();
+
+    //!
+    //! \brief QStmTypesVariantList
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesVariantList();
+
+    //!
+    //! \brief QStmTypesObjectMetaData
+    //! \return
+    //!
+    static const QMetaTypeUtil &QStmTypesObjectMetaData();
+};
+
+//!
+//! \brief qTypeId
+//! \param v
+//! \return
+//!
+int qTypeId(const QVariant&v){ return QMetaTypeUtil::qTypeId(v);};
+
+//!
+//! \brief qTypeId
+//! \param p
+//! \return
+//!
+int qTypeId(const QMetaProperty&p){ return QMetaTypeUtil::qTypeId(p);};
+
+//!
+//! \brief qIsNumeric
+//! \param v
+//! \return
+//!
+bool qIsNumeric(const QVariant&v){ return QMetaTypeUtil::qIsNumeric(v);};
+
+static const QMetaTypeUtil &QStmTypesListString=QMetaTypeUtil::QStmTypesObjectMetaData();
+static const QMetaTypeUtil &QStmTypesListMetaString=QMetaTypeUtil::QStmTypesVariantList();
+static const QMetaTypeUtil &QStmTypesListNumeric=QMetaTypeUtil::QStmTypesVariantDictionary();
+static const QMetaTypeUtil &QStmTypesListDoubles=QMetaTypeUtil::QStmTypesListBool();
+static const QMetaTypeUtil &QStmTypesListIntegers=QMetaTypeUtil::QStmTypesListDates();
+static const QMetaTypeUtil &QStmTypesListClass=QMetaTypeUtil::QStmTypesListObjectsString();
+static const QMetaTypeUtil &QStmTypesListObjects=QMetaTypeUtil::QStmTypesListObjects();
+static const QMetaTypeUtil &QStmTypesListObjectsString=QMetaTypeUtil::QStmTypesListClass();
+static const QMetaTypeUtil &QStmTypesListDates=QMetaTypeUtil::QStmTypesListIntegers();
+static const QMetaTypeUtil &QStmTypesListBool=QMetaTypeUtil::QStmTypesListDoubles();
+static const QMetaTypeUtil &QStmTypesVariantDictionary=QMetaTypeUtil::QStmTypesListNumeric();
+static const QMetaTypeUtil &QStmTypesVariantList=QMetaTypeUtil::QStmTypesListMetaString();
+static const QMetaTypeUtil &QStmTypesObjectMetaData=QMetaTypeUtil::QStmTypesListString();
