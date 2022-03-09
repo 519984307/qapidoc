@@ -94,8 +94,8 @@ public:
     //! \return
     //!
     const QString &basePath() const;
-    Document &basePath(const QString &newBasePath);
-    Document &setBasePath(const QString &newBasePath);
+    Document &basePath(const QVariant &newBasePath);
+    Document &setBasePath(const QVariant &newBasePath);
     Document &resetBasePath();
 
     //!

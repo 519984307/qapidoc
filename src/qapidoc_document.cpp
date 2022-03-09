@@ -19,8 +19,8 @@ public:
     Document*parent=nullptr;
     DocumentExternal _externalDocs;
     Info _info;
-    QString _basePath;
-    QString _host;
+    QString _basePath=QStringLiteral("/");
+    QString _host=QStringLiteral("localhost");
     QVariantList _consumes;
     QVariantList _produces;
     QList<Definition*> _definitions;
@@ -132,18 +132,18 @@ const QString &Document::basePath() const
     return p._basePath;
 }
 
-Document &Document::basePath(const QString &newBasePath)
+Document &Document::basePath(const QVariant &newBasePath)
 {
     this->setBasePath(newBasePath);
     return*this;
 }
 
-Document &Document::setBasePath(const QString &newBasePath)
+Document &Document::setBasePath(const QVariant &newBasePath)
 {
     dPvt();
     if (p._basePath == newBasePath)
         return*this;
-    p._basePath = newBasePath;
+    p._basePath = newBasePath.toString();
     emit basePathChanged();
     return*this;
 }
