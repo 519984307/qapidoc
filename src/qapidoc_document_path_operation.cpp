@@ -94,6 +94,11 @@ const QString &PathOperation::description() const
     return p._description;
 }
 
+PathOperation &PathOperation::description(const QString &newDescription)
+{
+    return this->setDescription(newDescription);
+}
+
 PathOperation &PathOperation::setDescription(const QString &newDescription)
 {
     dPvt();
