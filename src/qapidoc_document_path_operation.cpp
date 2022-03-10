@@ -539,15 +539,19 @@ const QString &PathOperation::operationId() const
 
 PathOperation &PathOperation::operationId(const QVariant &newOperationId)
 {
-    return this->setOperation(newOperationId);
+    return this->setOperationId(newOperationId);
 }
 
-PathOperation &PathOperation::setOperationId(const QString &newOperationId)
+PathOperation &PathOperation::setOperationId(const QVariant &newOperationId)
 {
     dPvt();
-    if (p._operationId == newOperationId)
-        return*this;
-    p._operationId = newOperationId;
+    switch (qTypeId(newOperationId)) {
+    case QMetaType_QUuid:
+        p._operationId = newOperationId.toUuid().toString();
+        break;
+    default:
+        p._operationId = newOperationId.toString();
+    }
     emit operationIdChanged();
     return*this;
 }
@@ -565,10 +569,11 @@ QVariantList PathOperation::toMimeTypesList(const QStringList &vMimeTypesList) c
     return __return;
 }
 
-QString PathOperation::operationToString()const
+QString PathOperation::operationObject()const
 {
+    dPvt();
     const auto&pathTypeOperationList=qapi_pathTypeOperationList();
-    if(this->operation()>=0 && this->operation()<pathTypeOperationList.count())
+    if(p._operation>=0 && p._operation<pathTypeOperationList.count())
         return pathTypeOperationList.at(this->operation());
     return {};
 }

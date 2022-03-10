@@ -19,7 +19,7 @@ class Q_API_DOC_EXPORT PathOperation : public ObjectMapper
     Q_OBJECT
 
     //!
-    Q_PROPERTY(QApiPathTypeOperation operation READ operation WRITE setOperation RESET resetOperation NOTIFY operationChanged)
+    Q_PROPERTY(QString operation READ operationObject WRITE setOperation RESET resetOperation NOTIFY operationChanged)
 
     //! A verbose explanation of the operation behavior. GFM syntax can be used for rich text representation.
     Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
@@ -88,6 +88,7 @@ public:
     //! \return
     //!
     QApiPathTypeOperation operation() const;
+    QString operationObject() const;
     PathOperation &operation(const QVariant&newOperation);
     PathOperation &setOperation(const QVariant&newOperation);
     PathOperation &resetOperation();
@@ -107,7 +108,7 @@ public:
     //!
     const QString &operationId() const;
     PathOperation &operationId(const QVariant &newOperationId);
-    PathOperation &setOperationId(const QString &newOperationId);
+    PathOperation &setOperationId(const QVariant &newOperationId);
     PathOperation &resetOperationId();
 
     //!
@@ -209,11 +210,6 @@ public:
     //!
     QVariantList toMimeTypesList(const QStringList &vMimeTypesList)const;
 
-    //!
-    //! \brief operationToString
-    //! \return
-    //!
-    QString operationToString() const;
 signals:
     void operationChanged();
     void descriptionChanged();

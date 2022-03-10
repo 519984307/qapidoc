@@ -40,10 +40,10 @@ Path::~Path()
 QVariant Path::toVariant() const
 {
     dPvt();
-    QVariantHash __return;
+    QVariantHash __operations;
     for(auto&item:p._operations)
-        __return.insert(item->operationToString(), item->toVariant());
-    return __return;
+        __operations.insert(item->operationObject(), item->toVariant());
+    return QVariantHash{{this->uri(), __operations}};
 }
 
 bool Path::load(const QVariant &value)

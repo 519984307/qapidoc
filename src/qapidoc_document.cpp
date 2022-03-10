@@ -97,6 +97,7 @@ bool Document::load(QObject*object)
     }
 
     {//document information path
+        //auto basePath=QStringLiteral("%1/%%1").arg(document->basePath()).simplified().toLower();
         QList<Path*> paths;
         QHashIterator <QByteArray, QMetaMethod> i(vMethodHash);
         while(i.hasNext()){
@@ -110,16 +111,17 @@ bool Document::load(QObject*object)
             if(!method.name().startsWith(Q_API_DOC_METHOD_NAME_PATH_STARTS_WITH))
                 continue;
 
+            QString methodName=method.name().simplified().split('_').last().toLower();
             auto path=new Path(document);
             path->
-                setUri(method.name());
+                setUri(QStringLiteral("/")+methodName);
             if(!method.invoke(object, Qt::DirectConnection, Q_ARG(Path*, path))){
-                qWarning()<<QStringLiteral("Invalid calling method: ")<<method.name();
+                qWarning()<<QStringLiteral("Invalid invoke method: ")<<method.name();
                 delete path;
                 continue;
             }
             paths<<path;
-            continue;
+
         }
         document->setPaths(paths);
     }
