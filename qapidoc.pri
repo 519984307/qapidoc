@@ -20,7 +20,7 @@ HEADERS+= \
         $$PWD/src/qapidoc_document_info_contact.h \
         $$PWD/src/qapidoc_document_path.h \
         $$PWD/src/qapidoc_document_path_operation.h \
-        $$PWD/src/qapidoc_document_path_operation_request_parameter.h \
+        $$PWD/src/qapidoc_document_path_operation_parameter.h \
         $$PWD/src/qapidoc_document_path_operation_response.h \
         $$PWD/src/qapidoc_document_path_operation_response_headers.h \
         $$PWD/src/qapidoc_document_security_definition.h \
@@ -47,7 +47,7 @@ SOURCES += \
         $$PWD/src/qapidoc_document_info_contact.cpp \
         $$PWD/src/qapidoc_document_path.cpp \
         $$PWD/src/qapidoc_document_path_operation.cpp \
-        $$PWD/src/qapidoc_document_path_operation_request_parameter.cpp \
+        $$PWD/src/qapidoc_document_path_operation_parameter.cpp \
         $$PWD/src/qapidoc_document_path_operation_response.cpp \
         $$PWD/src/qapidoc_document_path_operation_response_headers.cpp \
         $$PWD/src/qapidoc_document_security_definition.cpp \

@@ -1,7 +1,7 @@
 #include "./qapidoc_document_path.h"
 #include "./qapidoc_common_types.h"
 #include "./qapidoc_document_path_operation.h"
-#include "./qapidoc_document_path_operation_request_parameter.h"
+#include "./qapidoc_document_path_operation_parameter.h"
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 
@@ -13,7 +13,7 @@ class PathPvt{
 public:
     Path*parent=nullptr;
     QList<PathOperation*> _operations;
-    QList<RequestParameter*> _parameters;
+    QList<Parameter*> _parameters;
     QString _uri;
 
     explicit PathPvt(Path*parent)
@@ -197,13 +197,13 @@ const QVariantList Path::parametersObject() const
     return __return;
 }
 
-const QList<RequestParameter *> Path::parameters() const
+const QList<Parameter *> Path::parameters() const
 {
     dPvt();
     return p._parameters;
 }
 
-Path &Path::parameters(RequestParameter *newParameters)
+Path &Path::parameters(Parameter *newParameters)
 {
     dPvt();
     return this->setParameters(p._parameters<<newParameters);
@@ -220,7 +220,7 @@ Path &Path::setParameters(const QVariantList &newParameters)
     qDeleteAll(p._parameters);
     p._parameters.clear();
     for(auto&v:newParameters){
-        auto item= new RequestParameter(this);
+        auto item= new Parameter(this);
         if(!item->load(v)){
             delete item;
             continue;
@@ -231,7 +231,7 @@ Path &Path::setParameters(const QVariantList &newParameters)
     return*this;
 }
 
-Path &Path::setParameters(const QList<RequestParameter *> &newParameters)
+Path &Path::setParameters(const QList<Parameter *> &newParameters)
 {
     dPvt();
     auto aux=p._parameters;

@@ -13,9 +13,7 @@
     }\
     Q_INVOKABLE void __doc_api_info(QApiDocument*document)
 
-#define Q_API_DOC_PATH() Q_INVOKABLE void __doc_api_info_path(QApiDocument*document)
-
-#define Q_API_DOC_PATH_OPERATION(method) Q_INVOKABLE void __doc_api_info_path_operation_##method(QApiPath*path)
+#define Q_API_DOC_PATH(method) Q_INVOKABLE void __doc_api_info_path_operation_##method(QApiPath*path)
 
 
 

@@ -5,7 +5,7 @@
 #include "./qapidoc_common_types.h"
 #include "./qapidoc_document_tags.h"
 #include "./qapidoc_document_path_operation_response.h"
-#include "./qapidoc_document_path_operation_request_parameter.h"
+#include "./qapidoc_document_path_operation_parameter.h"
 
 namespace QApiDoc{
 
@@ -152,11 +152,11 @@ public:
     //! \return
     //!
     QVariantList parametersObject() const;
-    QList<RequestParameter*> &parameters()const;
+    QList<Parameter*> &parameters()const;
     PathOperation &parameters(const QVariant&newParameter);
-    PathOperation &parameters(const RequestParameter&newParameter);
+    PathOperation &parameters(const Parameter&newParameter);
     PathOperation &setParameters(const QVariant &newParameters);
-    PathOperation &setParameters(const QList<RequestParameter *> &newParameters);
+    PathOperation &setParameters(const QList<Parameter *> &newParameters);
     PathOperation &resetParameters();
 
     //!

@@ -20,7 +20,7 @@ public:
     QStringList _security;
     QList<Tag *> _tags;
     QHash<QString, Response*> _responses;
-    QList<RequestParameter *> _parameters;
+    QList<Parameter *> _parameters;
 
     explicit PathOperationPvt(PathOperation*parent)
     {
@@ -240,7 +240,7 @@ QVariantList PathOperation::parametersObject()const
     return __return;
 }
 
-QList<RequestParameter *> &PathOperation::parameters() const
+QList<Parameter *> &PathOperation::parameters() const
 {
     dPvt();
     return p._parameters;
@@ -252,7 +252,7 @@ PathOperation &PathOperation::parameters(const QVariant &newParameter)
     return this->setParameters(newParameter);
 }
 
-PathOperation &PathOperation::parameters(const RequestParameter &newParameter)
+PathOperation &PathOperation::parameters(const Parameter &newParameter)
 {
     return this->parameters(newParameter.toVariant());
 }
@@ -276,7 +276,7 @@ PathOperation &PathOperation::setParameters(const QVariant &newParameters)
         vList<<newParameters;
     }
     for(auto&v:vList){
-        auto item=new RequestParameter(this);
+        auto item=new Parameter(this);
         if(!item->load(v)){
             delete item;
             continue;
@@ -287,7 +287,7 @@ PathOperation &PathOperation::setParameters(const QVariant &newParameters)
     return*this;
 }
 
-PathOperation &PathOperation::setParameters(const QList<RequestParameter *> &newParameters)
+PathOperation &PathOperation::setParameters(const QList<Parameter *> &newParameters)
 {
     dPvt();
     auto aux=p._parameters;

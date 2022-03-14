@@ -102,7 +102,7 @@ const QApiPathTypeOperationHash &qapi_PathTypeOperationHash();
 
 
 //!
-//! \brief The QApiRequestParameterInLocation enum
+//! \brief The QApiParameterInLocation enum
 //!
 //! * Query - Parameters that are appended to the URL. For example, in /items?id=###, the query parameter is id.
 //! * Header - Custom headers that are expected as part of the request.
@@ -119,13 +119,13 @@ const QApiPathTypeOperationHash &qapi_PathTypeOperationHash();
 //!          Since Form parameters are also in the payload, body and form parameters cannot exist together for the same operation.
 //!
 #define __Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()\
-enum QApiRequestParameterInLocation{srplNotDefined, srplQuery, srplHeader, srplPath, srplFormData, srplBody};
+enum QApiParameterInLocation{srplNotDefined, srplQuery, srplHeader, srplPath, srplFormData, srplBody};
 
 __Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()
 
 #define Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()\
 __Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()\
-    Q_ENUM(QApiRequestParameterInLocation)
+    Q_ENUM(QApiParameterInLocation)
 
 //!
 //! \brief qapi_requestParameterInLocation

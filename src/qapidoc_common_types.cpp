@@ -1,6 +1,6 @@
 #include "./qapidoc_common_types.h"
 
-Q_GLOBAL_STATIC_WITH_ARGS(QStringList,staticQApiRequestParameterInLocation,({"", "query", "header", "path", "formData", "body"}));
+Q_GLOBAL_STATIC_WITH_ARGS(QStringList,staticQApiParameterInLocation,({"", "query", "header", "path", "formData", "body"}));
 Q_GLOBAL_STATIC_WITH_ARGS(QStringList,staticQApiPathTypeOperationList,({"", "get", "post", "put", "delete", "options", "head", "patch", "trace"}));
 Q_GLOBAL_STATIC_WITH_ARGS(QStringList,staticQApiTypeParameter,({"defined", "string", "number", "int", "boolean", "array", "file"}));
 Q_GLOBAL_STATIC_WITH_ARGS(QApiTransferProtocolSchemeList, staticQApiTransferProtocolSchemeList,({stpsNotDefined, stpsHttp, stpsHttps, stpsWs, stpsWss}));
@@ -64,7 +64,7 @@ const QStringList &qapi_pathTypeOperationList()
 
 const QStringList &qapi_requestParameterInLocation()
 {
-    return*staticQApiRequestParameterInLocation;
+    return*staticQApiParameterInLocation;
 }
 
 const QApiTransferProtocolSchemeList &qapiTransferProtocolScheme()

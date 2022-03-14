@@ -1,4 +1,4 @@
-#include "./qapidoc_document_path_operation_request_parameter.h"
+#include "./qapidoc_document_path_operation_parameter.h"
 
 static const QStringList &__typeParameter()
 {
@@ -12,7 +12,7 @@ auto&p =*reinterpret_cast<RequestParameterPvt*>(this->p)
 
 class RequestParameterPvt{
 public:
-    RequestParameter*parent=nullptr;
+    Parameter*parent=nullptr;
     bool _allowEmptyValue=false;
     bool _requiredValue=false;
     Definition _schema;
@@ -24,10 +24,10 @@ public:
     QString _ref;
     QStringList _enumValuef;
     QVariantHash _items;
-    RequestParameter::QApiRequestParameterInLocation _inLocation=RequestParameter::srplPath;
-    RequestParameter::QApiTypeParameter _typeParameter;
+    Parameter::QApiParameterInLocation _inLocation=Parameter::srplPath;
+    Parameter::QApiTypeParameter _typeParameter;
 
-    explicit RequestParameterPvt(RequestParameter*parent)
+    explicit RequestParameterPvt(Parameter*parent)
     {
         this->parent=parent;
     }
@@ -38,64 +38,64 @@ public:
 
 };
 
-RequestParameter::RequestParameter(QObject *parent):ObjectMapper{parent}
+Parameter::Parameter(QObject *parent):ObjectMapper{parent}
 {
     this->p=new RequestParameterPvt(this);
 }
 
-RequestParameter::~RequestParameter()
+Parameter::~Parameter()
 {
     dPvtFree();
 }
 
-RequestParameter::QApiRequestParameterInLocation RequestParameter::inLocation() const
+Parameter::QApiParameterInLocation Parameter::inLocation() const
 {
     dPvt();
     return p._inLocation;
 }
 
-RequestParameter &RequestParameter::inLocation(const QVariant &newInLocation)
+Parameter &Parameter::inLocation(const QVariant &newInLocation)
 {
     return this->setInLocation(newInLocation);
 }
 
-RequestParameter &RequestParameter::setInLocation(const QVariant&newInLocation)
+Parameter &Parameter::setInLocation(const QVariant&newInLocation)
 {
     dPvt();
     if (p._inLocation == newInLocation)
         return*this;
     auto index=qapi_requestParameterInLocation().indexOf(newInLocation.toString().toLower());
     if(index>=0)
-        p._inLocation=QApiRequestParameterInLocation(index);
+        p._inLocation=QApiParameterInLocation(index);
     else
-        p._inLocation = QApiRequestParameterInLocation(newInLocation.toInt());
+        p._inLocation = QApiParameterInLocation(newInLocation.toInt());
     emit inLocationChanged();
     return*this;
 }
 
-RequestParameter &RequestParameter::resetInLocation()
+Parameter &Parameter::resetInLocation()
 {
     return setInLocation({}); 
 }
 
-QString RequestParameter::inLocationToString() const
+QString Parameter::inLocationToString() const
 {
     dPvt();
     return qapi_requestParameterInLocation().at(p._inLocation);
 }
 
-bool RequestParameter::required() const
+bool Parameter::required() const
 {
     dPvt();
     return p._requiredValue;
 }
 
-RequestParameter &RequestParameter::required(bool newRequired)
+Parameter &Parameter::required(bool newRequired)
 {
     return this->setRequired(newRequired);
 }
 
-RequestParameter &RequestParameter::setRequired(bool newRequired)
+Parameter &Parameter::setRequired(bool newRequired)
 {
     dPvt();
     if (p._requiredValue == newRequired)
@@ -105,29 +105,29 @@ RequestParameter &RequestParameter::setRequired(bool newRequired)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetRequired()
+Parameter &Parameter::resetRequired()
 {
     return setRequired({}); 
 }
 
-Definition &RequestParameter::schema()
+Definition &Parameter::schema()
 {
     dPvt();
     return p._schema;
 }
 
-QVariantHash RequestParameter::schemaObject()
+QVariantHash Parameter::schemaObject()
 {
     dPvt();
     return p._schema.toVariant().toHash();
 }
 
-RequestParameter &RequestParameter::schema(const QVariant &newSchema)
+Parameter &Parameter::schema(const QVariant &newSchema)
 {
     return this->setSchema(newSchema);
 }
 
-RequestParameter &RequestParameter::setSchema(const QVariant &newSchema)
+Parameter &Parameter::setSchema(const QVariant &newSchema)
 {
     dPvt();
     p._schema.load(newSchema);
@@ -135,7 +135,7 @@ RequestParameter &RequestParameter::setSchema(const QVariant &newSchema)
     return*this;
 }
 
-RequestParameter &RequestParameter::setSchema(const Definition &newSchema)
+Parameter &Parameter::setSchema(const Definition &newSchema)
 {
     dPvt();
     p._schema.load(newSchema.toVariant());
@@ -143,24 +143,24 @@ RequestParameter &RequestParameter::setSchema(const Definition &newSchema)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetSchema()
+Parameter &Parameter::resetSchema()
 {
     //    setSchema({}); 
     return*this;
 }
 
-const QString &RequestParameter::description() const
+const QString &Parameter::description() const
 {
     dPvt();
     return p._descriptionehema;
 }
 
-RequestParameter &RequestParameter::description(const QString &newDescription)
+Parameter &Parameter::description(const QString &newDescription)
 {
     return this->setDescription(newDescription);
 }
 
-RequestParameter &RequestParameter::setDescription(const QString &newDescription)
+Parameter &Parameter::setDescription(const QString &newDescription)
 {
     dPvt();
     if (p._descriptionehema == newDescription)
@@ -170,23 +170,23 @@ RequestParameter &RequestParameter::setDescription(const QString &newDescription
     return*this;
 }
 
-RequestParameter &RequestParameter::resetDescription()
+Parameter &Parameter::resetDescription()
 {
     return setDescription({}); 
 }
 
-RequestParameter::QApiTypeParameter RequestParameter::typeParameter() const
+Parameter::QApiTypeParameter Parameter::typeParameter() const
 {
     dPvt();
     return p._typeParameter;
 }
 
-RequestParameter &RequestParameter::typeParameter(const int &newTypeParameter)
+Parameter &Parameter::typeParameter(const int &newTypeParameter)
 {
     return this->setTypeParameter(newTypeParameter);
 }
 
-RequestParameter &RequestParameter::setTypeParameter(const QVariant &newTypeParameter)
+Parameter &Parameter::setTypeParameter(const QVariant &newTypeParameter)
 {
     dPvt();
     if (p._typeParameter == newTypeParameter)
@@ -200,23 +200,23 @@ RequestParameter &RequestParameter::setTypeParameter(const QVariant &newTypePara
     return*this;
 }
 
-RequestParameter &RequestParameter::resetTypeParameter()
+Parameter &Parameter::resetTypeParameter()
 {
     return setTypeParameter({}); 
 }
 
-const QString &RequestParameter::pattern() const
+const QString &Parameter::pattern() const
 {
     dPvt();
     return p._pattern;
 }
 
-RequestParameter &RequestParameter::pattern(const QString &newPattern)
+Parameter &Parameter::pattern(const QString &newPattern)
 {
     return this->setPattern(newPattern);
 }
 
-RequestParameter &RequestParameter::setPattern(const QString &newPattern)
+Parameter &Parameter::setPattern(const QString &newPattern)
 {
     dPvt();
     if (p._pattern == newPattern)
@@ -226,18 +226,18 @@ RequestParameter &RequestParameter::setPattern(const QString &newPattern)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetPattern()
+Parameter &Parameter::resetPattern()
 {
     return setPattern({}); 
 }
 
-const QVariantHash &RequestParameter::items() const
+const QVariantHash &Parameter::items() const
 {
     dPvt();
     return p._items;
 }
 
-RequestParameter &RequestParameter::setItems(const QVariantHash &newItems)
+Parameter &Parameter::setItems(const QVariantHash &newItems)
 {
     dPvt();
     if (p._items == newItems)
@@ -247,23 +247,23 @@ RequestParameter &RequestParameter::setItems(const QVariantHash &newItems)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetItems()
+Parameter &Parameter::resetItems()
 {
     return setItems({}); 
 }
 
-const QString &RequestParameter::format() const
+const QString &Parameter::format() const
 {
     dPvt();
     return p._format;
 }
 
-RequestParameter &RequestParameter::format(const QString &newFormat)
+Parameter &Parameter::format(const QString &newFormat)
 {
     return this->setFormat(newFormat);
 }
 
-RequestParameter &RequestParameter::setFormat(const QString &newFormat)
+Parameter &Parameter::setFormat(const QString &newFormat)
 {
     dPvt();
     if (p._format == newFormat)
@@ -273,23 +273,23 @@ RequestParameter &RequestParameter::setFormat(const QString &newFormat)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetFormat()
+Parameter &Parameter::resetFormat()
 {
     return setFormat({}); 
 }
 
-const QString &RequestParameter::defaultValue() const
+const QString &Parameter::defaultValue() const
 {
     dPvt();
     return p._defaultValuehema;
 }
 
-RequestParameter &RequestParameter::defaultValue(const QString &newDefault)
+Parameter &Parameter::defaultValue(const QString &newDefault)
 {
     return this->setDefaultValue(newDefault);
 }
 
-RequestParameter &RequestParameter::setDefaultValue(const QString &newDefault)
+Parameter &Parameter::setDefaultValue(const QString &newDefault)
 {
     dPvt();
     if (p._defaultValuehema == newDefault)
@@ -299,23 +299,23 @@ RequestParameter &RequestParameter::setDefaultValue(const QString &newDefault)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetDefaultValue()
+Parameter &Parameter::resetDefaultValue()
 {
     return setDefaultValue({}); 
 }
 
-QStringList &RequestParameter::enumValue()
+QStringList &Parameter::enumValue()
 {
     dPvt();
     return p._enumValuef;
 }
 
-RequestParameter &RequestParameter::enumValue(const QStringList &newEnum)
+Parameter &Parameter::enumValue(const QStringList &newEnum)
 {
     return this->setEnumValue(newEnum);
 }
 
-RequestParameter &RequestParameter::setEnumValue(const QStringList &newEnum)
+Parameter &Parameter::setEnumValue(const QStringList &newEnum)
 {
     dPvt();
     p._enumValuef = newEnum;
@@ -323,23 +323,23 @@ RequestParameter &RequestParameter::setEnumValue(const QStringList &newEnum)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetEnumValue()
+Parameter &Parameter::resetEnumValue()
 {
     return setEnumValue({}); 
 }
 
-bool RequestParameter::allowEmptyValue() const
+bool Parameter::allowEmptyValue() const
 {
     dPvt();
     return p._allowEmptyValue;
 }
 
-RequestParameter &RequestParameter::allowEmptyValue(bool newAllowEmptyValue)
+Parameter &Parameter::allowEmptyValue(bool newAllowEmptyValue)
 {
     return this->setAllowEmptyValue(newAllowEmptyValue);
 }
 
-RequestParameter &RequestParameter::setAllowEmptyValue(bool newAllowEmptyValue)
+Parameter &Parameter::setAllowEmptyValue(bool newAllowEmptyValue)
 {
     dPvt();
     if (p._allowEmptyValue == newAllowEmptyValue)
@@ -349,23 +349,23 @@ RequestParameter &RequestParameter::setAllowEmptyValue(bool newAllowEmptyValue)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetAllowEmptyValue()
+Parameter &Parameter::resetAllowEmptyValue()
 {
     return setAllowEmptyValue({}); 
 }
 
-const QString &RequestParameter::ref() const
+const QString &Parameter::ref() const
 {
     dPvt();
     return p._ref;
 }
 
-RequestParameter &RequestParameter::ref(const QString &newRef)
+Parameter &Parameter::ref(const QString &newRef)
 {
     return this->setRef(newRef);
 }
 
-RequestParameter &RequestParameter::setRef(const QString &newRef)
+Parameter &Parameter::setRef(const QString &newRef)
 {
     dPvt();
     if (p._ref == newRef)
@@ -375,23 +375,23 @@ RequestParameter &RequestParameter::setRef(const QString &newRef)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetRef()
+Parameter &Parameter::resetRef()
 {
     return setRef({}); 
 }
 
-const QString &RequestParameter::name() const
+const QString &Parameter::name() const
 {
     dPvt();
     return p._name;
 }
 
-RequestParameter &RequestParameter::name(const QString &newName)
+Parameter &Parameter::name(const QString &newName)
 {
     return this->setName(newName);
 }
 
-RequestParameter &RequestParameter::setName(const QString &newName)
+Parameter &Parameter::setName(const QString &newName)
 {
     dPvt();
     if (p._name == newName)
@@ -401,7 +401,7 @@ RequestParameter &RequestParameter::setName(const QString &newName)
     return*this;
 }
 
-RequestParameter &RequestParameter::resetName()
+Parameter &Parameter::resetName()
 {
     return setName({}); 
 }

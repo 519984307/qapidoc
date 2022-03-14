@@ -8,11 +8,9 @@
 namespace QApiDoc{
 
 //!
-//! \brief The RequestParameter class
+//! \brief The Parameter class
 //!
-//! Describes a single operation parameter.A unique parameter is defined by a combination of a name and location.
-//!
-class Q_API_DOC_EXPORT RequestParameter : public ObjectMapper
+class Q_API_DOC_EXPORT Parameter : public ObjectMapper
 {
     Q_OBJECT
 
@@ -23,7 +21,7 @@ class Q_API_DOC_EXPORT RequestParameter : public ObjectMapper
     Q_PROPERTY(QString name READ name WRITE setName RESET resetName NOTIFY nameChanged)
 
     //! There are five possible parameter types: Query, Header, Path, Form e Body.
-    Q_PROPERTY(QApiRequestParameterInLocation inLocation READ inLocation WRITE setInLocation RESET resetInLocation NOTIFY inLocationChanged)
+    Q_PROPERTY(QApiParameterInLocation inLocation READ inLocation WRITE setInLocation RESET resetInLocation NOTIFY inLocationChanged)
 
     //! Determines whether this parameter is mandatory. If the parameter is in "path", this property is required and its value MUST be true.
     //! Otherwise, the property MAY be included and its default value is false.
@@ -81,26 +79,30 @@ public:
 
     Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()
 
-    Q_INVOKABLE explicit RequestParameter(QObject*parent=nullptr);
-    ~RequestParameter();
+    //!
+    //! \brief Parameter
+    //! \param parent
+    //!
+    Q_INVOKABLE explicit Parameter(QObject*parent=nullptr);
+    ~Parameter();
 
     //!
     //! \brief name
     //! \return
     //!
     const QString &name() const;
-    RequestParameter&name(const QString &newName);
-    RequestParameter&setName(const QString &newName);
-    RequestParameter&resetName();
+    Parameter&name(const QString &newName);
+    Parameter&setName(const QString &newName);
+    Parameter&resetName();
 
     //!
     //! \brief inLocation
     //! \return
     //!
-    QApiRequestParameterInLocation inLocation() const;
-    RequestParameter&inLocation(const QVariant &newInLocation);
-    RequestParameter&setInLocation(const QVariant &newInLocation);
-    RequestParameter&resetInLocation();
+    QApiParameterInLocation inLocation() const;
+    Parameter&inLocation(const QVariant &newInLocation);
+    Parameter&setInLocation(const QVariant &newInLocation);
+    Parameter&resetInLocation();
     QString inLocationToString() const;
 
     //!
@@ -108,9 +110,9 @@ public:
     //! \return
     //!
     bool required() const;
-    RequestParameter&required(bool newRequired);
-    RequestParameter&setRequired(bool newRequired);
-    RequestParameter&resetRequired();
+    Parameter&required(bool newRequired);
+    Parameter&setRequired(bool newRequired);
+    Parameter&resetRequired();
 
     //!
     //! \brief schema
@@ -118,90 +120,90 @@ public:
     //!
     Definition &schema();
     QVariantHash schemaObject();
-    RequestParameter&schema(const QVariant &newSchema);
-    RequestParameter&setSchema(const QVariant &newSchema);
-    RequestParameter&setSchema(const Definition &newSchema);
-    RequestParameter&resetSchema();
+    Parameter&schema(const QVariant &newSchema);
+    Parameter&setSchema(const QVariant &newSchema);
+    Parameter&setSchema(const Definition &newSchema);
+    Parameter&resetSchema();
 
     //!
     //! \brief description
     //! \return
     //!
     const QString &description() const;
-    RequestParameter&description(const QString &newDescription);
-    RequestParameter&setDescription(const QString &newDescription);
-    RequestParameter&resetDescription();
+    Parameter&description(const QString &newDescription);
+    Parameter&setDescription(const QString &newDescription);
+    Parameter&resetDescription();
 
     //!
     //! \brief typeParameter
     //! \return
     //!
     QApiTypeParameter typeParameter() const;
-    RequestParameter&typeParameter(const int&newTypeParameter);
-    RequestParameter&setTypeParameter(const QVariant &newTypeParameter);
-    RequestParameter&resetTypeParameter();
+    Parameter&typeParameter(const int&newTypeParameter);
+    Parameter&setTypeParameter(const QVariant &newTypeParameter);
+    Parameter&resetTypeParameter();
 
     //!
     //! \brief pattern
     //! \return
     //!
     const QString &pattern() const;
-    RequestParameter&pattern(const QString &newPattern);
-    RequestParameter&setPattern(const QString &newPattern);
-    RequestParameter&resetPattern();
+    Parameter&pattern(const QString &newPattern);
+    Parameter&setPattern(const QString &newPattern);
+    Parameter&resetPattern();
 
     //!
     //! \brief items
     //! \return
     //!
     const QVariantHash &items() const;
-    RequestParameter&setItems(const QVariantHash &newItems);
-    RequestParameter&resetItems();
+    Parameter&setItems(const QVariantHash &newItems);
+    Parameter&resetItems();
 
     //!
     //! \brief format
     //! \return
     //!
     const QString &format() const;
-    RequestParameter&format(const QString &newFormat);
-    RequestParameter&setFormat(const QString &newFormat);
-    RequestParameter&resetFormat();
+    Parameter&format(const QString &newFormat);
+    Parameter&setFormat(const QString &newFormat);
+    Parameter&resetFormat();
 
     //!
     //! \brief defaultValue
     //! \return
     //!
     const QString &defaultValue() const;
-    RequestParameter&defaultValue(const QString &newDefault);
-    RequestParameter&setDefaultValue(const QString &newDefault);
-    RequestParameter&resetDefaultValue();
+    Parameter&defaultValue(const QString &newDefault);
+    Parameter&setDefaultValue(const QString &newDefault);
+    Parameter&resetDefaultValue();
 
     //!
     //! \brief enumValue
     //! \return
     //!
     QStringList &enumValue();
-    RequestParameter&enumValue(const QStringList &newEnum);
-    RequestParameter&setEnumValue(const QStringList &newEnum);
-    RequestParameter&resetEnumValue();
+    Parameter&enumValue(const QStringList &newEnum);
+    Parameter&setEnumValue(const QStringList &newEnum);
+    Parameter&resetEnumValue();
 
     //!
     //! \brief allowEmptyValue
     //! \return
     //!
     bool allowEmptyValue() const;
-    RequestParameter&allowEmptyValue(bool newAllowEmptyValue);
-    RequestParameter&setAllowEmptyValue(bool newAllowEmptyValue);
-    RequestParameter&resetAllowEmptyValue();
+    Parameter&allowEmptyValue(bool newAllowEmptyValue);
+    Parameter&setAllowEmptyValue(bool newAllowEmptyValue);
+    Parameter&resetAllowEmptyValue();
 
     //!
     //! \brief ref
     //! \return
     //!
     const QString &ref() const;
-    RequestParameter&ref(const QString &newRef);
-    RequestParameter&setRef(const QString &newRef);
-    RequestParameter&resetRef();
+    Parameter&ref(const QString &newRef);
+    Parameter&setRef(const QString &newRef);
+    Parameter&resetRef();
 private:
     void*p=nullptr;
 

@@ -6,7 +6,7 @@
 #include "./qapidoc_document_info.h"
 #include "./qapidoc_document_security_definition.h"
 #include "./qapidoc_document_path.h"
-#include "./qapidoc_document_path_operation_request_parameter.h"
+#include "./qapidoc_document_path_operation_parameter.h"
 #include "./qapidoc_document_definition.h"
 #include "./qapidoc_document.h"
 
@@ -210,13 +210,13 @@ public:
     //! \brief parameters
     //! \return
     //!
-    QList<RequestParameter*> &parameters()const;
+    QList<Parameter*> &parameters()const;
     const QVariantList parametersObject() const;
     Document &parameters(const QVariant&newParameter);
     Document &parameters(const QVariantList &newParameters);
-    Document &parameters(const QList<RequestParameter *> &newParameters);
+    Document &parameters(const QList<Parameter *> &newParameters);
     Document &setParameters(const QVariantList &newParameters);
-    Document &setParameters(const QList<RequestParameter *> &newParameters);
+    Document &setParameters(const QList<Parameter *> &newParameters);
     Document &resetParameters();
 
     //!

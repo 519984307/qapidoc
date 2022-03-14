@@ -24,7 +24,7 @@ public:
     QVariantList _consumes;
     QVariantList _produces;
     QList<Definition*> _definitions;
-    QList<RequestParameter*> _parameters;
+    QList<Parameter*> _parameters;
     QList<Path*> _paths;
     QList<SecurityDefinition *> _securityDefinitions;
     QList<Tag *> _tags;
@@ -818,7 +818,7 @@ const QVariantList Document::parametersObject()const
     return __return;
 }
 
-QList<RequestParameter *> &Document::parameters() const
+QList<Parameter *> &Document::parameters() const
 {
     dPvt();
     return p._parameters;
@@ -827,7 +827,7 @@ QList<RequestParameter *> &Document::parameters() const
 Document &Document::parameters(const QVariant &newParameter)
 {
     dPvt();
-    auto item=new RequestParameter(this);
+    auto item=new Parameter(this);
     if(!item->load(newParameter)){
         delete item;
         return*this;
@@ -842,7 +842,7 @@ Document &Document::parameters(const QVariantList &newParameters)
     return this->setParameters(newParameters);
 }
 
-Document &Document::parameters(const QList<RequestParameter *> &newParameters)
+Document &Document::parameters(const QList<Parameter *> &newParameters)
 {
     this->setParameters(newParameters);
     return*this;
@@ -858,7 +858,7 @@ Document &Document::setParameters(const QVariantList &newParameters)
     return*this;
 }
 
-Document &Document::setParameters(const QList<RequestParameter *> &newParameters)
+Document &Document::setParameters(const QList<Parameter *> &newParameters)
 {
     dPvt();
     auto aux=p._parameters;

@@ -12,7 +12,7 @@
 #include "./qapidoc_document_info_contact.h"
 #include "./qapidoc_document_path.h"
 #include "./qapidoc_document_path_operation.h"
-#include "./qapidoc_document_path_operation_request_parameter.h"
+#include "./qapidoc_document_path_operation_parameter.h"
 #include "./qapidoc_document_path_operation_response.h"
 #include "./qapidoc_document_path_operation_response_headers.h"
 #include "./qapidoc_document_security_definition.h"
@@ -23,7 +23,7 @@
 
 
 typedef QApiDoc::Document QApiDocument;
-typedef QApiDoc::RequestParameter QApiRequestParameter;
+typedef QApiDoc::Parameter QApiParameter;
 typedef QApiDoc::Path QApiPath;
 typedef QApiDoc::PathOperation QApiPathOperation;
 typedef QApiDoc::Response QAPIResponse;

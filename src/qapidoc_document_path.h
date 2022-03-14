@@ -7,7 +7,7 @@
 namespace QApiDoc{
 
 class PathOperation;
-class RequestParameter;
+class Parameter;
 //!
 //! \brief The Path class
 //!
@@ -72,12 +72,12 @@ public:
     //! \brief parameters
     //! \return
     //!
-    const QList<RequestParameter *> parameters() const;
+    const QList<Parameter *> parameters() const;
     const QVariantList parametersObject() const;
-    Path &parameters(RequestParameter*newParameters);
+    Path &parameters(Parameter*newParameters);
     Path &parameters(const QVariantList &newParameters);
     Path &setParameters(const QVariantList &newParameters);
-    Path &setParameters(const QList<RequestParameter *> &newParameters);
+    Path &setParameters(const QList<Parameter *> &newParameters);
     Path &resetParameters();
 
 private:
