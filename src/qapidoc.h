@@ -26,4 +26,4 @@ typedef QApiDoc::Document QApiDocument;
 typedef QApiDoc::Parameter QApiParameter;
 typedef QApiDoc::Path QApiPath;
 typedef QApiDoc::PathOperation QApiPathOperation;
-typedef QApiDoc::Response QAPIResponse;
+typedef QApiDoc::Response QApiResponse;
