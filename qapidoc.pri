@@ -59,3 +59,6 @@ SOURCES += \
         $$PWD/src/qapidoc_meta_types.cpp \
         $$PWD/src/qapidoc_object_mapper.cpp \
         $$PWD/src/qapidoc_types.cpp
+
+DISTFILES += \
+    $$PWD/README.md
