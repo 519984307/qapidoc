@@ -144,6 +144,13 @@ public:
     Parameter&resetTypeParameter();
 
     //!
+    //! \brief type
+    //! \param newTypeParameter
+    //! \return
+    //! wrapper for typeParameter
+    Parameter&type(const int&newTypeParameter);
+
+    //!
     //! \brief pattern
     //! \return
     //!

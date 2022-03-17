@@ -181,6 +181,11 @@ Parameter::QApiTypeParameter Parameter::typeParameter() const
     return p._typeParameter;
 }
 
+Parameter &Parameter::type(const int &newTypeParameter)
+{
+    return this->setTypeParameter(newTypeParameter);
+}
+
 Parameter &Parameter::typeParameter(const int &newTypeParameter)
 {
     return this->setTypeParameter(newTypeParameter);
