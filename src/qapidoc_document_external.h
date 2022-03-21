@@ -1,9 +1,8 @@
 #pragma once
 
-
 #include "./qapidoc_includes.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The DocumentExternal class
@@ -13,13 +12,14 @@ class Q_API_DOC_EXPORT DocumentExternal : public ObjectMapper
     Q_OBJECT
 
     //!
-    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription
+                   NOTIFY descriptionChanged)
 
     //!
     Q_PROPERTY(QString url READ url WRITE setUrl RESET resetUrl NOTIFY urlChanged)
 
 public:
-    Q_INVOKABLE explicit DocumentExternal(QObject*parent=nullptr);
+    Q_INVOKABLE explicit DocumentExternal(QObject *parent = nullptr);
     ~DocumentExternal();
 
     //!
@@ -41,10 +41,10 @@ public:
     DocumentExternal &resetUrl();
 
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 signals:
     void descriptionChanged();
     void urlChanged();
 };
 
-}
+} // namespace QApiDoc

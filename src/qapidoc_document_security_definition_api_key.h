@@ -1,13 +1,11 @@
 #pragma once
 
-
 #include "./qapidoc_includes.h"
 
 #include "./qapidoc_common_types.h"
 #include "./qapidoc_document_security_definition.h"
 
-
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The SecurityDefinitionApiKey class
@@ -22,15 +20,16 @@ class Q_API_DOC_EXPORT SecurityDefinitionApiKey : public SecurityDefinition
     Q_PROPERTY(QString name READ name WRITE setName RESET resetName NOTIFY nameChanged)
 
     //! Required The location of the API key. Valid values are "query" or "header".
-    Q_PROPERTY(SecurityDefinitionApiKeyInLocation inLocation READ inLocation WRITE setInLocation RESET resetInLocation NOTIFY inLocationChanged)
+    Q_PROPERTY(SecurityDefinitionApiKeyInLocation inLocation READ inLocation WRITE setInLocation
+                   RESET resetInLocation NOTIFY inLocationChanged)
 public:
     //!
     //! \brief The SecurityDefinitionApiKeyInLocation enum
     //!
-    enum SecurityDefinitionApiKeyInLocation {kilNotDefined, kilQuery, kilHeader};
+    enum SecurityDefinitionApiKeyInLocation { kilNotDefined, kilQuery, kilHeader };
     Q_ENUM(SecurityDefinitionApiKeyInLocation)
 
-    Q_INVOKABLE explicit SecurityDefinitionApiKey(QObject*parent=nullptr);
+    Q_INVOKABLE explicit SecurityDefinitionApiKey(QObject *parent = nullptr);
     ~SecurityDefinitionApiKey();
 
     //!
@@ -55,10 +54,13 @@ public:
     //! \brief typeSecurity
     //! \return
     //!
-    SecurityDefinitionType typeSecurity()const;
+    SecurityDefinitionType typeSecurity() const;
+
 private:
-    void*p=nullptr;
-    const QStringList qapi_SecurityDefinitionApiKeyInLocation{QString(), QStringLiteral("query"), QStringLiteral("header")};
+    void *p = nullptr;
+    const QStringList qapi_SecurityDefinitionApiKeyInLocation{QString(),
+                                                              QStringLiteral("query"),
+                                                              QStringLiteral("header")};
 signals:
     //!
     //! \brief nameChanged
@@ -73,6 +75,4 @@ signals:
 
 Q_SWAGGER_SECURITY_DEFINITION_REGISTER(sstApiKey, SecurityDefinitionApiKey);
 
-
-}
-
+} // namespace QApiDoc

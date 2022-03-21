@@ -1,27 +1,23 @@
 #include "./qapidoc_document_security_definition_basic.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt() auto&p =*reinterpret_cast<SecurityDefinitionBasicPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<SecurityDefinitionBasicPvt *>(this->p)
 
-class SecurityDefinitionBasicPvt{
+class SecurityDefinitionBasicPvt
+{
 public:
-    SecurityDefinitionBasic*parent=nullptr;
+    SecurityDefinitionBasic *parent = nullptr;
     QString _name;
 
-    explicit SecurityDefinitionBasicPvt(SecurityDefinitionBasic*parent)
-    {
-        this->parent=parent;
-    }
+    explicit SecurityDefinitionBasicPvt(SecurityDefinitionBasic *parent) { this->parent = parent; }
 
-    virtual ~SecurityDefinitionBasicPvt()
-    {
-    }
+    virtual ~SecurityDefinitionBasicPvt() {}
 };
 
-SecurityDefinitionBasic::SecurityDefinitionBasic(QObject *parent):SecurityDefinition{parent}
+SecurityDefinitionBasic::SecurityDefinitionBasic(QObject *parent) : SecurityDefinition{parent}
 {
-    this->p=new SecurityDefinitionBasicPvt(this);
+    this->p = new SecurityDefinitionBasicPvt{this};
 }
 
 SecurityDefinitionBasic::~SecurityDefinitionBasic()
@@ -44,10 +40,10 @@ SecurityDefinitionBasic &SecurityDefinitionBasic::setName(const QString &newName
 {
     dPvt();
     if (p._name == newName)
-        return*this;
+        return *this;
     p._name = newName;
     emit nameChanged();
-    return*this;
+    return *this;
 }
 
 SecurityDefinitionBasic &SecurityDefinitionBasic::resetName()
@@ -60,5 +56,4 @@ SecurityDefinition::SecurityDefinitionType SecurityDefinitionBasic::typeSecurity
     return sstBasic;
 }
 
-
-}
+} // namespace QApiDoc

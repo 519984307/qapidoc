@@ -1,12 +1,11 @@
 #pragma once
 
-
-#include "./qapidoc_includes.h"
 #include "./qapidoc_common_types.h"
 #include "./qapidoc_document_definition.h"
 #include "./qapidoc_document_path_operation_response_headers.h"
+#include "./qapidoc_includes.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 //! \brief The Response class
 //!
@@ -25,26 +24,31 @@ class Q_API_DOC_EXPORT Response : public ObjectMapper
     //! Any HTTP status code can be used as the property name (one property per HTTP status code).
     //! Describes the expected response for that HTTP status code.
     //! Reference Object can be used to link to a response that is defined at the Swagger Object's responses section.
-    Q_PROPERTY(QString statusCode READ statusCode WRITE setStatusCode RESET resetStatusCode NOTIFY statusCodeChanged)
+    Q_PROPERTY(QString statusCode READ statusCode WRITE setStatusCode RESET resetStatusCode NOTIFY
+                   statusCodeChanged)
 
     //! Required. A short description of the response. GFM syntax can be used for rich text representation.
-    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription
+                   NOTIFY descriptionChanged)
 
     //! A definition of the response structure.
     //! It can be a primitive, an array or an object.
     //! If this field does not exist, it means no content is returned as part of the response.
     //! As an extension to the Schema Object, its root type value may also be "file".
     //! This SHOULD be accompanied by a relevant produces mime-type.
-    Q_PROPERTY(QVariantHash schema READ schemaObject WRITE setSchema RESET resetSchema NOTIFY schemaChanged)
+    Q_PROPERTY(QVariantHash schema READ schemaObject WRITE setSchema RESET resetSchema NOTIFY
+                   schemaChanged)
 
     //! A list of headers that are sent with the response.
-    Q_PROPERTY(QVariantList headers READ headersObject WRITE setHeaders RESET resetHeaders NOTIFY headersChanged);
+    Q_PROPERTY(QVariantList headers READ headersObject WRITE setHeaders RESET resetHeaders NOTIFY
+                   headersChanged);
 
     //! An example list of the hash response message.
-    Q_PROPERTY(QVariantHash examples READ examples WRITE setExamples RESET resetExamples NOTIFY examplesChanged);
+    Q_PROPERTY(QVariantHash examples READ examples WRITE setExamples RESET resetExamples NOTIFY
+                   examplesChanged);
 
 public:
-    Q_INVOKABLE explicit Response(QObject*parent=nullptr);
+    Q_INVOKABLE explicit Response(QObject *parent = nullptr);
     ~Response();
 
     //!
@@ -52,8 +56,8 @@ public:
     //! \return
     //!
     QString statusCode() const;
-    Response&statusCode(const QVariant &newStatusCode);
-    Response&setStatusCode(const QVariant &newStatusCode);
+    Response &statusCode(const QVariant &newStatusCode);
+    Response &setStatusCode(const QVariant &newStatusCode);
     Response &resetStatusCode();
 
     //!
@@ -70,11 +74,11 @@ public:
     //! \brief headers
     //! \return
     //!
-    QVariantList headersObject()const;
-    QList<Headers*> &headers()const;
+    QVariantList headersObject() const;
+    QList<Headers *> &headers() const;
     Response &headers(const QVariantList &newHeaders);
     Response &setHeaders(const QVariantList &newHeaders);
-    Response &setHeaders(const QList<Headers*> &newHeaders);
+    Response &setHeaders(const QList<Headers *> &newHeaders);
     Response &resetHeaders();
 
     //!
@@ -107,12 +111,10 @@ signals:
     void examplesChanged();
 
 protected:
-    const QVariantHash toExamplestoHash()const;
+    const QVariantHash toExamplestoHash() const;
+
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 };
 
-
-}
-
-
+} // namespace QApiDoc

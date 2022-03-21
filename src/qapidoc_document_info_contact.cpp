@@ -1,29 +1,24 @@
 #include "./qapidoc_document_info_contact.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt()\
-auto&p =*reinterpret_cast<InfoContactPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<InfoContactPvt *>(this->p)
 
-class InfoContactPvt{
+class InfoContactPvt
+{
 public:
-    InfoContact*parent=nullptr;
+    InfoContact *parent = nullptr;
     QString _email;
     QString _name;
     QString _url;
-    explicit InfoContactPvt(InfoContact*parent)
-    {
-        this->parent=parent;
-    }
+    explicit InfoContactPvt(InfoContact *parent) { this->parent = parent; }
 
-    virtual ~InfoContactPvt()
-    {
-    }
+    virtual ~InfoContactPvt() {}
 };
 
-InfoContact::InfoContact(QObject *parent):ObjectMapper{parent}
+InfoContact::InfoContact(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new InfoContactPvt(this);
+    this->p = new InfoContactPvt{this};
 }
 
 InfoContact::~InfoContact()
@@ -40,22 +35,22 @@ const QString &InfoContact::name() const
 InfoContact &InfoContact::name(const QString &newName)
 {
     this->setName(newName);
-    return*this;
+    return *this;
 }
 
 InfoContact &InfoContact::setName(const QString &newName)
 {
     dPvt();
     if (p._name == newName)
-        return*this;
+        return *this;
     p._name = newName;
     emit nameChanged();
-    return*this;
+    return *this;
 }
 
 InfoContact &InfoContact::resetName()
 {
-    return setName({}); 
+    return setName({});
 }
 
 const QString &InfoContact::email() const
@@ -67,22 +62,22 @@ const QString &InfoContact::email() const
 InfoContact &InfoContact::email(const QString &newEmail)
 {
     this->setEmail(newEmail);
-    return*this;
+    return *this;
 }
 
 InfoContact &InfoContact::setEmail(const QString &newEmail)
 {
     dPvt();
     if (p._email == newEmail)
-        return*this;
+        return *this;
     p._email = newEmail;
     emit emailChanged();
-    return*this;
+    return *this;
 }
 
 InfoContact &InfoContact::resetEmail()
 {
-    return setEmail({}); 
+    return setEmail({});
 }
 
 const QString &InfoContact::url() const
@@ -94,23 +89,22 @@ const QString &InfoContact::url() const
 InfoContact &InfoContact::url(const QString &newUrl)
 {
     this->setUrl(newUrl);
-    return*this;
+    return *this;
 }
 
 InfoContact &InfoContact::setUrl(const QString &newUrl)
 {
     dPvt();
     if (p._url == newUrl)
-        return*this;
+        return *this;
     p._url = newUrl;
     emit urlChanged();
-    return*this;
+    return *this;
 }
 
 InfoContact &InfoContact::resetUrl()
 {
-    return setUrl({}); 
+    return setUrl({});
 }
 
-}
-
+} // namespace QApiDoc

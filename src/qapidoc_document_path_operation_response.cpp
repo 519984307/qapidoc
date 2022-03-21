@@ -1,32 +1,27 @@
 #include "./qapidoc_document_path_operation_response.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt() auto&p =*reinterpret_cast<ResponsePvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<ResponsePvt *>(this->p)
 
-class ResponsePvt{
+class ResponsePvt
+{
 public:
-    Response*parent=nullptr;
+    Response *parent = nullptr;
     Definition _schema;
     QString _description;
     QVariant _statusCode;
     QVariantHash _examples;
-    QList<Headers*> _headers;
+    QList<Headers *> _headers;
 
-    explicit ResponsePvt(Response*parent)
-    {
-        this->parent=parent;
-    }
+    explicit ResponsePvt(Response *parent) { this->parent = parent; }
 
-    virtual ~ResponsePvt()
-    {
-    }
-
+    virtual ~ResponsePvt() {}
 };
 
-Response::Response(QObject *parent):ObjectMapper{parent}
+Response::Response(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new ResponsePvt(this);
+    this->p = new ResponsePvt{this};
 }
 
 Response::~Response()
@@ -34,7 +29,7 @@ Response::~Response()
     dPvtFree();
 }
 
-QString Response::statusCode()const
+QString Response::statusCode() const
 {
     dPvt();
     return p._statusCode.toString();
@@ -49,15 +44,15 @@ Response &Response::setStatusCode(const QVariant &newStatusCode)
 {
     dPvt();
     if (p._statusCode == newStatusCode)
-        return*this;
+        return *this;
     p._statusCode = newStatusCode.toString();
     emit statusCodeChanged();
-    return*this;
+    return *this;
 }
 
-Response&Response::resetStatusCode()
+Response &Response::resetStatusCode()
 {
-    return setStatusCode({}); 
+    return setStatusCode({});
 }
 
 Definition &Response::schema()
@@ -77,7 +72,7 @@ Response &Response::setSchema(const QVariant &newSchema)
     dPvt();
     p._schema.load(newSchema);
     emit schemaChanged();
-    return*this;
+    return *this;
 }
 
 Response &Response::setSchema(const Definition &newSchema)
@@ -85,22 +80,22 @@ Response &Response::setSchema(const Definition &newSchema)
     dPvt();
     p._schema.load(newSchema.toVariant());
     emit schemaChanged();
-    return*this;
+    return *this;
 }
 
 Response &Response::resetSchema()
 {
     dPvt();
     p._schema.clear();
-    return*this;
+    return *this;
 }
 
 QVariantList Response::headersObject() const
 {
     dPvt();
     QVariantList __return;
-    for(auto&item:p._headers){
-        __return<<item->toVariant();
+    for (auto &item : p._headers) {
+        __return << item->toVariant();
     }
     return __return;
 }
@@ -121,35 +116,35 @@ Response &Response::setHeaders(const QVariantList &newHeaders)
     dPvt();
     qDeleteAll(p._headers);
     p._headers.clear();
-    for(auto&v:newHeaders){
-        auto item=new Headers();
-        if(!item->load(v)){
+    for (auto &v : newHeaders) {
+        auto item = new Headers();
+        if (!item->load(v)) {
             delete item;
             continue;
         }
-        p._headers<<item;
+        p._headers << item;
     }
     emit headersChanged();
-    return*this;
+    return *this;
 }
 
 Response &Response::setHeaders(const QList<Headers *> &newHeaders)
 {
     dPvt();
-    auto aux=p._headers;
+    auto aux = p._headers;
     p._headers.clear();
-    for(auto&item:newHeaders){
+    for (auto &item : newHeaders) {
         aux.removeOne(item);
-        p._headers<<item;
+        p._headers << item;
     }
     qDeleteAll(aux);
     emit headersChanged();
-    return*this;
+    return *this;
 }
 
 Response &Response::resetHeaders()
 {
-    return setHeaders(QVariantList{}); 
+    return setHeaders(QVariantList{});
 }
 
 const QString &Response::description() const
@@ -167,15 +162,15 @@ Response &Response::setDescription(const QString &newDescription)
 {
     dPvt();
     if (p._description == newDescription)
-        return*this;
+        return *this;
     p._description = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 Response &Response::resetDescription()
 {
-    return setDescription({}); 
+    return setDescription({});
 }
 
 QVariantHash &Response::examples()
@@ -193,31 +188,29 @@ Response &Response::setExamples(const QVariantHash &newExamples)
 {
     dPvt();
     if (p._examples == newExamples)
-        return*this;
+        return *this;
     p._examples = newExamples;
     emit examplesChanged();
-    return*this;
+    return *this;
 }
 
 Response &Response::resetExamples()
 {
-    return setExamples({}); 
+    return setExamples({});
 }
 
 const QVariantHash Response::toExamplestoHash() const
 {
     dPvt();
-    int vExampleNumber=0;
+    int vExampleNumber = 0;
     QVariantHash __return;
     vExampleNumber = 0;
     QHashIterator<QString, QVariant> i(p._examples);
-    while(i.hasNext()){
+    while (i.hasNext()) {
         i.next();
         __return.insert(QString::number(++vExampleNumber), i.value());
     }
     return __return;
 }
 
-
-}
-
+} // namespace QApiDoc

@@ -2,10 +2,10 @@
 
 #include "./qapidoc_includes.h"
 
-#include "./qapidoc_document_info_license.h"
 #include "./qapidoc_document_info_contact.h"
+#include "./qapidoc_document_info_license.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The Info class
@@ -24,19 +24,23 @@ class Q_API_DOC_EXPORT Info : public ObjectMapper
     Q_PROPERTY(QString title READ title WRITE setTitle RESET resetTitle NOTIFY titleChanged)
 
     //! A short description of the application. GFM syntax can be used for rich text representation.
-    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription
+                   NOTIFY descriptionChanged)
 
     //! The contact information for the exposed API.
-    Q_PROPERTY(QVariantHash contact READ contactObject WRITE setContact RESET resetContact NOTIFY contactChanged)
+    Q_PROPERTY(QVariantHash contact READ contactObject WRITE setContact RESET resetContact NOTIFY
+                   contactChanged)
 
     //! The Terms of Service for the API.
-    Q_PROPERTY(QString termsOfService READ termsOfService WRITE setTermsOfService RESET resetTermsOfService NOTIFY termsOfServiceChanged)
+    Q_PROPERTY(QString termsOfService READ termsOfService WRITE setTermsOfService RESET
+                   resetTermsOfService NOTIFY termsOfServiceChanged)
 
     //! The license information for the exposed API.
-    Q_PROPERTY(QVariantHash license READ licenseObject WRITE setLicense RESET resetLicense NOTIFY licenseChanged)
+    Q_PROPERTY(QVariantHash license READ licenseObject WRITE setLicense RESET resetLicense NOTIFY
+                   licenseChanged)
 
 public:
-    Q_INVOKABLE explicit Info(QObject*parent=nullptr);
+    Q_INVOKABLE explicit Info(QObject *parent = nullptr);
     ~Info();
 
     //!
@@ -80,7 +84,7 @@ public:
     //! \return
     //!
     InfoContact &contact();
-    QVariantHash contactObject()const;
+    QVariantHash contactObject() const;
     Info &contact(const QVariant &newContact);
     Info &setContact(const QVariant &newContact);
     Info &setContact(const InfoContact &newContact);
@@ -91,7 +95,7 @@ public:
     //! \return
     //!
     InfoLicense &license();
-    QVariantHash licenseObject()const;
+    QVariantHash licenseObject() const;
     Info &license(const QVariant &newLicense);
     Info &setLicense(const QVariant &newLicense);
     Info &setLicense(const InfoLicense &newLicense);
@@ -106,7 +110,7 @@ signals:
     void licenseChanged();
 
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 };
 
-}
+} // namespace QApiDoc

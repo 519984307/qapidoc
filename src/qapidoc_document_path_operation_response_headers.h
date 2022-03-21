@@ -1,9 +1,8 @@
 #pragma once
 
-
 #include "./qapidoc_includes.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The Headers class
@@ -18,7 +17,8 @@ class Q_API_DOC_EXPORT Headers : public ObjectMapper
     Q_PROPERTY(QString name READ name WRITE setName RESET resetName NOTIFY nameChanged)
 
     //! A short description of the header.
-    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription
+                   NOTIFY descriptionChanged)
 
     //!
     Q_PROPERTY(QString type READ type WRITE setType RESET resetType NOTIFY typeChanged)
@@ -27,7 +27,7 @@ class Q_API_DOC_EXPORT Headers : public ObjectMapper
     Q_PROPERTY(QString format READ format WRITE setFormat RESET resetFormat NOTIFY formatChanged)
 
 public:
-    Q_INVOKABLE explicit Headers(QObject*parent=nullptr);
+    Q_INVOKABLE explicit Headers(QObject *parent = nullptr);
     ~Headers();
 
     //!
@@ -89,8 +89,7 @@ signals:
     void formatChanged();
 
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 };
 
-}
-
+} // namespace QApiDoc

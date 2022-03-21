@@ -1,11 +1,10 @@
 #pragma once
 
-
-#include "./qapidoc_includes.h"
 #include "./qapidoc_common_types.h"
 #include "./qapidoc_document_security_definition.h"
+#include "./qapidoc_includes.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 //!
 //! \brief The SecurityDefinitionOAuth2Scope class
 //!
@@ -14,13 +13,15 @@ class Q_API_DOC_EXPORT SecurityDefinitionOAuth2Scope : public ObjectMapper
     Q_OBJECT
 
     //!
-    Q_PROPERTY(QString scopeName READ scopeName WRITE setScopeName RESET resetScopeName NOTIFY scopeNameChanged)
+    Q_PROPERTY(QString scopeName READ scopeName WRITE setScopeName RESET resetScopeName NOTIFY
+                   scopeNameChanged)
 
     //!
-    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription
+                   NOTIFY descriptionChanged)
 
 public:
-    Q_INVOKABLE explicit SecurityDefinitionOAuth2Scope(QObject*parent=nullptr);
+    Q_INVOKABLE explicit SecurityDefinitionOAuth2Scope(QObject *parent = nullptr);
     ~SecurityDefinitionOAuth2Scope();
 
     //!
@@ -40,8 +41,9 @@ public:
     SecurityDefinitionOAuth2Scope &description(const QString &newDescription);
     SecurityDefinitionOAuth2Scope &setDescription(const QString &newDescription);
     SecurityDefinitionOAuth2Scope &resetDescription();
+
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 
 signals:
     //!
@@ -55,4 +57,4 @@ signals:
     void descriptionChanged();
 };
 
-}
+} // namespace QApiDoc

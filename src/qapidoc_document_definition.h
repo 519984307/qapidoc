@@ -2,8 +2,7 @@
 
 #include "./qapidoc_includes.h"
 
-
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The Definition class
@@ -27,14 +26,14 @@ class Q_API_DOC_EXPORT Definition : public ObjectMapper
     //!  * https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject
     Q_PROPERTY(QVariantHash schema READ schema WRITE setSchema NOTIFY schemaChanged)
 public:
-    Q_INVOKABLE explicit Definition(QObject*parent=nullptr);
+    Q_INVOKABLE explicit Definition(QObject *parent = nullptr);
     ~Definition();
 
-//    //!
-//    //! \brief toRefDefinition
-//    //! \return
-//    //!
-//    QVariantHash toRefDefinition()const;
+    //    //!
+    //    //! \brief toRefDefinition
+    //    //! \return
+    //    //!
+    //    QVariantHash toRefDefinition()const;
 
     //!
     //! \brief name
@@ -55,11 +54,9 @@ public:
 signals:
     void nameChanged();
     void schemaChanged();
+
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 };
 
-
-}
-
-
+} // namespace QApiDoc

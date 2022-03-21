@@ -1,35 +1,31 @@
 #include "./qapidoc_document_tags.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt() auto&p =*reinterpret_cast<TagPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<TagPvt *>(this->p)
 
-class TagPvt{
+class TagPvt
+{
 public:
-    Tag*parent=nullptr;
+    Tag *parent = nullptr;
     DocumentExternal _externalDocs;
     QString _description;
     QString _name;
 
-    explicit TagPvt(Tag*parent)
-    {
-        this->parent=parent;
-    }
+    explicit TagPvt(Tag *parent) { this->parent = parent; }
 
-    virtual ~TagPvt()
-    {
-    }
+    virtual ~TagPvt() {}
 };
 
-Tag::Tag(QObject *parent):ObjectMapper{parent}
+Tag::Tag(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new TagPvt(this);
+    this->p = new TagPvt{this};
 }
 
 Tag::~Tag()
 {
     dPvt();
-    delete&p;
+    delete &p;
 }
 
 const QString &Tag::description() const
@@ -47,10 +43,10 @@ Tag &Tag::setDescription(const QString &newDescription)
 {
     dPvt();
     if (p._description == newDescription)
-        return*this;
+        return *this;
     p._description = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 Tag &Tag::resetDescription()
@@ -80,7 +76,7 @@ Tag &Tag::setExternalDocs(const QVariant &newExternalDocs)
     dPvt();
     p._externalDocs.load(newExternalDocs);
     emit externalDocsChanged();
-    return*this;
+    return *this;
 }
 
 Tag &Tag::setExternalDocs(const DocumentExternal &newExternalDocs)
@@ -88,7 +84,7 @@ Tag &Tag::setExternalDocs(const DocumentExternal &newExternalDocs)
     dPvt();
     p._externalDocs.load(newExternalDocs.toVariant());
     emit externalDocsChanged();
-    return*this;
+    return *this;
 }
 
 Tag &Tag::resetExternalDocs()
@@ -111,10 +107,10 @@ Tag &Tag::setName(const QString &newName)
 {
     dPvt();
     if (p._name == newName)
-        return*this;
+        return *this;
     p._name = newName;
     emit nameChanged();
-    return*this;
+    return *this;
 }
 
 Tag &Tag::resetName()
@@ -122,5 +118,4 @@ Tag &Tag::resetName()
     return setName({});
 }
 
-}
-
+} // namespace QApiDoc

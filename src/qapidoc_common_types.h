@@ -16,28 +16,28 @@
 //! * API key (either as a header or as a query parameter)
 //! * OAuth2's common flows (implicit, password, application and access code).
 //!
-#define __Q_API_DECLARE_SECURITY_DEFINITION_TYPE()\
-enum SecurityDefinitionType{sstNotDefined, sstBasic, sstApiKey, sstOAuth2};
+#define __Q_API_DECLARE_SECURITY_DEFINITION_TYPE() \
+    enum SecurityDefinitionType { sstNotDefined, sstBasic, sstApiKey, sstOAuth2 };
 
 __Q_API_DECLARE_SECURITY_DEFINITION_TYPE()
 Q_DECLARE_FLAGS(SecurityDefinitionsType, SecurityDefinitionType)
 Q_DECLARE_OPERATORS_FOR_FLAGS(SecurityDefinitionsType)
 
-#define Q_API_DECLARE_SECURITY_DEFINITION_TYPE()\
-__Q_API_DECLARE_SECURITY_DEFINITION_TYPE()\
-Q_ENUM(SecurityDefinitionsType)
+#define Q_API_DECLARE_SECURITY_DEFINITION_TYPE() \
+    __Q_API_DECLARE_SECURITY_DEFINITION_TYPE() \
+    Q_ENUM(SecurityDefinitionsType)
 
 //!
 //! \brief The QApiTransferProtocolScheme enum
 //!
-#define __Q_API_DECLARE_TRANSFER_PROTOCOL_SCHEME()\
-enum QApiTransferProtocolScheme{ stpsNotDefined, stpsHttp, stpsHttps, stpsWs, stpsWss };\
-typedef QVector<QApiTransferProtocolScheme> QApiTransferProtocolSchemeList;\
-typedef QHash<QString, QApiTransferProtocolScheme> QApiTransferProtocolSchemeHash;
+#define __Q_API_DECLARE_TRANSFER_PROTOCOL_SCHEME() \
+    enum QApiTransferProtocolScheme { stpsNotDefined, stpsHttp, stpsHttps, stpsWs, stpsWss }; \
+    typedef QVector<QApiTransferProtocolScheme> QApiTransferProtocolSchemeList; \
+    typedef QHash<QString, QApiTransferProtocolScheme> QApiTransferProtocolSchemeHash;
 
 __Q_API_DECLARE_TRANSFER_PROTOCOL_SCHEME()
 
-Q_DECLARE_FLAGS(QApiTransferProtocolSchemes, QApiTransferProtocolScheme)\
+Q_DECLARE_FLAGS(QApiTransferProtocolSchemes, QApiTransferProtocolScheme)
 Q_DECLARE_OPERATORS_FOR_FLAGS(QApiTransferProtocolSchemes)
 
 //!
@@ -59,14 +59,22 @@ const QApiTransferProtocolSchemeHash &qapiTransferProtocolSchemeHash();
 //! simple types (that is, not an object).
 //! The value MUST be one of "string", "number", "int", "boolean", "array" or "file".
 //!
-#define __Q_API_DECLARE_PATH_TYPE_PARAMETER()\
-enum QApiTypeParameter{stpNotDefined=QMetaType::UnknownType, stpString=QMetaType::QString, stpNumber=QMetaType::Int, stpInt=QMetaType::Int, stpBoolean=QMetaType::Bool, stpArray=QMetaType::QVariantList, stpFile=QMetaType::QByteArray};
+#define __Q_API_DECLARE_PATH_TYPE_PARAMETER() \
+    enum QApiTypeParameter { \
+        stpNotDefined = QMetaType::UnknownType, \
+        stpString = QMetaType::QString, \
+        stpNumber = QMetaType::Int, \
+        stpInt = QMetaType::Int, \
+        stpBoolean = QMetaType::Bool, \
+        stpArray = QMetaType::QVariantList, \
+        stpFile = QMetaType::QByteArray \
+    };
 
 __Q_API_DECLARE_PATH_TYPE_PARAMETER()
 
-#define Q_API_DECLARE_PATH_TYPE_PARAMETER()\
-__Q_API_DECLARE_PATH_TYPE_PARAMETER()\
-Q_ENUM(QApiTypeParameter)
+#define Q_API_DECLARE_PATH_TYPE_PARAMETER() \
+    __Q_API_DECLARE_PATH_TYPE_PARAMETER() \
+    Q_ENUM(QApiTypeParameter)
 
 //!
 //! \brief qapi_TypeParameter
@@ -77,14 +85,24 @@ const QStringList &qapi_TypeParameter();
 //!
 //! \brief The QApiPathTypeOperation enum
 //!
-#define __Q_API_DECLARE_PATH_TYPE_OPERATION()\
-enum QApiPathTypeOperation{sptoNotDefined, sptoGet, sptoPost, sptoPut, sptoDelete, sptoOptions, sptoHead, sptoPatch, sptoTrace};
+#define __Q_API_DECLARE_PATH_TYPE_OPERATION() \
+    enum QApiPathTypeOperation { \
+        sptoNotDefined, \
+        sptoGet, \
+        sptoPost, \
+        sptoPut, \
+        sptoDelete, \
+        sptoOptions, \
+        sptoHead, \
+        sptoPatch, \
+        sptoTrace \
+    };
 
 __Q_API_DECLARE_PATH_TYPE_OPERATION()
 
-#define Q_API_DECLARE_PATH_TYPE_OPERATION()\
-__Q_API_DECLARE_PATH_TYPE_OPERATION()\
-Q_ENUM(QApiPathTypeOperation)
+#define Q_API_DECLARE_PATH_TYPE_OPERATION() \
+    __Q_API_DECLARE_PATH_TYPE_OPERATION() \
+    Q_ENUM(QApiPathTypeOperation)
 
 typedef QHash<QString, QApiPathTypeOperation> QApiPathTypeOperationHash;
 
@@ -99,7 +117,6 @@ const QStringList &qapi_pathTypeOperationList();
 //! \return
 //!
 const QApiPathTypeOperationHash &qapi_PathTypeOperationHash();
-
 
 //!
 //! \brief The QApiParameterInLocation enum
@@ -118,13 +135,20 @@ const QApiPathTypeOperationHash &qapi_PathTypeOperationHash();
 //!          The name of the body parameter has no effect on the parameter itself and is used for documentation purposes only.
 //!          Since Form parameters are also in the payload, body and form parameters cannot exist together for the same operation.
 //!
-#define __Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()\
-enum QApiParameterInLocation{srplNotDefined, srplQuery, srplHeader, srplPath, srplFormData, srplBody};
+#define __Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION() \
+    enum QApiParameterInLocation { \
+        srplNotDefined, \
+        srplQuery, \
+        srplHeader, \
+        srplPath, \
+        srplFormData, \
+        srplBody \
+    };
 
 __Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()
 
-#define Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()\
-__Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION()\
+#define Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION() \
+    __Q_API_DECLARE_PATH_TYPE_PARAMETER_LOCATION() \
     Q_ENUM(QApiParameterInLocation)
 
 //!

@@ -1,28 +1,26 @@
 #include "./qapidoc_document_security_definition_api_key.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt() auto&p =*reinterpret_cast<SecurityDefinitionApiKeyPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<SecurityDefinitionApiKeyPvt *>(this->p)
 
-class SecurityDefinitionApiKeyPvt{
+class SecurityDefinitionApiKeyPvt
+{
 public:
-    SecurityDefinitionApiKey*parent=nullptr;
+    SecurityDefinitionApiKey *parent = nullptr;
     SecurityDefinitionApiKey::SecurityDefinitionApiKeyInLocation _inLocation;
     QString _name;
-    explicit SecurityDefinitionApiKeyPvt(SecurityDefinitionApiKey*parent)
+    explicit SecurityDefinitionApiKeyPvt(SecurityDefinitionApiKey *parent)
     {
-        this->parent=parent;
+        this->parent = parent;
     }
 
-    virtual ~SecurityDefinitionApiKeyPvt()
-    {
-    }
-
+    virtual ~SecurityDefinitionApiKeyPvt() {}
 };
 
-SecurityDefinitionApiKey::SecurityDefinitionApiKey(QObject *parent):SecurityDefinition{parent}
+SecurityDefinitionApiKey::SecurityDefinitionApiKey(QObject *parent) : SecurityDefinition{parent}
 {
-    this->p=new SecurityDefinitionApiKeyPvt(this);
+    this->p = new SecurityDefinitionApiKeyPvt{this};
 }
 
 SecurityDefinitionApiKey::~SecurityDefinitionApiKey()
@@ -30,7 +28,8 @@ SecurityDefinitionApiKey::~SecurityDefinitionApiKey()
     dPvtFree();
 }
 
-SecurityDefinitionApiKey::SecurityDefinitionApiKeyInLocation SecurityDefinitionApiKey::inLocation() const
+SecurityDefinitionApiKey::SecurityDefinitionApiKeyInLocation SecurityDefinitionApiKey::inLocation()
+    const
 {
     dPvt();
     return p._inLocation;
@@ -41,18 +40,18 @@ SecurityDefinitionApiKey &SecurityDefinitionApiKey::inLocation(const QVariant &n
     return this->setInLocation(newInLocation);
 }
 
-SecurityDefinitionApiKey &SecurityDefinitionApiKey::setInLocation(const QVariant&newInLocation)
+SecurityDefinitionApiKey &SecurityDefinitionApiKey::setInLocation(const QVariant &newInLocation)
 {
     dPvt();
-    auto vIn=newInLocation.toString().toLower();
-    if(vIn == qapi_SecurityDefinitionApiKeyInLocation.at(kilQuery))
+    auto vIn = newInLocation.toString().toLower();
+    if (vIn == qapi_SecurityDefinitionApiKeyInLocation.at(kilQuery))
         p._inLocation = kilQuery;
-    else if(vIn == qapi_SecurityDefinitionApiKeyInLocation.at(kilHeader))
+    else if (vIn == qapi_SecurityDefinitionApiKeyInLocation.at(kilHeader))
         p._inLocation = kilHeader;
     else
         p._inLocation = SecurityDefinitionApiKeyInLocation(newInLocation.toInt());
     emit inLocationChanged();
-    return*this;
+    return *this;
 }
 
 SecurityDefinitionApiKey &SecurityDefinitionApiKey::resetInLocation()
@@ -80,10 +79,10 @@ SecurityDefinitionApiKey &SecurityDefinitionApiKey::setName(const QString &newNa
 {
     dPvt();
     if (p._name == newName)
-        return*this;
+        return *this;
     p._name = newName;
     emit nameChanged();
-    return*this;
+    return *this;
 }
 
 SecurityDefinitionApiKey &SecurityDefinitionApiKey::resetName()
@@ -91,5 +90,4 @@ SecurityDefinitionApiKey &SecurityDefinitionApiKey::resetName()
     return setName({});
 }
 
-
-}
+} // namespace QApiDoc

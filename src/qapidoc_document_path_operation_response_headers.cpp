@@ -1,30 +1,25 @@
 #include "./qapidoc_document_path_operation_response_headers.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt() auto&p =*reinterpret_cast<HeadersPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<HeadersPvt *>(this->p)
 
-class HeadersPvt{
+class HeadersPvt
+{
 public:
-    Headers*parent=nullptr;
+    Headers *parent = nullptr;
     QString _description;
     QString _format;
     QString _name;
     QString _type;
-    explicit HeadersPvt(Headers*parent)
-    {
-        this->parent=parent;
-    }
+    explicit HeadersPvt(Headers *parent) { this->parent = parent; }
 
-    virtual ~HeadersPvt()
-    {
-    }
-
+    virtual ~HeadersPvt() {}
 };
 
-Headers::Headers(QObject *parent):ObjectMapper{parent}
+Headers::Headers(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new HeadersPvt(this);
+    this->p = new HeadersPvt{this};
 }
 
 Headers::~Headers()
@@ -47,10 +42,10 @@ Headers &Headers::setName(const QString &newName)
 {
     dPvt();
     if (p._name == newName)
-        return*this;
+        return *this;
     p._name = newName;
     emit nameChanged();
-    return*this;
+    return *this;
 }
 
 Headers &Headers::resetName()
@@ -73,10 +68,10 @@ Headers &Headers::setDescription(const QString &newDescription)
 {
     dPvt();
     if (p._description == newDescription)
-        return*this;
+        return *this;
     p._description = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 Headers &Headers::resetDescription()
@@ -99,10 +94,10 @@ Headers &Headers::setType(const QString &newType)
 {
     dPvt();
     if (p._type == newType)
-        return*this;
+        return *this;
     p._type = newType;
     emit typeChanged();
-    return*this;
+    return *this;
 }
 
 Headers &Headers::resetType()
@@ -125,10 +120,10 @@ Headers &Headers::setFormat(const QString &newFormat)
 {
     dPvt();
     if (p._format == newFormat)
-        return*this;
+        return *this;
     p._format = newFormat;
     emit formatChanged();
-    return*this;
+    return *this;
 }
 
 Headers &Headers::resetFormat()
@@ -136,6 +131,4 @@ Headers &Headers::resetFormat()
     return setFormat({});
 }
 
-}
-
-
+} // namespace QApiDoc

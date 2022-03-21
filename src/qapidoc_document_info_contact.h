@@ -1,9 +1,8 @@
 #pragma once
 
-
 #include "./qapidoc_includes.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The InfoContact class
@@ -24,7 +23,7 @@ class Q_API_DOC_EXPORT InfoContact : public ObjectMapper
     Q_PROPERTY(QString url READ url WRITE setUrl RESET resetUrl NOTIFY urlChanged)
 
 public:
-    Q_INVOKABLE explicit InfoContact(QObject*parent=nullptr);
+    Q_INVOKABLE explicit InfoContact(QObject *parent = nullptr);
     ~InfoContact();
 
     //!
@@ -60,9 +59,7 @@ signals:
     void urlChanged();
 
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 };
 
-}
-
-
+} // namespace QApiDoc

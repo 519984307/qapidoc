@@ -1,27 +1,23 @@
 #include "./qapidoc_document_definition.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt() auto&p =*reinterpret_cast<DefinitionPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<DefinitionPvt *>(this->p)
 
-class DefinitionPvt{
+class DefinitionPvt
+{
 public:
-    Definition*parent=nullptr;
+    Definition *parent = nullptr;
     QString _name;
     QVariantHash _schema;
-    explicit DefinitionPvt(Definition*parent)
-    {
-        this->parent=parent;
-    }
+    explicit DefinitionPvt(Definition *parent) { this->parent = parent; }
 
-    virtual ~DefinitionPvt()
-    {
-    }
+    virtual ~DefinitionPvt() {}
 };
 
-Definition::Definition(QObject *parent):ObjectMapper{parent}
+Definition::Definition(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new DefinitionPvt(this);
+    this->p = new DefinitionPvt{this};
 }
 
 Definition::~Definition()
@@ -54,10 +50,10 @@ Definition &Definition::setName(const QString &newName)
 {
     dPvt();
     if (p._name == newName)
-        return*this;
+        return *this;
     p._name = newName;
     emit nameChanged();
-    return*this;
+    return *this;
 }
 
 const QVariantHash &Definition::schema() const
@@ -75,11 +71,10 @@ Definition &Definition::setSchema(const QVariantHash &newSchema)
 {
     dPvt();
     if (p._schema == newSchema)
-        return*this;
+        return *this;
     p._schema = newSchema;
     emit schemaChanged();
-    return*this;
+    return *this;
 }
 
-}
-
+} // namespace QApiDoc

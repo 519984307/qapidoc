@@ -2,16 +2,17 @@
 #include "./qapidoc_document_path.h"
 #include "./qapidoc_meta_types.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt() auto&p =*reinterpret_cast<PathOperationPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<PathOperationPvt *>(this->p)
 
-class PathOperationPvt{
+class PathOperationPvt
+{
 public:
-    PathOperation*parent=nullptr;
-    bool _deprecated=false;
+    PathOperation *parent = nullptr;
+    bool _deprecated = false;
     DocumentExternal _externalDocs;
-    PathOperation::QApiPathTypeOperation _operation=PathOperation::sptoNotDefined;
+    PathOperation::QApiPathTypeOperation _operation = PathOperation::sptoNotDefined;
     QString _description;
     QString _operationId;
     QString _summary;
@@ -19,24 +20,17 @@ public:
     QStringList _produces;
     QStringList _security;
     QList<Tag *> _tags;
-    QHash<QString, Response*> _responses;
+    QHash<QString, Response *> _responses;
     QList<Parameter *> _parameters;
 
-    explicit PathOperationPvt(PathOperation*parent)
-    {
-        this->parent=parent;
-    }
+    explicit PathOperationPvt(PathOperation *parent) { this->parent = parent; }
 
-    virtual ~PathOperationPvt()
-    {
-    }
-
+    virtual ~PathOperationPvt() {}
 };
 
-
-PathOperation::PathOperation(QObject *parent):ObjectMapper{parent}
+PathOperation::PathOperation(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new PathOperationPvt(this);
+    this->p = new PathOperationPvt{this};
 }
 
 PathOperation::~PathOperation()
@@ -74,13 +68,13 @@ PathOperation &PathOperation::operation(const QVariant &newOperation)
 PathOperation &PathOperation::setOperation(const QVariant &newOperation)
 {
     dPvt();
-    auto index=qapi_pathTypeOperationList().indexOf(newOperation.toString().toLower());
-    if(index>=0)
+    auto index = qapi_pathTypeOperationList().indexOf(newOperation.toString().toLower());
+    if (index >= 0)
         p._operation = QApiPathTypeOperation(index);
     else
         p._operation = QApiPathTypeOperation(newOperation.toInt());
     emit operationChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetOperation()
@@ -103,10 +97,10 @@ PathOperation &PathOperation::setDescription(const QString &newDescription)
 {
     dPvt();
     if (p._description == newDescription)
-        return*this;
+        return *this;
     p._description = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetDescription()
@@ -124,10 +118,10 @@ PathOperation &PathOperation::setSummary(const QString &newSummary)
 {
     dPvt();
     if (p._summary == newSummary)
-        return*this;
+        return *this;
     p._summary = newSummary;
     emit summaryChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetSummary()
@@ -145,10 +139,10 @@ PathOperation &PathOperation::setDeprecated(bool newDeprecated)
 {
     dPvt();
     if (p._deprecated == newDeprecated)
-        return*this;
+        return *this;
     p._deprecated = newDeprecated;
     emit deprecatedChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetDeprecated()
@@ -165,9 +159,9 @@ QStringList &PathOperation::consumes()
 PathOperation &PathOperation::consumes(const QString &newConsume)
 {
     dPvt();
-    if(p._consumes.contains(newConsume))
-        return*this;
-    return this->setConsumes(QStringList(p._consumes)<<newConsume);
+    if (p._consumes.contains(newConsume))
+        return *this;
+    return this->setConsumes(QStringList(p._consumes) << newConsume);
 }
 
 PathOperation &PathOperation::consumes(const QStringList &newConsumes)
@@ -179,10 +173,10 @@ PathOperation &PathOperation::setConsumes(const QStringList &newConsumes)
 {
     dPvt();
     if (p._consumes == newConsumes)
-        return*this;
+        return *this;
     p._consumes = newConsumes;
     emit consumesChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetConsumes()
@@ -199,9 +193,9 @@ QStringList &PathOperation::produces()
 PathOperation &PathOperation::produces(const QString &newProduce)
 {
     dPvt();
-    if(p._produces.contains(newProduce))
-        return*this;
-    return this->setProduces(QStringList(p._produces)<<newProduce);
+    if (p._produces.contains(newProduce))
+        return *this;
+    return this->setProduces(QStringList(p._produces) << newProduce);
 }
 
 PathOperation &PathOperation::produces(const QVariant &newProduces)
@@ -214,16 +208,15 @@ PathOperation &PathOperation::setProduces(const QVariant &newProduces)
     dPvt();
     switch (qTypeId(newProduces)) {
     case QMetaType_QVariantList:
-    case QMetaType_QStringList:
-    {
-        p._produces=newProduces.toStringList();
+    case QMetaType_QStringList: {
+        p._produces = newProduces.toStringList();
         break;
     }
     default:
         p._produces << newProduces.toString();
     }
     emit producesChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetProduces()
@@ -231,12 +224,12 @@ PathOperation &PathOperation::resetProduces()
     return setProduces({});
 }
 
-QVariantList PathOperation::parametersObject()const
+QVariantList PathOperation::parametersObject() const
 {
     dPvt();
     QVariantList __return;
-    for(auto&item:p._parameters)
-        __return<<item->toVariant();
+    for (auto &item : p._parameters)
+        __return << item->toVariant();
     return __return;
 }
 
@@ -244,7 +237,6 @@ QList<Parameter *> &PathOperation::parameters() const
 {
     dPvt();
     return p._parameters;
-
 }
 
 PathOperation &PathOperation::parameters(const QVariant &newParameter)
@@ -260,46 +252,45 @@ PathOperation &PathOperation::parameters(const Parameter &newParameter)
 PathOperation &PathOperation::setParameters(const QVariant &newParameters)
 {
     dPvt();
-    if(!newParameters.isValid())
-        return*this;
+    if (!newParameters.isValid())
+        return *this;
     QVariantList vList;
     switch (qTypeId(newParameters)) {
     case QMetaType_QVariantList:
-    case QMetaType_QStringList:
-    {
+    case QMetaType_QStringList: {
         qDeleteAll(p._parameters);
         p._parameters.clear();
-        vList=newParameters.toList();
+        vList = newParameters.toList();
         break;
     }
     default:
-        vList<<newParameters;
+        vList << newParameters;
     }
-    for(auto&v:vList){
-        auto item=new Parameter(this);
-        if(!item->load(v)){
+    for (auto &v : vList) {
+        auto item = new Parameter(this);
+        if (!item->load(v)) {
             delete item;
             continue;
         }
-        p._parameters<<item;
+        p._parameters << item;
     }
     emit parametersChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::setParameters(const QList<Parameter *> &newParameters)
 {
     dPvt();
-    auto aux=p._parameters;
+    auto aux = p._parameters;
     p._parameters.clear();
-    for(auto&item:newParameters){
+    for (auto &item : newParameters) {
         aux.removeOne(item);
         item->setParent(this);
-        p._parameters<<item;
+        p._parameters << item;
     }
     qDeleteAll(aux);
     emit parametersChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetParameters()
@@ -307,11 +298,11 @@ PathOperation &PathOperation::resetParameters()
     return setParameters(QVariantList{});
 }
 
-QVariantHash PathOperation::responsesObject()const
+QVariantHash PathOperation::responsesObject() const
 {
     dPvt();
     QVariantHash __return;
-    for(auto&item:p._responses)
+    for (auto &item : p._responses)
         __return.insert(item->statusCode(), item->toVariant());
     return __return;
 }
@@ -332,14 +323,14 @@ PathOperation &PathOperation::responses(const QVariant &newResponse)
     case QMetaType_QVariantHash:
         return this->setResponses(newResponse.toList());
     default:
-        auto item=new Response(this);
-        if(!item->load(newResponse)){
+        auto item = new Response(this);
+        if (!item->load(newResponse)) {
             delete item;
-            return*this;
+            return *this;
         }
         p._responses.insert(item->statusCode(), item);
         emit responsesChanged();
-        return*this;
+        return *this;
     }
 }
 
@@ -355,15 +346,14 @@ PathOperation &PathOperation::setResponses(const QVariant &newResponses)
     p._responses.clear();
     switch (qTypeId(newResponses)) {
     case QMetaType_QVariantList:
-    case QMetaType_QStringList:
-    {
+    case QMetaType_QStringList: {
         qDeleteAll(p._responses);
         p._responses.clear();
-        for(auto&v:newResponses.toList()){
-            auto item=new Response(this);
-            if(!item->load(v)){
+        for (auto &v : newResponses.toList()) {
+            auto item = new Response(this);
+            if (!item->load(v)) {
                 delete item;
-                return*this;
+                return *this;
             }
             p._responses.insert(item->statusCode(), item);
             emit responsesChanged();
@@ -371,15 +361,14 @@ PathOperation &PathOperation::setResponses(const QVariant &newResponses)
         break;
     }
     case QMetaType_QVariantMap:
-    case QMetaType_QVariantHash:
-    {
+    case QMetaType_QVariantHash: {
         qDeleteAll(p._responses);
         p._responses.clear();
         QHashIterator<QString, QVariant> i(newResponses.toHash());
-        while(i.hasNext()){
+        while (i.hasNext()) {
             i.next();
-            auto item= new Response(this);
-            if(!item->load(i.value())){
+            auto item = new Response(this);
+            if (!item->load(i.value())) {
                 delete item;
                 continue;
             }
@@ -389,30 +378,30 @@ PathOperation &PathOperation::setResponses(const QVariant &newResponses)
         break;
     }
     default:
-        auto item=new Response(this);
-        if(!item->load(newResponses)){
+        auto item = new Response(this);
+        if (!item->load(newResponses)) {
             delete item;
-            return*this;
+            return *this;
         }
         p._responses.insert(item->statusCode(), item);
         emit responsesChanged();
     }
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::setResponses(const QList<Response *> &newResponses)
 {
     dPvt();
-    auto aux=p._responses.values();
+    auto aux = p._responses.values();
     p._responses.clear();
-    for(auto&item:newResponses){
+    for (auto &item : newResponses) {
         aux.removeOne(item);
         item->setParent(this);
         p._responses.insert(item->statusCode(), item);
     }
     qDeleteAll(aux);
     emit responsesChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetResponses()
@@ -420,21 +409,21 @@ PathOperation &PathOperation::resetResponses()
     return setResponses(QVariantHash{});
 }
 
-QVariantList PathOperation::security()const
+QVariantList PathOperation::security() const
 {
     dPvt();
     QVariantList __return;
-    for(auto&item:p._security)
-        __return<<QVariantHash{{item, QVariant()}};
+    for (auto &item : p._security)
+        __return << QVariantHash{{item, QVariant()}};
     return __return;
 }
 
 PathOperation &PathOperation::security(const QString &newSecurity)
 {
     dPvt();
-    if(newSecurity.contains(newSecurity))
+    if (newSecurity.contains(newSecurity))
         return *this;
-    return this->setSecurity(p._security<<newSecurity);
+    return this->setSecurity(p._security << newSecurity);
 }
 
 PathOperation &PathOperation::security(const QStringList &newSecurity)
@@ -447,14 +436,12 @@ PathOperation &PathOperation::setSecurity(const QVariant &newSecurity)
     dPvt();
     switch (qTypeId(newSecurity)) {
     case QMetaType_QVariantMap:
-    case QMetaType_QVariantHash:
-    {
+    case QMetaType_QVariantHash: {
         p._security = newSecurity.toHash().keys();
         break;
     }
     case QMetaType_QVariantList:
-    case QMetaType_QStringList:
-    {
+    case QMetaType_QStringList: {
         p._security = newSecurity.toStringList();
         break;
     }
@@ -462,10 +449,10 @@ PathOperation &PathOperation::setSecurity(const QVariant &newSecurity)
         p._security.clear();
     }
     emit securityChanged();
-    return*this;
+    return *this;
 }
 
-PathOperation&PathOperation::resetSecurity()
+PathOperation &PathOperation::resetSecurity()
 {
     return setSecurity({});
 }
@@ -474,8 +461,8 @@ QVariantList PathOperation::tagsObject() const
 {
     dPvt();
     QVariantList __return;
-    for(auto&item : p._tags)
-        __return<<item->toVariant();
+    for (auto &item : p._tags)
+        __return << item->toVariant();
     return __return;
 }
 
@@ -498,14 +485,14 @@ PathOperation &PathOperation::setTags(const QVariant &newTags)
     case QMetaType_QStringList:
         return this->setTags(newTags.toList());
     default:
-        auto item= new Tag(this);
-        if(!item->load(newTags)){
+        auto item = new Tag(this);
+        if (!item->load(newTags)) {
             delete item;
-            return*this;
+            return *this;
         }
-        p._tags<<item;
+        p._tags << item;
         emit tagsChanged();
-        return*this;
+        return *this;
     }
 }
 
@@ -514,16 +501,16 @@ PathOperation &PathOperation::setTags(const QVariantList &newTags)
     dPvt();
     qDeleteAll(p._tags);
     p._tags.clear();
-    for(auto&v:newTags){
-        auto item= new Tag(this);
-        if(!item->load(v)){
+    for (auto &v : newTags) {
+        auto item = new Tag(this);
+        if (!item->load(v)) {
             delete item;
             continue;
         }
-        p._tags<<item;
+        p._tags << item;
     }
     emit tagsChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetTags()
@@ -553,7 +540,7 @@ PathOperation &PathOperation::setOperationId(const QVariant &newOperationId)
         p._operationId = newOperationId.toString();
     }
     emit operationIdChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetOperationId()
@@ -564,16 +551,16 @@ PathOperation &PathOperation::resetOperationId()
 QVariantList PathOperation::toMimeTypesList(const QStringList &vMimeTypesList) const
 {
     QVariantList __return;
-    for(const auto&item : vMimeTypesList)
+    for (const auto &item : vMimeTypesList)
         __return.append(item);
     return __return;
 }
 
-QString PathOperation::operationObject()const
+QString PathOperation::operationObject() const
 {
     dPvt();
-    const auto&pathTypeOperationList=qapi_pathTypeOperationList();
-    if(p._operation>=0 && p._operation<pathTypeOperationList.count())
+    const auto &pathTypeOperationList = qapi_pathTypeOperationList();
+    if (p._operation >= 0 && p._operation < pathTypeOperationList.count())
         return pathTypeOperationList.at(this->operation());
     return {};
 }
@@ -600,7 +587,7 @@ PathOperation &PathOperation::setExternalDocs(const QVariant &newExternalDocs)
     dPvt();
     p._externalDocs.load(newExternalDocs);
     emit externalDocsChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::setExternalDocs(const DocumentExternal &newExternalDocs)
@@ -608,7 +595,7 @@ PathOperation &PathOperation::setExternalDocs(const DocumentExternal &newExterna
     dPvt();
     p._externalDocs.load(newExternalDocs.toVariant());
     emit externalDocsChanged();
-    return*this;
+    return *this;
 }
 
 PathOperation &PathOperation::resetExternalDocs()
@@ -616,6 +603,4 @@ PathOperation &PathOperation::resetExternalDocs()
     return setExternalDocs(QVariantList{});
 }
 
-
-}
-
+} // namespace QApiDoc

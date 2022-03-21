@@ -1,50 +1,50 @@
 #include "./qapidoc_object_mapper.h"
 #include "./qapidoc_meta_types.h"
 #include "./qapidoc_types.h"
+#include <QDebug>
 #include <QFile>
 #include <QJsonDocument>
-#include <QDebug>
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-static bool writeProperty(QObject*object, const QMetaProperty&property, const QVariant&value)
+static bool writeProperty(QObject *object, const QMetaProperty &property, const QVariant &value)
 {
     auto type = qTypeId(property);
-    QVariant vValue=value;
+    QVariant vValue = value;
 
-    if(property.write(object, vValue))
+    if (property.write(object, vValue))
         return true;
 
-    if(QMetaTypeUtilMetaString.contains(type)){
+    if (QMetaTypeUtilMetaString.contains(type)) {
         QVariant v;
-        if(QMetaTypeUtilObjects.contains(qTypeId(value)))
-            v=QJsonDocument::fromVariant(vValue).toJson(QJsonDocument::Compact);
+        if (QMetaTypeUtilObjects.contains(qTypeId(value)))
+            v = QJsonDocument::fromVariant(vValue).toJson(QJsonDocument::Compact);
         else
-            v=vValue.toByteArray();
+            v = vValue.toByteArray();
 
         switch (type) {
         case QMetaType_QUuid:
-            if(property.write(object, vValue.toUuid()))
+            if (property.write(object, vValue.toUuid()))
                 return true;
             break;
         case QMetaType_QUrl:
-            if(property.write(object, vValue.toUrl()))
+            if (property.write(object, vValue.toUrl()))
                 return true;
             break;
         case QMetaType_QString:
-            if(property.write(object, v.toString()))
+            if (property.write(object, v.toString()))
                 return true;
             break;
         case QMetaType_QByteArray:
-            if(property.write(object, v.toByteArray()))
+            if (property.write(object, v.toByteArray()))
                 return true;
             break;
         case QMetaType_QChar:
-            if(property.write(object, v.toChar()))
+            if (property.write(object, v.toChar()))
                 return true;
             break;
         case QMetaType_QBitArray:
-            if(property.write(object, v.toBitArray()))
+            if (property.write(object, v.toBitArray()))
                 return true;
             break;
         default:
@@ -52,27 +52,28 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QMetaTypeUtilIntegers.contains(type)){//ints
+    if (QMetaTypeUtilIntegers.contains(type)) { //ints
 
         switch (type) {
         case QMetaType_LongLong:
         case QMetaType_ULongLong:
-            if(property.write(object, static_cast<qlonglong>(QLocale::c().toDouble(vValue.toString()))))
+            if (property.write(object,
+                               static_cast<qlonglong>(QLocale::c().toDouble(vValue.toString()))))
                 return true;
-            if(property.write(object, QLocale::c().toLongLong(vValue.toString())))
+            if (property.write(object, QLocale::c().toLongLong(vValue.toString())))
                 return true;
             break;
         case QMetaType_Int:
         case QMetaType_UInt:
-            if(property.write(object, QLocale::c().toInt(vValue.toString())))
+            if (property.write(object, QLocale::c().toInt(vValue.toString())))
                 return true;
-            if(property.write(object, QLocale::c().toInt(vValue.toString())))
+            if (property.write(object, QLocale::c().toInt(vValue.toString())))
                 return true;
-            if(property.write(object, QLocale::c().toUInt(vValue.toString())))
+            if (property.write(object, QLocale::c().toUInt(vValue.toString())))
                 return true;
             break;
         case QMetaType_Double:
-            if(property.write(object, QLocale::c().toDouble(vValue.toString())))
+            if (property.write(object, QLocale::c().toDouble(vValue.toString())))
                 return true;
             break;
         default:
@@ -80,22 +81,22 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QMetaTypeUtilObjects.contains(type)){
+    if (QMetaTypeUtilObjects.contains(type)) {
         switch (type) {
         case QMetaType_QVariantMap:
-            if(property.write(object, vValue.toHash()))
+            if (property.write(object, vValue.toHash()))
                 return true;
             break;
         case QMetaType_QVariantHash:
-            if(property.write(object, vValue.toHash()))
+            if (property.write(object, vValue.toHash()))
                 return true;
             break;
         case QMetaType_QVariantList:
-            if(property.write(object, vValue.toList()))
+            if (property.write(object, vValue.toList()))
                 return true;
             break;
         case QMetaType_QStringList:
-            if(property.write(object, vValue.toStringList()))
+            if (property.write(object, vValue.toStringList()))
                 return true;
             break;
         default:
@@ -103,18 +104,18 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QMetaTypeUtilDates.contains(type)){
+    if (QMetaTypeUtilDates.contains(type)) {
         switch (type) {
         case QMetaType_QDate:
-            if(property.write(object, vValue.toDate()))
+            if (property.write(object, vValue.toDate()))
                 return true;
             break;
         case QMetaType_QDateTime:
-            if(property.write(object, vValue.toDateTime()))
+            if (property.write(object, vValue.toDateTime()))
                 return true;
             break;
         case QMetaType_QTime:
-            if(property.write(object, vValue.toTime()))
+            if (property.write(object, vValue.toTime()))
                 return true;
             break;
         default:
@@ -122,20 +123,19 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         }
     }
 
-    if(QMetaTypeUtilBool.contains(type) || QMetaTypeUtilBool.contains(qTypeId(value))){
-
+    if (QMetaTypeUtilBool.contains(type) || QMetaTypeUtilBool.contains(qTypeId(value))) {
         switch (type) {
         case QMetaType_Bool:
-            if(property.write(object, vValue.toBool()))
+            if (property.write(object, vValue.toBool()))
                 return true;
             break;
         default:
             break;
         }
 
-        switch (qTypeId(vValue)){
+        switch (qTypeId(vValue)) {
         case QMetaType_Bool:
-            if(property.write(object, vValue.toBool()))
+            if (property.write(object, vValue.toBool()))
                 return true;
             break;
         case QMetaType_Int:
@@ -143,16 +143,15 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
         case QMetaType_ULongLong:
         case QMetaType_LongLong:
         case QMetaType_Double:
-            if(property.write(object, (vValue.toInt()==1)))
+            if (property.write(object, (vValue.toInt() == 1)))
                 return true;
             break;
         case QMetaType_QString:
         case QMetaType_QByteArray:
-        case QMetaType_QChar:
-        {
-            auto vv=vValue.toString().toLower();
-            bool vBool=(vv==QStringLiteral("true"));
-            if(property.write(object, vBool))
+        case QMetaType_QChar: {
+            auto vv = vValue.toString().toLower();
+            bool vBool = (vv == QStringLiteral("true"));
+            if (property.write(object, vBool))
                 return true;
             break;
         }
@@ -163,49 +162,42 @@ static bool writeProperty(QObject*object, const QMetaProperty&property, const QV
     return false;
 }
 
-ObjectMapper::ObjectMapper(QObject *parent)
-    : QObject{parent}
-{
+ObjectMapper::ObjectMapper(QObject *parent) : QObject{parent} {}
 
-}
+ObjectMapper::~ObjectMapper() {}
 
-ObjectMapper::~ObjectMapper()
-{
-
-}
-
-ObjectMapper &ObjectMapper::operator =(const QVariant &value)
+ObjectMapper &ObjectMapper::operator=(const QVariant &value)
 {
     this->load(value);
-    return*this;
+    return *this;
 }
 
 ObjectMapper &ObjectMapper::operator<<(const QVariant &value)
 {
     this->read(value);
-    return*this;
+    return *this;
 }
 
 ObjectMapper &ObjectMapper::operator+=(const QVariant &value)
 {
     this->read(value);
-    return*this;
+    return *this;
 }
 
 QVariant ObjectMapper::toVariant() const
 {
     QVariantHash __return;
-    const auto &object_ignore_methods=QApiDoc::object_ignore_methods();
-    auto&metaObject = *this->metaObject();
-    for(int col = 0; col < metaObject.propertyCount(); ++col) {
+    const auto &object_ignore_methods = QApiDoc::object_ignore_methods();
+    auto &metaObject = *this->metaObject();
+    for (int col = 0; col < metaObject.propertyCount(); ++col) {
         auto property = metaObject.property(col);
 
-        if(object_ignore_methods.contains(property.name()))
+        if (object_ignore_methods.contains(property.name()))
             continue;
 
-        const auto value=property.read(this);
+        const auto value = property.read(this);
 
-        if(value.isNull() || !value.isValid())
+        if (value.isNull() || !value.isValid())
             continue;
 
         switch (qTypeId(property)) {
@@ -215,44 +207,44 @@ QVariant ObjectMapper::toVariant() const
         case QMetaType_LongLong:
         case QMetaType_ULongLong:
         case QMetaType_User:
-            if(value.toDouble()==0)
+            if (value.toDouble() == 0)
                 continue;
             break;
         case QMetaType_QUuid:
-            if(value.toUuid().isNull())
+            if (value.toUuid().isNull())
                 continue;
             break;
         case QMetaType_QUrl:
-            if(value.toUrl().isEmpty())
+            if (value.toUrl().isEmpty())
                 continue;
             break;
         case QMetaType_QDate:
-            if(!value.toDate().isValid())
+            if (!value.toDate().isValid())
                 continue;
             break;
         case QMetaType_QTime:
-            if(!value.toTime().isValid())
+            if (!value.toTime().isValid())
                 continue;
             break;
         case QMetaType_QDateTime:
-            if(!value.toDateTime().isValid())
+            if (!value.toDateTime().isValid())
                 continue;
             break;
         case QMetaType_QString:
         case QMetaType_QByteArray:
         case QMetaType_QChar:
         case QMetaType_QBitArray:
-            if(value.toByteArray().trimmed().isEmpty())
+            if (value.toByteArray().trimmed().isEmpty())
                 continue;
             break;
         case QMetaType_QVariantMap:
         case QMetaType_QVariantHash:
-            if(value.toHash().isEmpty())
+            if (value.toHash().isEmpty())
                 continue;
             break;
         case QMetaType_QVariantList:
         case QMetaType_QStringList:
-            if(value.toList().isEmpty())
+            if (value.toList().isEmpty())
                 continue;
             break;
         default:
@@ -260,7 +252,7 @@ QVariant ObjectMapper::toVariant() const
         }
         __return.insert(property.name(), value);
     }
-    return __return.isEmpty()?QVariant():__return;
+    return __return.isEmpty() ? QVariant() : __return;
 }
 
 QVariantHash ObjectMapper::toHash() const
@@ -280,12 +272,12 @@ QByteArray ObjectMapper::toJson() const
 
 ObjectMapper &ObjectMapper::clear()
 {
-    const auto &object_ignore_methods=QApiDoc::object_ignore_methods();
-    auto metaObject=this->metaObject();
-    for(int col = 0; col < metaObject->propertyCount(); ++col) {
+    const auto &object_ignore_methods = QApiDoc::object_ignore_methods();
+    auto metaObject = this->metaObject();
+    for (int col = 0; col < metaObject->propertyCount(); ++col) {
         auto property = metaObject->property(col);
 
-        if(object_ignore_methods.contains(property.name()))
+        if (object_ignore_methods.contains(property.name()))
             continue;
 
         switch (qTypeId(property)) {
@@ -342,7 +334,7 @@ ObjectMapper &ObjectMapper::clear()
             property.write(this, QVariant());
         }
     }
-    return*this;
+    return *this;
 }
 
 bool ObjectMapper::isEmpty()
@@ -357,31 +349,28 @@ bool ObjectMapper::load(const QVariant &value)
 
 bool ObjectMapper::read(const QVariant &value)
 {
-    const auto &object_ignore_methods=QApiDoc::object_ignore_methods();
+    const auto &object_ignore_methods = QApiDoc::object_ignore_methods();
     QVariantHash vHash;
     switch (qTypeId(value)) {
     case QMetaType_QVariantList:
-    case QMetaType_QStringList:
-    {
-        auto vList=value.toList();
-        return this->read(vList.isEmpty()?QVariantHash{}:vList.first());
+    case QMetaType_QStringList: {
+        auto vList = value.toList();
+        return this->read(vList.isEmpty() ? QVariantHash{} : vList.first());
     }
     case QMetaType_QVariantHash:
-    case QMetaType_QVariantMap:
-    {
-        vHash=value.toHash();
+    case QMetaType_QVariantMap: {
+        vHash = value.toHash();
         break;
     }
     case QMetaType_QString:
-    case QMetaType_QByteArray:
-    {
+    case QMetaType_QByteArray: {
         QFile file(value.toString());
-        if (file.exists()){
-            if(!file.open(file.ReadOnly)){
-                qWarning()<<file.errorString();
+        if (file.exists()) {
+            if (!file.open(file.ReadOnly)) {
+                qWarning() << file.errorString();
                 return {};
             }
-            auto bytes=file.readAll();
+            auto bytes = file.readAll();
             file.close();
             return this->read(QJsonDocument::fromJson(bytes).toVariant());
         }
@@ -391,31 +380,30 @@ bool ObjectMapper::read(const QVariant &value)
         return {};
     }
 
-    if(vHash.isEmpty())
+    if (vHash.isEmpty())
         return {};
 
     QHash<QString, QMetaProperty> propertList;
-    auto&metaObject = *this->metaObject();
-    for(int col = 0; col < metaObject.propertyCount(); ++col) {
+    auto &metaObject = *this->metaObject();
+    for (int col = 0; col < metaObject.propertyCount(); ++col) {
         auto property = metaObject.property(col);
-        if(object_ignore_methods.contains(property.name()))
+        if (object_ignore_methods.contains(property.name()))
             continue;
 
         propertList.insert(QByteArray(property.name()).toLower(), property);
     }
 
-    bool __return=false;
+    bool __return = false;
     QHashIterator<QString, QVariant> i(vHash);
-    while(i.hasNext())
-    {
+    while (i.hasNext()) {
         i.next();
-        const auto&v=i.value();
-        if(v.isNull() || !v.isValid())
+        const auto &v = i.value();
+        if (v.isNull() || !v.isValid())
             continue;
 
-        auto&p=propertList.value(i.key().toLower());
-        if(writeProperty(this, p, v))
-            __return=true;
+        auto &p = propertList.value(i.key().toLower());
+        if (writeProperty(this, p, v))
+            __return = true;
     }
     return __return;
 }
@@ -424,15 +412,15 @@ bool ObjectMapper::load(QObject *object)
 {
     this->clear();
     QVariantHash vHash;
-    const auto &object_ignore_methods=QApiDoc::object_ignore_methods();
-    auto&metaObject = *object->metaObject();
-    for(int col = 0; col < metaObject.propertyCount(); ++col) {
+    const auto &object_ignore_methods = QApiDoc::object_ignore_methods();
+    auto &metaObject = *object->metaObject();
+    for (int col = 0; col < metaObject.propertyCount(); ++col) {
         auto property = metaObject.property(col);
 
-        if(object_ignore_methods.contains(property.name()))
+        if (object_ignore_methods.contains(property.name()))
             continue;
 
-        vHash[QByteArray(property.name()).toLower()]=property.read(object);
+        vHash[QByteArray(property.name()).toLower()] = property.read(object);
     }
     return this->read(vHash);
 }
@@ -440,8 +428,8 @@ bool ObjectMapper::load(QObject *object)
 bool ObjectMapper::save(const QString &fileName)
 {
     QFile file(fileName);
-    if(!file.open(file.Unbuffered | file.Truncate | file.WriteOnly)){
-        qWarning()<<file.errorString();
+    if (!file.open(file.Unbuffered | file.Truncate | file.WriteOnly)) {
+        qWarning() << file.errorString();
         return false;
     }
     file.write(this->toJson());
@@ -450,5 +438,4 @@ bool ObjectMapper::save(const QString &fileName)
     return true;
 }
 
-}
-
+} // namespace QApiDoc

@@ -1,13 +1,13 @@
 #include "./qapidoc_document_info.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt()\
-auto&p =*reinterpret_cast<InfoPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<InfoPvt *>(this->p)
 
-class InfoPvt{
+class InfoPvt
+{
 public:
-    Info*parent=nullptr;
+    Info *parent = nullptr;
     InfoContact _contact;
     InfoLicense _license;
     QString _description;
@@ -15,20 +15,14 @@ public:
     QString _title;
     QString _version;
 
-    explicit InfoPvt(Info*parent)
-    {
-        this->parent=parent;
-    }
+    explicit InfoPvt(Info *parent) { this->parent = parent; }
 
-    virtual ~InfoPvt()
-    {
-    }
-
+    virtual ~InfoPvt() {}
 };
 
-Info::Info(QObject *parent):ObjectMapper{parent}
+Info::Info(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new InfoPvt(this);
+    this->p = new InfoPvt{this};
 }
 
 Info::~Info()
@@ -45,17 +39,17 @@ const QString &Info::version() const
 Info &Info::version(const QString &newVersion)
 {
     this->setVersion(newVersion);
-    return*this;
+    return *this;
 }
 
 Info &Info::setVersion(const QString &newVersion)
 {
     dPvt();
     if (p._version == newVersion)
-        return*this;
+        return *this;
     p._version = newVersion;
     emit versionChanged();
-    return*this;
+    return *this;
 }
 
 Info &Info::resetVersion()
@@ -72,17 +66,17 @@ const QString &Info::title() const
 Info &Info::title(const QString &newTitle)
 {
     this->setTitle(newTitle);
-    return*this;
+    return *this;
 }
 
 Info &Info::setTitle(const QString &newTitle)
 {
     dPvt();
     if (p._title == newTitle)
-        return*this;
+        return *this;
     p._title = newTitle;
     emit titleChanged();
-    return*this;
+    return *this;
 }
 
 Info &Info::resetTitle()
@@ -96,20 +90,20 @@ const QString &Info::description() const
     return p._description;
 }
 
-Info&Info::description(const QString &newDescription)
+Info &Info::description(const QString &newDescription)
 {
     this->setDescription(newDescription);
-    return*this;
+    return *this;
 }
 
 Info &Info::setDescription(const QString &newDescription)
 {
     dPvt();
     if (p._description == newDescription)
-        return*this;
+        return *this;
     p._description = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 Info &Info::resetDescription()
@@ -123,20 +117,20 @@ const QString &Info::termsOfService()
     return p._termsOfService;
 }
 
-Info&Info::termsOfService(const QString &newTermsOfService)
+Info &Info::termsOfService(const QString &newTermsOfService)
 {
     this->setTermsOfService(newTermsOfService);
-    return*this;
+    return *this;
 }
 
 Info &Info::setTermsOfService(const QString &newTermsOfService)
 {
     dPvt();
     if (p._termsOfService == newTermsOfService)
-        return*this;
+        return *this;
     p._termsOfService = newTermsOfService;
     emit termsOfServiceChanged();
-    return*this;
+    return *this;
 }
 
 Info &Info::resetTermsOfService()
@@ -165,7 +159,7 @@ Info &Info::setContact(const QVariant &newContact)
 {
     dPvt();
     p._contact.load(newContact);
-    return*this;
+    return *this;
 }
 
 Info &Info::setContact(const InfoContact &newContact)
@@ -173,14 +167,14 @@ Info &Info::setContact(const InfoContact &newContact)
     dPvt();
     p._contact.load(newContact.toVariant());
     emit contactChanged();
-    return*this;
+    return *this;
 }
 
 Info &Info::resetContact()
 {
     dPvt();
     p._contact.clear();
-    return*this;
+    return *this;
 }
 
 InfoLicense &Info::license()
@@ -204,7 +198,7 @@ Info &Info::setLicense(const QVariant &newLicense)
 {
     dPvt();
     p._license.load(newLicense);
-    return*this;
+    return *this;
 }
 
 Info &Info::setLicense(const InfoLicense &newLicense)
@@ -212,15 +206,14 @@ Info &Info::setLicense(const InfoLicense &newLicense)
     dPvt();
     p._license.load(newLicense.toVariant());
     emit licenseChanged();
-    return*this;
+    return *this;
 }
 
 Info &Info::resetLicense()
 {
     dPvt();
     p._license.clear();
-    return*this;
+    return *this;
 }
 
-}
-
+} // namespace QApiDoc

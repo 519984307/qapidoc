@@ -1,21 +1,19 @@
 #pragma once
 
-#include <QObject>
-#include <QList>
-#include <QVector>
-#include <QMap>
-#include <QHash>
-#include <QFile>
-#include <QVariant>
 #include <QBitArray>
-#include <QMetaProperty>
-#include <QVariantMap>
-#include <QVariantList>
-#include <QVariantHash>
-#include <QStringList>
+#include <QFile>
 #include <QFlags>
+#include <QHash>
+#include <QList>
+#include <QMap>
+#include <QMetaProperty>
+#include <QObject>
+#include <QStringList>
+#include <QVariant>
+#include <QVariantHash>
+#include <QVariantList>
+#include <QVariantMap>
+#include <QVector>
 
 #include "./qapidoc_macros.h"
 #include "./qapidoc_object_mapper.h"
-
-

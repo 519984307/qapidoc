@@ -1,35 +1,28 @@
 #include "./qapidoc_document_security_definition.h"
 
+namespace QApiDoc {
 
-namespace QApiDoc{
-
-typedef QHash<int, const QMetaObject*> SecurityDefinitionFactoryMetaObject;
+typedef QHash<int, const QMetaObject *> SecurityDefinitionFactoryMetaObject;
 
 Q_GLOBAL_STATIC(SecurityDefinitionFactoryMetaObject, staticSecurityDefinitionMetaObject)
 
+#define dPvt() auto &p = *reinterpret_cast<SecurityDefinitionPvt *>(this->p)
 
-#define dPvt() auto&p =*reinterpret_cast<SecurityDefinitionPvt*>(this->p)
-
-class SecurityDefinitionPvt{
+class SecurityDefinitionPvt
+{
 public:
-    SecurityDefinition*parent=nullptr;
+    SecurityDefinition *parent = nullptr;
     QString _description;
     QString _schemaNametion;
 
-    explicit SecurityDefinitionPvt(SecurityDefinition*parent)
-    {
-        this->parent=parent;
-    }
+    explicit SecurityDefinitionPvt(SecurityDefinition *parent) { this->parent = parent; }
 
-    virtual ~SecurityDefinitionPvt()
-    {
-    }
-
+    virtual ~SecurityDefinitionPvt() {}
 };
 
-SecurityDefinition::SecurityDefinition(QObject *parent):ObjectMapper{parent}
+SecurityDefinition::SecurityDefinition(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new SecurityDefinitionPvt(this);
+    this->p = new SecurityDefinitionPvt{this};
 }
 
 SecurityDefinition::~SecurityDefinition()
@@ -37,25 +30,27 @@ SecurityDefinition::~SecurityDefinition()
     dPvtFree();
 }
 
-bool SecurityDefinition::registerSecurityDefinition(int securityDefinitionType, const QMetaObject &metaObject)
+bool SecurityDefinition::registerSecurityDefinition(int securityDefinitionType,
+                                                    const QMetaObject &metaObject)
 {
     staticSecurityDefinitionMetaObject->insert(securityDefinitionType, &metaObject);
     return true;
 }
 
-SecurityDefinition *SecurityDefinition::newInstance(QObject *parent, const SecurityDefinitionType securityType)
+SecurityDefinition *SecurityDefinition::newInstance(QObject *parent,
+                                                    const SecurityDefinitionType securityType)
 {
-    if(!staticSecurityDefinitionMetaObject->contains(securityType))
+    if (!staticSecurityDefinitionMetaObject->contains(securityType))
         return nullptr;
 
-    auto metaObject=staticSecurityDefinitionMetaObject->value(securityType);
+    auto metaObject = staticSecurityDefinitionMetaObject->value(securityType);
 
-    auto object=metaObject->newInstance(Q_ARG(QObject*, parent));
-    if(object==nullptr)
+    auto object = metaObject->newInstance(Q_ARG(QObject*, parent));
+    if (object == nullptr)
         delete object;
 
-    auto definition=dynamic_cast<SecurityDefinition*>(object);
-    if(definition==nullptr)
+    auto definition = dynamic_cast<SecurityDefinition *>(object);
+    if (definition == nullptr)
         delete object;
 
     return definition;
@@ -76,10 +71,10 @@ SecurityDefinition &SecurityDefinition::setDescription(const QString &newDescrip
 {
     dPvt();
     if (p._description == newDescription)
-        return*this;
+        return *this;
     p._description = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 SecurityDefinition &SecurityDefinition::resetDescription()
@@ -89,7 +84,7 @@ SecurityDefinition &SecurityDefinition::resetDescription()
 
 QString SecurityDefinition::typeSecurityToString() const
 {
-    if(this->typeSecurity()>=qapi_SecurityDefinitionType.count())
+    if (this->typeSecurity() >= qapi_SecurityDefinitionType.count())
         return {};
     return qapi_SecurityDefinitionType.at(this->typeSecurity());
 }
@@ -109,10 +104,10 @@ SecurityDefinition &SecurityDefinition::setSchemaName(const QString &newSchemaNa
 {
     dPvt();
     if (p._schemaNametion == newSchemaName)
-        return*this;
+        return *this;
     p._schemaNametion = newSchemaName;
     emit schemaNameChanged();
-    return*this;
+    return *this;
 }
 
 SecurityDefinition &SecurityDefinition::resetSchemaName()
@@ -120,6 +115,4 @@ SecurityDefinition &SecurityDefinition::resetSchemaName()
     return setSchemaName({});
 }
 
-
-}
-
+} // namespace QApiDoc

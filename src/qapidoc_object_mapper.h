@@ -3,7 +3,7 @@
 #include "./qapidoc_global.h"
 #include <QObject>
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The ObjectMapper class
@@ -19,45 +19,45 @@ public:
     //! \brief operator =
     //! \param value
     //!
-    ObjectMapper &operator=(const QVariant&value);
+    ObjectMapper &operator=(const QVariant &value);
 
     //!
     //! \brief operator <<
     //! \param value
     //! \return
     //!
-    ObjectMapper &operator<<(const QVariant&value);
+    ObjectMapper &operator<<(const QVariant &value);
 
     //!
     //! \brief operator +=
     //! \param value
     //! \return
     //!
-    ObjectMapper &operator+=(const QVariant&value);
+    ObjectMapper &operator+=(const QVariant &value);
 
     //!
     //! \brief toVariant
     //! \return
     //!
-    virtual QVariant toVariant()const;
+    virtual QVariant toVariant() const;
 
     //!
     //! \brief toHash
     //! \return
     //!
-    virtual QVariantHash toHash()const;
+    virtual QVariantHash toHash() const;
 
     //!
     //! \brief toMap
     //! \return
     //!
-    virtual QVariantMap toMap()const;
+    virtual QVariantMap toMap() const;
 
     //!
     //! \brief toJson
     //! \return
     //!
-    virtual QByteArray toJson()const;
+    virtual QByteArray toJson() const;
 
     //!
     //! \brief clear
@@ -99,8 +99,6 @@ public:
     virtual bool save(const QString &fileName);
 
 signals:
-
 };
 
-
-}
+} // namespace QApiDoc

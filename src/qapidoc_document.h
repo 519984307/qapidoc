@@ -1,17 +1,16 @@
 #pragma once
 
-#include "./qapidoc_includes.h"
 #include "./qapidoc_common_types.h"
-#include "./qapidoc_document_tags.h"
+#include "./qapidoc_document.h"
+#include "./qapidoc_document_definition.h"
 #include "./qapidoc_document_info.h"
-#include "./qapidoc_document_security_definition.h"
 #include "./qapidoc_document_path.h"
 #include "./qapidoc_document_path_operation_parameter.h"
-#include "./qapidoc_document_definition.h"
-#include "./qapidoc_document.h"
+#include "./qapidoc_document_security_definition.h"
+#include "./qapidoc_document_tags.h"
+#include "./qapidoc_includes.h"
 
-
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief The QSwaggerDoc class
@@ -24,7 +23,6 @@ class Q_API_DOC_EXPORT Document : public ObjectMapper
     Q_OBJECT
 
 public:
-
     Q_PROPERTY(QString swagger READ version CONSTANT)
 
     //!
@@ -37,15 +35,18 @@ public:
 
     //!
     //!
-    Q_PROPERTY(QVariantList consumes READ consumes WRITE setConsumes RESET resetConsumes NOTIFY consumesChanged)
+    Q_PROPERTY(QVariantList consumes READ consumes WRITE setConsumes RESET resetConsumes NOTIFY
+                   consumesChanged)
 
     //!
     //!
-    Q_PROPERTY(QVariantList produces READ produces WRITE setProduces RESET resetProduces NOTIFY producesChanged)
+    Q_PROPERTY(QVariantList produces READ produces WRITE setProduces RESET resetProduces NOTIFY
+                   producesChanged)
 
     //!
     //!
-    Q_PROPERTY(QString basePath READ basePath WRITE setBasePath RESET resetBasePath NOTIFY basePathChanged)
+    Q_PROPERTY(
+        QStringList basePath READ basePath WRITE setBasePath RESET resetBasePath NOTIFY basePathChanged)
 
     //!
     //!
@@ -53,35 +54,39 @@ public:
 
     //!
     //!
-    Q_PROPERTY(QApiTransferProtocolSchemes schemes READ schemes WRITE setSchemes RESET resetSchemes NOTIFY schemesChanged)
+    Q_PROPERTY(QApiTransferProtocolSchemes schemes READ schemes WRITE setSchemes RESET resetSchemes
+                   NOTIFY schemesChanged)
 
     //!
     //!
-    Q_PROPERTY(QVariantList paths READ pathsObject WRITE setPaths RESET resetPaths NOTIFY pathsChanged)
+    Q_PROPERTY(
+        QVariantList paths READ pathsObject WRITE setPaths RESET resetPaths NOTIFY pathsChanged)
 
     //!
     //!
-    Q_PROPERTY(QVariantList definitions READ definitionsObject WRITE setDefinitions RESET resetDefinitions NOTIFY definitionsChanged)
+    Q_PROPERTY(QVariantList definitions READ definitionsObject WRITE setDefinitions RESET
+                   resetDefinitions NOTIFY definitionsChanged)
 
     //!
     //!
-    Q_PROPERTY(QVariantList securityDefinitions READ securityDefinitionsObject WRITE setSecurityDefinitions RESET resetSecurityDefinitions NOTIFY securityDefinitionsChanged)
+    Q_PROPERTY(
+        QVariantList securityDefinitions READ securityDefinitionsObject WRITE setSecurityDefinitions
+            RESET resetSecurityDefinitions NOTIFY securityDefinitionsChanged)
 
     //!
     //!
-    Q_PROPERTY(QVariantHash externalDocs READ externalDocsObject WRITE setExternalDocs  NOTIFY externalDocsChanged)
+    Q_PROPERTY(QVariantHash externalDocs READ externalDocsObject WRITE setExternalDocs NOTIFY
+                   externalDocsChanged)
 
 public:
-
-
-    Q_INVOKABLE explicit Document(QObject*parent=nullptr);
+    Q_INVOKABLE explicit Document(QObject *parent = nullptr);
     ~Document();
 
     //!
     //! \brief version
     //! \return
     //!
-    QString version()const;
+    QString version() const;
 
     //!
     //! \brief loadFromParent
@@ -93,7 +98,7 @@ public:
     //! \brief basePath
     //! \return
     //!
-    const QString &basePath() const;
+    const QStringList &basePath() const;
     Document &basePath(const QVariant &newBasePath);
     Document &setBasePath(const QVariant &newBasePath);
     Document &resetBasePath();
@@ -111,8 +116,8 @@ public:
     //! \brief schemes
     //! \return
     //!
-    QApiTransferProtocolSchemes schemes()const;
-    const QVariantList schemesObject()const;
+    QApiTransferProtocolSchemes schemes() const;
+    const QVariantList schemesObject() const;
     Document &schemes(const QVariant &newSchemes);
     Document &setSchemes(const QVariant &newSchemes);
     Document &setSchemes(const QApiTransferProtocolSchemes &newSchemes);
@@ -123,7 +128,7 @@ public:
     //! \return
     //!
     Info &info();
-    const QVariantHash infoObject()const;
+    const QVariantHash infoObject() const;
     Document &setInfo(const QVariant &newInfo);
     Document &setInfo(const Info &newInfo);
     Document &resetInfo();
@@ -132,8 +137,8 @@ public:
     //! \brief tags
     //! \return
     //!
-    QList<Tag*> &tags()const;
-    const QVariantList tagsObject()const;
+    QList<Tag *> &tags() const;
+    const QVariantList tagsObject() const;
     Document &tags(const QVariant &newTags);
     Document &tags(const QVariantList &newTags);
     Document &tags(Tag *newTags);
@@ -148,8 +153,8 @@ public:
     //! \brief consumes
     //! \return
     //!
-    const QVariantList &consumes()const;
-    Document &consumes(const QString&newConsume);
+    const QVariantList &consumes() const;
+    Document &consumes(const QString &newConsume);
     Document &consumes(const QVariantList &newConsumes);
     Document &setConsumes(const QVariantList &newConsumes);
     Document &resetConsumes();
@@ -158,9 +163,9 @@ public:
     //! \brief produces
     //! \return
     //!
-    const QVariantList &produces()const;
-    Document &produces(const QString&newProduce);
-    Document &produces(const QVariantList&newProduces);
+    const QVariantList &produces() const;
+    Document &produces(const QString &newProduce);
+    Document &produces(const QVariantList &newProduces);
     Document &setProduces(const QVariantList &newProduces);
     Document &resetProduces();
 
@@ -170,11 +175,11 @@ public:
     //!
     QList<Path *> &paths() const;
     const QVariantList pathsObject() const;
-    Document &paths(const QVariant&newPath);
+    Document &paths(const QVariant &newPath);
     Document &paths(const QVariantHash &newPaths);
     Document &paths(Path *newPaths);
     Document &setPaths(const QVariant &newPaths);
-    Document &setPaths(Path * &newPaths);
+    Document &setPaths(Path *&newPaths);
     Document &setPaths(const QList<Path *> &newPaths);
     Document &resetPaths();
 
@@ -182,8 +187,8 @@ public:
     //! \brief definitions
     //! \return
     //!
-    QList<Definition*> &definitions()const;
-    const QVariantList definitionsObject()const;
+    QList<Definition *> &definitions() const;
+    const QVariantList definitionsObject() const;
     Document &definitions(const QVariant &newDefinition);
     Document &definitions(const QVariantHash &newDefinitions);
     Document &definitions(Definition *newDefinitions);
@@ -197,9 +202,9 @@ public:
     //! \brief securityDefinitions
     //! \return
     //!
-    QList<SecurityDefinition*> &securityDefinitions();
+    QList<SecurityDefinition *> &securityDefinitions();
     const QVariantList securityDefinitionsObject() const;
-    Document &securityDefinitions(const QVariant&newSecurityDefinition);
+    Document &securityDefinitions(const QVariant &newSecurityDefinition);
     Document &securityDefinitions(const QVariantHash &newSecurityDefinitions);
     Document &securityDefinitions(const QList<SecurityDefinition *> &newSecurityDefinitions);
     Document &setSecurityDefinitions(const QVariant &newSecurityDefinitions);
@@ -210,9 +215,9 @@ public:
     //! \brief parameters
     //! \return
     //!
-    QList<Parameter*> &parameters()const;
+    QList<Parameter *> &parameters() const;
     const QVariantList parametersObject() const;
-    Document &parameters(const QVariant&newParameter);
+    Document &parameters(const QVariant &newParameter);
     Document &parameters(const QVariantList &newParameters);
     Document &parameters(const QList<Parameter *> &newParameters);
     Document &setParameters(const QVariantList &newParameters);
@@ -224,7 +229,7 @@ public:
     //! \return
     //!
     DocumentExternal &externalDocs();
-    const QVariantHash externalDocsObject()const;
+    const QVariantHash externalDocsObject() const;
     Document &externalDocs(const QVariant &newExternalDocs);
     Document &setExternalDocs(const QVariant &newExternalDocs);
     Document &setExternalDocs(const DocumentExternal &newExternalDocs);
@@ -232,13 +237,11 @@ public:
 
 public:
     const QString qapi_ger_version = QStringLiteral("2.0");
-    const QStringList qapi_transfer_protocol_scheme={
-        QString(),
-        QStringLiteral("http"),
-        QStringLiteral("https"),
-        QStringLiteral("ws"),
-        QStringLiteral("wss")
-    };
+    const QStringList qapi_transfer_protocol_scheme = {QString(),
+                                                       QStringLiteral("http"),
+                                                       QStringLiteral("https"),
+                                                       QStringLiteral("ws"),
+                                                       QStringLiteral("wss")};
 signals:
     void infoChanged();
     void tagsChanged();
@@ -253,9 +256,9 @@ signals:
     void externalDocsChanged();
     void swaggerObjectChanged();
     void parametersChanged();
+
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 };
 
-}
-
+} // namespace QApiDoc

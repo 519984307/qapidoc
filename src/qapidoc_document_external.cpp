@@ -1,30 +1,24 @@
 #include "./qapidoc_document_external.h"
 
-#define dPvt() auto&p =*reinterpret_cast<ExternalDocumentPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<ExternalDocumentPvt *>(this->p)
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-
-class ExternalDocumentPvt{
+class ExternalDocumentPvt
+{
 public:
-    DocumentExternal*parent=nullptr;
+    DocumentExternal *parent = nullptr;
     QString _description;
     QString _url;
 
-    explicit ExternalDocumentPvt(DocumentExternal*parent)
-    {
-        this->parent=parent;
-    }
+    explicit ExternalDocumentPvt(DocumentExternal *parent) { this->parent = parent; }
 
-    virtual ~ExternalDocumentPvt()
-    {
-    }
+    virtual ~ExternalDocumentPvt() {}
 };
 
-
-DocumentExternal::DocumentExternal(QObject *parent):ObjectMapper{parent}
+DocumentExternal::DocumentExternal(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new ExternalDocumentPvt(this);
+    this->p = new ExternalDocumentPvt{this};
 }
 
 DocumentExternal::~DocumentExternal()
@@ -47,10 +41,10 @@ DocumentExternal &DocumentExternal::setUrl(const QString &newUrl)
 {
     dPvt();
     if (p._url == newUrl)
-        return*this;
+        return *this;
     p._url = newUrl;
     emit urlChanged();
-    return*this;
+    return *this;
 }
 
 DocumentExternal &DocumentExternal::resetUrl()
@@ -73,10 +67,10 @@ DocumentExternal &DocumentExternal::setDescription(const QString &newDescription
 {
     dPvt();
     if (p._description == newDescription)
-        return*this;
+        return *this;
     p._description = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 DocumentExternal &DocumentExternal::resetDescription()
@@ -84,4 +78,4 @@ DocumentExternal &DocumentExternal::resetDescription()
     return setDescription({});
 }
 
-}
+} // namespace QApiDoc

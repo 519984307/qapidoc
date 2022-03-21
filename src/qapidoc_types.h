@@ -1,22 +1,22 @@
 #pragma once
 
 #include "./qapidoc_global.h"
+#include <QBitArray>
+#include <QByteArray>
+#include <QChar>
+#include <QMetaProperty>
 #include <QObject>
-#include <QVector>
+#include <QString>
+#include <QStringList>
+#include <QUrl>
+#include <QUuid>
 #include <QVariant>
 #include <QVariantHash>
-#include <QVariantMap>
 #include <QVariantList>
-#include <QStringList>
-#include <QString>
-#include <QByteArray>
-#include <QBitArray>
-#include <QChar>
-#include <QUuid>
-#include <QUrl>
-#include <QMetaProperty>
+#include <QVariantMap>
+#include <QVector>
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 //!
 //! \brief QByteArrayList
@@ -29,5 +29,4 @@ typedef QVector<QByteArray> QByteArrayList;
 //!
 const QByteArrayList &object_ignore_methods();
 
-
-}
+} // namespace QApiDoc

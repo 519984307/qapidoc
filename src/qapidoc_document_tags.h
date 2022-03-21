@@ -1,10 +1,9 @@
 #pragma once
 
-
-#include "./qapidoc_includes.h"
 #include "./qapidoc_document_external.h"
+#include "./qapidoc_includes.h"
 
-namespace QApiDoc{
+namespace QApiDoc {
 
 class Q_API_DOC_EXPORT Tag : public ObjectMapper
 {
@@ -14,13 +13,15 @@ class Q_API_DOC_EXPORT Tag : public ObjectMapper
     Q_PROPERTY(QString name READ name WRITE setName RESET resetName NOTIFY nameChanged)
 
     //!
-    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString description READ description WRITE setDescription RESET resetDescription
+                   NOTIFY descriptionChanged)
 
     //!
-    Q_PROPERTY(QVariantHash externalDocs READ externalDocsObject WRITE setExternalDocs RESET resetExternalDocs NOTIFY externalDocsChanged)
+    Q_PROPERTY(QVariantHash externalDocs READ externalDocsObject WRITE setExternalDocs RESET
+                   resetExternalDocs NOTIFY externalDocsChanged)
 
 public:
-    Q_INVOKABLE explicit Tag(QObject*parent=nullptr);
+    Q_INVOKABLE explicit Tag(QObject *parent = nullptr);
     ~Tag();
 
     //!
@@ -53,7 +54,7 @@ public:
     Tag &resetExternalDocs();
 
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 
     const QString qapi_TagDescription = QStringLiteral("description");
     const QString qapi_TagExternalDocs = QStringLiteral("externalDocs");
@@ -77,6 +78,4 @@ signals:
     void externalDocsChanged();
 };
 
-
-}
-
+} // namespace QApiDoc

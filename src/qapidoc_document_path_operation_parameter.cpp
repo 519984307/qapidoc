@@ -5,16 +5,16 @@ static const QStringList &__typeParameter()
     return qapi_TypeParameter();
 }
 
-namespace QApiDoc{
+namespace QApiDoc {
 
-#define dPvt()\
-auto&p =*reinterpret_cast<RequestParameterPvt*>(this->p)
+#define dPvt() auto &p = *reinterpret_cast<RequestParameterPvt *>(this->p)
 
-class RequestParameterPvt{
+class RequestParameterPvt
+{
 public:
-    Parameter*parent=nullptr;
-    bool _allowEmptyValue=false;
-    bool _requiredValue=false;
+    Parameter *parent = nullptr;
+    bool _allowEmptyValue = false;
+    bool _requiredValue = false;
     Definition _schema;
     QString _defaultValuehema;
     QString _descriptionehema;
@@ -24,23 +24,17 @@ public:
     QString _ref;
     QStringList _enumValuef;
     QVariantHash _items;
-    Parameter::QApiParameterInLocation _inLocation=Parameter::srplPath;
+    Parameter::QApiParameterInLocation _inLocation = Parameter::srplPath;
     Parameter::QApiTypeParameter _typeParameter;
 
-    explicit RequestParameterPvt(Parameter*parent)
-    {
-        this->parent=parent;
-    }
+    explicit RequestParameterPvt(Parameter *parent) { this->parent = parent; }
 
-    virtual ~RequestParameterPvt()
-    {
-    }
-
+    virtual ~RequestParameterPvt() {}
 };
 
-Parameter::Parameter(QObject *parent):ObjectMapper{parent}
+Parameter::Parameter(QObject *parent) : ObjectMapper{parent}
 {
-    this->p=new RequestParameterPvt(this);
+    this->p = new RequestParameterPvt{this};
 }
 
 Parameter::~Parameter()
@@ -59,23 +53,23 @@ Parameter &Parameter::inLocation(const QVariant &newInLocation)
     return this->setInLocation(newInLocation);
 }
 
-Parameter &Parameter::setInLocation(const QVariant&newInLocation)
+Parameter &Parameter::setInLocation(const QVariant &newInLocation)
 {
     dPvt();
     if (p._inLocation == newInLocation)
-        return*this;
-    auto index=qapi_requestParameterInLocation().indexOf(newInLocation.toString().toLower());
-    if(index>=0)
-        p._inLocation=QApiParameterInLocation(index);
+        return *this;
+    auto index = qapi_requestParameterInLocation().indexOf(newInLocation.toString().toLower());
+    if (index >= 0)
+        p._inLocation = QApiParameterInLocation(index);
     else
         p._inLocation = QApiParameterInLocation(newInLocation.toInt());
     emit inLocationChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetInLocation()
 {
-    return setInLocation({}); 
+    return setInLocation({});
 }
 
 QString Parameter::inLocationToString() const
@@ -99,15 +93,15 @@ Parameter &Parameter::setRequired(bool newRequired)
 {
     dPvt();
     if (p._requiredValue == newRequired)
-        return*this;
+        return *this;
     p._requiredValue = newRequired;
     emit requiredChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetRequired()
 {
-    return setRequired({}); 
+    return setRequired({});
 }
 
 Definition &Parameter::schema()
@@ -132,7 +126,7 @@ Parameter &Parameter::setSchema(const QVariant &newSchema)
     dPvt();
     p._schema.load(newSchema);
     emit schemaChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::setSchema(const Definition &newSchema)
@@ -140,13 +134,13 @@ Parameter &Parameter::setSchema(const Definition &newSchema)
     dPvt();
     p._schema.load(newSchema.toVariant());
     emit schemaChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetSchema()
 {
-    //    setSchema({}); 
-    return*this;
+    //    setSchema({});
+    return *this;
 }
 
 const QString &Parameter::description() const
@@ -164,15 +158,15 @@ Parameter &Parameter::setDescription(const QString &newDescription)
 {
     dPvt();
     if (p._descriptionehema == newDescription)
-        return*this;
+        return *this;
     p._descriptionehema = newDescription;
     emit descriptionChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetDescription()
 {
-    return setDescription({}); 
+    return setDescription({});
 }
 
 Parameter::QApiTypeParameter Parameter::typeParameter() const
@@ -195,19 +189,19 @@ Parameter &Parameter::setTypeParameter(const QVariant &newTypeParameter)
 {
     dPvt();
     if (p._typeParameter == newTypeParameter)
-        return*this;
-    auto index=__typeParameter().indexOf(newTypeParameter.toString().toLower());
-    if(index>=0)
-        p._typeParameter=QApiTypeParameter(index);
+        return *this;
+    auto index = __typeParameter().indexOf(newTypeParameter.toString().toLower());
+    if (index >= 0)
+        p._typeParameter = QApiTypeParameter(index);
     else
         p._typeParameter = QApiTypeParameter(newTypeParameter.toInt());
     emit typeParameterChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetTypeParameter()
 {
-    return setTypeParameter({}); 
+    return setTypeParameter({});
 }
 
 const QString &Parameter::pattern() const
@@ -225,15 +219,15 @@ Parameter &Parameter::setPattern(const QString &newPattern)
 {
     dPvt();
     if (p._pattern == newPattern)
-        return*this;
+        return *this;
     p._pattern = newPattern;
     emit patternChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetPattern()
 {
-    return setPattern({}); 
+    return setPattern({});
 }
 
 const QVariantHash &Parameter::items() const
@@ -246,15 +240,15 @@ Parameter &Parameter::setItems(const QVariantHash &newItems)
 {
     dPvt();
     if (p._items == newItems)
-        return*this;
+        return *this;
     p._items = newItems;
     emit itemsChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetItems()
 {
-    return setItems({}); 
+    return setItems({});
 }
 
 const QString &Parameter::format() const
@@ -272,15 +266,15 @@ Parameter &Parameter::setFormat(const QString &newFormat)
 {
     dPvt();
     if (p._format == newFormat)
-        return*this;
+        return *this;
     p._format = newFormat;
     emit formatChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetFormat()
 {
-    return setFormat({}); 
+    return setFormat({});
 }
 
 const QString &Parameter::defaultValue() const
@@ -298,15 +292,15 @@ Parameter &Parameter::setDefaultValue(const QString &newDefault)
 {
     dPvt();
     if (p._defaultValuehema == newDefault)
-        return*this;
+        return *this;
     p._defaultValuehema = newDefault;
     emit defaultValueChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetDefaultValue()
 {
-    return setDefaultValue({}); 
+    return setDefaultValue({});
 }
 
 QStringList &Parameter::enumValue()
@@ -325,12 +319,12 @@ Parameter &Parameter::setEnumValue(const QStringList &newEnum)
     dPvt();
     p._enumValuef = newEnum;
     emit enumValueChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetEnumValue()
 {
-    return setEnumValue({}); 
+    return setEnumValue({});
 }
 
 bool Parameter::allowEmptyValue() const
@@ -348,15 +342,15 @@ Parameter &Parameter::setAllowEmptyValue(bool newAllowEmptyValue)
 {
     dPvt();
     if (p._allowEmptyValue == newAllowEmptyValue)
-        return*this;
+        return *this;
     p._allowEmptyValue = newAllowEmptyValue;
     emit allowEmptyValueChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetAllowEmptyValue()
 {
-    return setAllowEmptyValue({}); 
+    return setAllowEmptyValue({});
 }
 
 const QString &Parameter::ref() const
@@ -374,15 +368,15 @@ Parameter &Parameter::setRef(const QString &newRef)
 {
     dPvt();
     if (p._ref == newRef)
-        return*this;
+        return *this;
     p._ref = newRef;
     emit refChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetRef()
 {
-    return setRef({}); 
+    return setRef({});
 }
 
 const QString &Parameter::name() const
@@ -400,17 +394,15 @@ Parameter &Parameter::setName(const QString &newName)
 {
     dPvt();
     if (p._name == newName)
-        return*this;
+        return *this;
     p._name = newName;
     emit nameChanged();
-    return*this;
+    return *this;
 }
 
 Parameter &Parameter::resetName()
 {
-    return setName({}); 
+    return setName({});
 }
 
-}
-
-
+} // namespace QApiDoc

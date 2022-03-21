@@ -1,19 +1,17 @@
 #pragma once
 
-
-#include "./qapidoc_includes.h"
 #include "./qapidoc_common_types.h"
 #include "./qapidoc_document_security_definition.h"
+#include "./qapidoc_includes.h"
 
-
-namespace QApiDoc{
+namespace QApiDoc {
 
 class SecurityDefinitionOAuth2Scope;
 
 //!
 //! \brief The SecurityDefinitionOAuth2 class
 //!
-class Q_API_DOC_EXPORT SecurityDefinitionOAuth2: public SecurityDefinition
+class Q_API_DOC_EXPORT SecurityDefinitionOAuth2 : public SecurityDefinition
 {
     Q_OBJECT
 
@@ -21,15 +19,17 @@ class Q_API_DOC_EXPORT SecurityDefinitionOAuth2: public SecurityDefinition
     Q_PROPERTY(QString name READ name WRITE setName RESET resetName NOTIFY nameChanged)
 
     //!
-    Q_PROPERTY(QString authorizationUrl READ authorizationUrl WRITE setAuthorizationUrl RESET resetAuthorizationUrl NOTIFY authorizationUrlChanged)
+    Q_PROPERTY(QString authorizationUrl READ authorizationUrl WRITE setAuthorizationUrl RESET
+                   resetAuthorizationUrl NOTIFY authorizationUrlChanged)
 
     //!
     Q_PROPERTY(QString flow READ flow WRITE setFlow RESET resetFlow NOTIFY flowChanged)
 
     //!
-    Q_PROPERTY(QVariantHash scopes READ scopesObject WRITE setScopes RESET resetScopes NOTIFY scopesChanged)
+    Q_PROPERTY(QVariantHash scopes READ scopesObject WRITE setScopes RESET resetScopes NOTIFY
+                   scopesChanged)
 public:
-    Q_INVOKABLE explicit SecurityDefinitionOAuth2(QObject*parent=nullptr);
+    Q_INVOKABLE explicit SecurityDefinitionOAuth2(QObject *parent = nullptr);
     ~SecurityDefinitionOAuth2();
 
     //!
@@ -63,7 +63,7 @@ public:
     //! \brief scopes
     //! \return
     //!
-    QList<SecurityDefinitionOAuth2Scope*> &scopes() const;
+    QList<SecurityDefinitionOAuth2Scope *> &scopes() const;
     const QVariantHash scopesObject() const;
     SecurityDefinitionOAuth2 &scopes(const QVariant &newScopes);
     SecurityDefinitionOAuth2 &setScopes(const QVariant &newScopes);
@@ -74,7 +74,7 @@ public:
     //! \brief typeSecurity
     //! \return
     //!
-    SecurityDefinitionType typeSecurity()const;
+    SecurityDefinitionType typeSecurity() const;
 signals:
     //!
     //! \brief nameChanged
@@ -97,9 +97,9 @@ signals:
     void scopesChanged();
 
 private:
-    void*p=nullptr;
+    void *p = nullptr;
 };
 
 Q_SWAGGER_SECURITY_DEFINITION_REGISTER(sstOAuth2, SecurityDefinitionOAuth2);
 
-}
+} // namespace QApiDoc
