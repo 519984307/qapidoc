@@ -401,7 +401,10 @@ bool ObjectMapper::read(const QVariant &value)
         if (v.isNull() || !v.isValid())
             continue;
 
-        auto &p = propertList.value(i.key().toLower());
+        auto &p = propertList[i.key().toLower()];
+        if(!p.isValid())
+            continue;
+
         if (writeProperty(this, p, v))
             __return = true;
     }
