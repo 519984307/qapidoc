@@ -142,7 +142,7 @@ Document &Document::setBasePath(const QVariant &newBasePath)
         case QMetaType_QStringList:
         case QMetaType_QVariantList:
         {
-            for(auto&v:newBasePath.toList()){
+            for(auto &v:newBasePath.toList()){
                 auto path=v.toString().trimmed().toLower();
                 if(path.isEmpty())
                     continue;
